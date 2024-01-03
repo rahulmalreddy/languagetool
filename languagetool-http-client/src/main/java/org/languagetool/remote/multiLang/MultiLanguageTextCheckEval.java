@@ -20,6 +20,7 @@
 
 package org.languagetool.remote.multiLang;
 
+import java.security.SecureRandom;
 import org.languagetool.remote.*;
 import org.languagetool.tools.Tools;
 
@@ -32,7 +33,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class MultiLanguageTextCheckEval {
-  private static Random randomGen = new Random();
+  private static Random randomGen = new SecureRandom();
   private static int minMainLanguageSentences = 100;
   private static int maxOtherLanguageSentences = 15;
   private static int maxOtherLanguageSentencesAtOnce = 4;
