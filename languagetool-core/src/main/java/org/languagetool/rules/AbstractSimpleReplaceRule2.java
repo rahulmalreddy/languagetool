@@ -21,6 +21,7 @@ package org.languagetool.rules;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import io.github.pixee.security.BoundedLineReader;
 import org.jetbrains.annotations.NotNull;
 import org.languagetool.AnalyzedSentence;
 import org.languagetool.AnalyzedTokenReadings;
@@ -154,7 +155,7 @@ public abstract class AbstractSimpleReplaceRule2 extends Rule {
         String line;
         int msgCount = 0;
         int lineCount = 0;
-        while ((line = br.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
           line = line.trim();
           if (line.isEmpty() || line.charAt(0) == '#') { // ignore comments
             continue;
