@@ -19,6 +19,8 @@
 package org.languagetool.remote;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.*;
@@ -143,7 +145,7 @@ public class RemoteLanguageTool {
     byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
     URL checkUrl;
     try {
-      checkUrl = new URL(serverBaseUrl + V2_CHECK);
+      checkUrl = Urls.create(serverBaseUrl + V2_CHECK, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     } catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }
@@ -175,7 +177,7 @@ public class RemoteLanguageTool {
     byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
     URL checkUrl;
     try {
-      checkUrl = new URL(serverBaseUrl + V2_CONFIGINFO);
+      checkUrl = Urls.create(serverBaseUrl + V2_CONFIGINFO, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     } catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }
@@ -205,7 +207,7 @@ public class RemoteLanguageTool {
     byte[] postData = {0};
     URL checkUrl;
     try {
-      checkUrl = new URL(serverBaseUrl + V2_MAXTEXTLENGTH);
+      checkUrl = Urls.create(serverBaseUrl + V2_MAXTEXTLENGTH, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     } catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }
