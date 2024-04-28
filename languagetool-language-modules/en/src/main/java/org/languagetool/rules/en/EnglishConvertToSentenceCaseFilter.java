@@ -24,7 +24,7 @@ public class EnglishConvertToSentenceCaseFilter extends ConvertToSentenceCaseFil
 
   @Override
   protected boolean tokenIsException(String s) {
-    return s.equals("me");
+    return "me".equals(s);
   }
 
 }

@@ -177,7 +177,7 @@ public class SimpleReplaceVerbsRule extends AbstractSimpleReplaceRule {
             for (AnalyzedToken analyzedToken : analyzedTokenReadings) {
               try {
                 String POSTag = analyzedToken.getPOSTag();
-                if (infinitiveAsAnTkn.getLemma().equals("haver")) {
+                if ("haver".equals(infinitiveAsAnTkn.getLemma())) {
                   POSTag = "VA" + POSTag.substring(2);
                 }
                 synthesized = synth.synthesize(infinitiveAsAnTkn, POSTag);

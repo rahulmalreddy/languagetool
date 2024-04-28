@@ -88,7 +88,7 @@ public final class GermanHelper {
   public static String getComparison(String posTag) {
     // input e.g. ADJ:AKK:PLU:MAS:KOM:SOL
     String cmp = getIndexOrEmptyString(posTag, 4);
-    if (!cmp.equals("GRU") && !cmp.equals("KOM") && !cmp.equals("SUP")) {
+    if (!"GRU".equals(cmp) && !"KOM".equals(cmp) && !"SUP".equals(cmp)) {
       // for cases like "PA2:PRD:GRU:VER"
       cmp = getIndexOrEmptyString(posTag, 2);
     }

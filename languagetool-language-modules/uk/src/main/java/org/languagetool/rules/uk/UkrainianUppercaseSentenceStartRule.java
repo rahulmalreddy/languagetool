@@ -19,7 +19,7 @@ public class UkrainianUppercaseSentenceStartRule extends UppercaseSentenceStartR
     // list, e.g. а) б) в)
     if( tokenIdx == 1 && tokenIdx < tokens.length-1
         && tokens[tokenIdx].getCleanToken().matches("[а-яіїєґ]") 
-        && tokens[tokenIdx+1].getToken().equals(")") )
+        && ")".equals(tokens[tokenIdx+1].getToken()) )
       return true;
     
     return false;

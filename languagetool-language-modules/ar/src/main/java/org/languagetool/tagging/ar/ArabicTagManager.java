@@ -200,13 +200,13 @@ public class ArabicTagManager {
   public String setJar(String postag, String jar) {
     char myflag = 0;
     if (isMajrour(postag)) {
-      if (jar.equals("ب") || jar.equals("B")) {
+      if ("ب".equals(jar) || "B".equals(jar)) {
         myflag = 'B';
-      } else if (jar.equals("ل") || jar.equals("L")) {
+      } else if ("ل".equals(jar) || "L".equals(jar)) {
         myflag = 'L';
-      } else if (jar.equals("ك") || jar.equals("K")) {
+      } else if ("ك".equals(jar) || "K".equals(jar)) {
         myflag = 'K';
-      } else if (jar.equals("-") || jar.isEmpty()) {
+      } else if ("-".equals(jar) || jar.isEmpty()) {
         myflag = '-';
       }
       if (myflag != 0) {
@@ -407,7 +407,7 @@ public class ArabicTagManager {
       return "";
     }
     if (isNoun(postag) && (getFlag(postag, "PRONOUN") == 'L')) {
-      if (hasJar(postag) && getJarPrefix(postag).equals("ل")) {
+      if (hasJar(postag) && "ل".equals(getJarPrefix(postag))) {
         return "ل";
       } else {
         return "ال";

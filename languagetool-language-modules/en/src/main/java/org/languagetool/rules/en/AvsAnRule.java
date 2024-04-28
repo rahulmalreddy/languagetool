@@ -149,7 +149,7 @@ public class AvsAnRule extends Rule {
     String word = token.getToken();
     Determiner determiner = Determiner.UNKNOWN;
     String[] parts = word.split("[-']");  // for example, in "one-way" only "one" is relevant
-    if (parts.length >= 1 && !parts[0].equalsIgnoreCase("a")) {  // avoid false alarm on "A-levels are..."
+    if (parts.length >= 1 && !"a".equalsIgnoreCase(parts[0])) {  // avoid false alarm on "A-levels are..."
       word = parts[0];
     }
     if (token.isWhitespaceBefore() || !"-".equals(word)) { // e.g., 'a- or anti- are prefixes'

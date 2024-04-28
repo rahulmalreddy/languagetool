@@ -96,7 +96,7 @@ public class SwissGerman extends German {
     for (RuleMatch rm : ruleMatches) {
       //TODO: replace this by supporting remote-rule-filter for language variants
       String ruleId = rm.getRule().getId();
-      if (ruleId.equals("AI_DE_GGEC_REPLACEMENT_ORTHOGRAPHY_SPELL") || ruleId.equals("AI_DE_GGEC_REPLACEMENT_ADJECTIVE_FORM")) {
+      if ("AI_DE_GGEC_REPLACEMENT_ORTHOGRAPHY_SPELL".equals(ruleId) || "AI_DE_GGEC_REPLACEMENT_ADJECTIVE_FORM".equals(ruleId)) {
         String matchingString = null;
         if (rm.getSentence() != null) {
           if (rm.getFromPos() > -1 && rm.getToPos() > -1) {

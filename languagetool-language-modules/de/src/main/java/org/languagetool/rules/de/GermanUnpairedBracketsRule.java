@@ -50,16 +50,16 @@ public class GermanUnpairedBracketsRule extends GenericUnpairedBracketsRule {
     if (startPos > 0 && endPos <= text.get().length()) {
       String prevCh = text.get().substring(startPos-1, endPos-1);
       String ch = text.get().substring(startPos, endPos);
-      if (prevCh.equals(" ") && ch.equals("“")) {
+      if (" ".equals(prevCh) && "“".equals(ch)) {
         return Arrays.asList("„");
       }
-      if (prevCh.equals("\u00a0") && ch.equals("“")) {
+      if ("\u00a0".equals(prevCh) && "“".equals(ch)) {
         return Arrays.asList("„");
       }
     }
     if (startPos == 0 && endPos <= text.get().length()) {
       String ch = text.get().substring(startPos, endPos);
-      if (ch.equals("“")) {
+      if ("“".equals(ch)) {
         return Arrays.asList("„");
       }
     }

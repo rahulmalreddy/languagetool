@@ -158,8 +158,8 @@ public class UppercaseSentenceStartRule extends TextLevelRule {
       //allows enumeration with lowercase letters: a), iv., etc.
       if (matchTokenPos+1 < tokens.length
               && NUMERALS_EN.matcher(tokens[matchTokenPos].getToken()).matches()
-              && (tokens[matchTokenPos+1].getToken().equals(".")
-              || tokens[matchTokenPos+1].getToken().equals(")"))) {
+              && (".".equals(tokens[matchTokenPos+1].getToken())
+              || ")".equals(tokens[matchTokenPos+1].getToken()))) {
         preventError = true;
       }
 
@@ -192,10 +192,10 @@ public class UppercaseSentenceStartRule extends TextLevelRule {
   @Nullable
   private String dutchSpecialCase(String firstToken,
       String secondToken, AnalyzedTokenReadings[] tokens) {
-    if (!language.getShortCode().equals("nl")) {
+    if (!"nl".equals(language.getShortCode())) {
       return null;
     }
-    if (tokens.length > 3 && firstToken.equals("'")
+    if (tokens.length > 3 && "'".equals(firstToken)
         && isDutchSpecialCase(secondToken)) {
       return tokens[3].getToken();
     }
@@ -224,7 +224,7 @@ public class UppercaseSentenceStartRule extends TextLevelRule {
     // will keep it separate as other locales may expect line-initial m-dashes
     // in enumerations not to introduce capital letters
     String[] searchStrings;
-    if (language.getShortCode().equals("pt")) {
+    if ("pt".equals(language.getShortCode())) {
       String[] portugueseDialogueDashes = { "-", "–", "—" };
       searchStrings = new String[baseQuoteStrings.length + portugueseDialogueDashes.length];
       System.arraycopy(baseQuoteStrings, 0, searchStrings, 0, baseQuoteStrings.length);

@@ -65,7 +65,7 @@ public class Utils {
     List<Retaggable> out = new ArrayList<>();
     // First, mutations
     Retaggable mut = demutate(in);
-    if (mut.getAppendTag().equals(":Len:MorphError") || mut.getAppendTag().equals(":Ecl:MorphError") || mut.getAppendTag().equals(":EclLen")) {
+    if (":Len:MorphError".equals(mut.getAppendTag()) || ":Ecl:MorphError".equals(mut.getAppendTag()) || ":EclLen".equals(mut.getAppendTag())) {
       out.add(mut);
       out.add(new Retaggable(mut.getWord(), mut.getRestrictToPos(), ":DefArt:MorphError"));
     } else if (!"".equals(mut.getAppendTag())) {
@@ -396,7 +396,7 @@ public class Utils {
    * cannot be eclipsed
    */
   public static String eclipse(String in) {
-    if (in == null || in.equals("")) {
+    if (in == null || "".equals(in)) {
       return in;
     }
     if (isUpperVowel(in.charAt(0))) {

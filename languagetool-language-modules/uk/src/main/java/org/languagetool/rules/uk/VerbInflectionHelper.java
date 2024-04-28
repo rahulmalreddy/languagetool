@@ -103,11 +103,11 @@ class VerbInflectionHelper {
       final String person;
   
       Inflection(String gender, String person) {
-        if( gender.equals("s") || gender.equals("p") ) {
+        if( "s".equals(gender) || "p".equals(gender) ) {
           this.gender = null;
           this.plural = gender;
         }
-        else if( gender.equals("i") ) {
+        else if( "i".equals(gender) ) {
           this.gender = gender;
           this.plural = gender;
         }

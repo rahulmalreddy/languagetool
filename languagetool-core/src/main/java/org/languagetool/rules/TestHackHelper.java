@@ -27,7 +27,7 @@ final class TestHackHelper {
     StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
     for (StackTraceElement element : stackTrace) {
       if (element.getClassName().startsWith("org.junit.") ||
-              element.getClassName().equals("org.languagetool.rules.patterns.PatternRuleTest")) {
+              "org.languagetool.rules.patterns.PatternRuleTest".equals(element.getClassName())) {
         return true;
       }
     }

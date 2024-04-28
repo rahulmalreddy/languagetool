@@ -48,13 +48,13 @@ class DateFilterHelper {
   @SuppressWarnings("ControlFlowStatementWithoutBraces")
   protected String getDayOfWeek(Calendar date) {
     String englishDay = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.UK);
-    if (englishDay.equals("Sunday")) return "domingo";
-    if (englishDay.equals("Monday")) return "segunda-feira";
-    if (englishDay.equals("Tuesday")) return "terça-feira";
-    if (englishDay.equals("Wednesday")) return "quarta-feira";
-    if (englishDay.equals("Thursday")) return "quinta-feira";
-    if (englishDay.equals("Friday")) return "sexta-feira";
-    if (englishDay.equals("Saturday")) return "sábado";
+    if ("Sunday".equals(englishDay)) return "domingo";
+    if ("Monday".equals(englishDay)) return "segunda-feira";
+    if ("Tuesday".equals(englishDay)) return "terça-feira";
+    if ("Wednesday".equals(englishDay)) return "quarta-feira";
+    if ("Thursday".equals(englishDay)) return "quinta-feira";
+    if ("Friday".equals(englishDay)) return "sexta-feira";
+    if ("Saturday".equals(englishDay)) return "sábado";
     return "";
   }
 

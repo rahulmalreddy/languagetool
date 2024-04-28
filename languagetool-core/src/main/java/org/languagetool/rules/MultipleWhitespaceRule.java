@@ -62,7 +62,7 @@ public class MultipleWhitespaceRule extends TextLevelRule {
   // Removable white space are not linebreaks, tabs, functions or footnotes
   private static boolean isRemovableWhite(AnalyzedTokenReadings token) {
     return (token.isWhitespace() || StringTools.isNonBreakingWhitespace(token.getToken())) 
-        && !token.isLinebreak() && !token.getToken().equals("\t")
+        && !token.isLinebreak() && !"\t".equals(token.getToken())
         // exclude invisible spaces:
         && !token.getToken().contains("\u200B") && !token.getToken().contains("\uFEFF") && !token.getToken().contains("\u2060");
   }

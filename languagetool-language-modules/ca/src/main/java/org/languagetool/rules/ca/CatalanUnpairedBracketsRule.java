@@ -62,7 +62,7 @@ public class CatalanUnpairedBracketsRule extends GenericUnpairedBracketsRule {
       return true;
     }
     
-    if ((tokenStr.equals("’") || tokenStr.equals("'"))
+    if (("’".equals(tokenStr) || "'".equals(tokenStr))
         && (tokens[i].hasPosTagStartingWith("N") || tokens[i].hasPosTagStartingWith("A"))) {
       return false;
     }
@@ -81,16 +81,16 @@ public class CatalanUnpairedBracketsRule extends GenericUnpairedBracketsRule {
       return false;
     }
 
-    if (i == 1 && tokenStr.equals("»"))
+    if (i == 1 && "»".equals(tokenStr))
       return false;
 
-    if (i > 1 && tokenStr.equals(")")) {
+    if (i > 1 && ")".equals(tokenStr)) {
       boolean isThereOpeningParenthesis = false;
       int k=1;
       while (i-k>0) {
-        if (tokens[i-k].getToken().equals(")"))
+        if (")".equals(tokens[i-k].getToken()))
           break;
-        if (tokens[i-k].getToken().equals("(")) {
+        if ("(".equals(tokens[i-k].getToken())) {
           isThereOpeningParenthesis=true;
           break;
         }

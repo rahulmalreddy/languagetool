@@ -309,7 +309,7 @@ public class PostponedAdjectiveConcordanceFilter extends RuleFilter {
       j++;
     }
     // comma + plural noun
-    isPlural = isPlural || (i - 2 > 0 && cNMP[0] + cNFP[0] + cNCP[0] > 0 && tokens[i - 2].getToken().equals(","));
+    isPlural = isPlural || (i - 2 > 0 && cNMP[0] + cNFP[0] + cNCP[0] > 0 && ",".equals(tokens[i - 2].getToken()));
 
     // there is no noun, (no determinant --> && cDtotal==0)
     if (cNtotal == 0 && cDtotal == 0) {
@@ -482,7 +482,7 @@ public class PostponedAdjectiveConcordanceFilter extends RuleFilter {
     // deux ou plus 
     if (matchRegexp(tokens[i - j].getToken(), COORDINACIO_IONI)) {
       if (i - j - 1 > 0 && i - j + 1 < tokens.length) {
-        if (matchPostagRegexp(tokens[i - j - 1], DET) && tokens[i - j + 1].getToken().equals("plus")) {
+        if (matchPostagRegexp(tokens[i - j - 1], DET) && "plus".equals(tokens[i - j + 1].getToken())) {
           j = j + 1;
         }
       }
@@ -494,7 +494,7 @@ public class PostponedAdjectiveConcordanceFilter extends RuleFilter {
     if (matchRegexp(aTr.getToken(), PREPOSICIO_CANVI_NIVELL)) {
       return true;
     }
-    if (aTr.getToken().equals(".")) { //it is not sentence end, but abbreviation
+    if (".".equals(aTr.getToken())) { //it is not sentence end, but abbreviation
       return true;
     }
     // stop searching if there is some of these combinations:
@@ -520,7 +520,7 @@ public class PostponedAdjectiveConcordanceFilter extends RuleFilter {
 
   private void updateApparitions(AnalyzedTokenReadings aTr) {
     conjunctionAppeared |= matchPostagRegexp(aTr, CONJUNCIO);
-    if (aTr.getToken().equals("com")) {
+    if ("com".equals(aTr.getToken())) {
       return;
     }
     if (matchPostagRegexp(aTr, NOM) || matchPostagRegexp(aTr, ADJECTIU)) {
@@ -528,7 +528,7 @@ public class PostponedAdjectiveConcordanceFilter extends RuleFilter {
       return;
     }
     adverbAppeared |= matchPostagRegexp(aTr, ADVERBI);
-    punctuationAppeared |= (matchPostagRegexp(aTr, PUNTUACIO) || aTr.getToken().equals(","));
+    punctuationAppeared |= (matchPostagRegexp(aTr, PUNTUACIO) || ",".equals(aTr.getToken()));
     infinitiveAppeared |= matchPostagRegexp(aTr, INFINITIVE);
   }
 

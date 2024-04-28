@@ -38,13 +38,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected int getDayOfWeek(String dayStr) {
     String day = dayStr.toLowerCase();
-    if (day.equals("zo") || day.equals("zondag")) return Calendar.SUNDAY;
-    if (day.equals("ma") || day.equals("maandag")) return Calendar.MONDAY;
-    if (day.equals("di") || day.equals("dinsdag")) return Calendar.TUESDAY;
-    if (day.equals("wo") || day.equals("woensdag")) return Calendar.WEDNESDAY;
-    if (day.equals("do") || day.equals("donderdag")) return Calendar.THURSDAY;
-    if (day.equals("vr") || day.equals("vrijdag")) return Calendar.FRIDAY;
-    if (day.equals("za") || day.equals("zaterdag")) return Calendar.SATURDAY;
+    if ("zo".equals(day) || "zondag".equals(day)) return Calendar.SUNDAY;
+    if ("ma".equals(day) || "maandag".equals(day)) return Calendar.MONDAY;
+    if ("di".equals(day) || "dinsdag".equals(day)) return Calendar.TUESDAY;
+    if ("wo".equals(day) || "woensdag".equals(day)) return Calendar.WEDNESDAY;
+    if ("do".equals(day) || "donderdag".equals(day)) return Calendar.THURSDAY;
+    if ("vr".equals(day) || "vrijdag".equals(day)) return Calendar.FRIDAY;
+    if ("za".equals(day) || "zaterdag".equals(day)) return Calendar.SATURDAY;
     throw new RuntimeException("Could not find day of week for '" + dayStr + "'");
   }
 
@@ -52,13 +52,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected String getDayOfWeek(Calendar date) {
     String englishDay = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.UK);
-    if (englishDay.equals("Sunday")) return "zondag";
-    if (englishDay.equals("Monday")) return "maandag";
-    if (englishDay.equals("Tuesday")) return "dinsdag";
-    if (englishDay.equals("Wednesday")) return "woensdag";
-    if (englishDay.equals("Thursday")) return "donderdag";
-    if (englishDay.equals("Friday")) return "vrijdag";
-    if (englishDay.equals("Saturday")) return "zaterdag";
+    if ("Sunday".equals(englishDay)) return "zondag";
+    if ("Monday".equals(englishDay)) return "maandag";
+    if ("Tuesday".equals(englishDay)) return "dinsdag";
+    if ("Wednesday".equals(englishDay)) return "woensdag";
+    if ("Thursday".equals(englishDay)) return "donderdag";
+    if ("Friday".equals(englishDay)) return "vrijdag";
+    if ("Saturday".equals(englishDay)) return "zaterdag";
     return "";
   }
 

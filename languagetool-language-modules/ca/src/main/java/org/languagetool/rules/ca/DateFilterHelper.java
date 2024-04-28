@@ -33,26 +33,26 @@ class DateFilterHelper {
   @SuppressWarnings("ControlFlowStatementWithoutBraces")
   protected int getDayOfWeek(String dayStr) {
     String day = dayStr.toLowerCase();
-    if (day.equals("dg") || day.equals("diumenge")) return Calendar.SUNDAY;
-    if (day.equals("dl") || day.equals("dilluns")) return Calendar.MONDAY;
-    if (day.equals("dt") || day.equals("dimarts")) return Calendar.TUESDAY;
-    if (day.equals("dc") || day.equals("dimecres")) return Calendar.WEDNESDAY;
-    if (day.equals("dj") || day.equals("dijous")) return Calendar.THURSDAY;
-    if (day.equals("dv") || day.equals("divendres")) return Calendar.FRIDAY;
-    if (day.equals("ds") || day.equals("dissabte")) return Calendar.SATURDAY;
+    if ("dg".equals(day) || "diumenge".equals(day)) return Calendar.SUNDAY;
+    if ("dl".equals(day) || "dilluns".equals(day)) return Calendar.MONDAY;
+    if ("dt".equals(day) || "dimarts".equals(day)) return Calendar.TUESDAY;
+    if ("dc".equals(day) || "dimecres".equals(day)) return Calendar.WEDNESDAY;
+    if ("dj".equals(day) || "dijous".equals(day)) return Calendar.THURSDAY;
+    if ("dv".equals(day) || "divendres".equals(day)) return Calendar.FRIDAY;
+    if ("ds".equals(day) || "dissabte".equals(day)) return Calendar.SATURDAY;
     throw new RuntimeException("Could not find day of week for '" + dayStr + "'");
   }
 
   @SuppressWarnings("ControlFlowStatementWithoutBraces")
   protected String getDayOfWeek(Calendar date) {
     String englishDay = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.UK);
-    if (englishDay.equals("Sunday")) return "diumenge";
-    if (englishDay.equals("Monday")) return "dilluns";
-    if (englishDay.equals("Tuesday")) return "dimarts";
-    if (englishDay.equals("Wednesday")) return "dimecres";
-    if (englishDay.equals("Thursday")) return "dijous";
-    if (englishDay.equals("Friday")) return "divendres";
-    if (englishDay.equals("Saturday")) return "dissabte";
+    if ("Sunday".equals(englishDay)) return "diumenge";
+    if ("Monday".equals(englishDay)) return "dilluns";
+    if ("Tuesday".equals(englishDay)) return "dimarts";
+    if ("Wednesday".equals(englishDay)) return "dimecres";
+    if ("Thursday".equals(englishDay)) return "dijous";
+    if ("Friday".equals(englishDay)) return "divendres";
+    if ("Saturday".equals(englishDay)) return "dissabte";
     return "";
   }
 

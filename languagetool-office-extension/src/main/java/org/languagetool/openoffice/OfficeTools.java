@@ -765,7 +765,7 @@ public class OfficeTools {
     if (logLevel != null) {
       String[] levels = logLevel.split(LOG_DELIMITER);
       for (String level : levels) {
-        if (level.equals("1") || level.equals("2") || level.equals("3") || level.startsWith("all:")) {
+        if ("1".equals(level) || "2".equals(level) || "3".equals(level) || level.startsWith("all:")) {
           int numLevel;
           if (level.startsWith("all:")) {
             String[] levelAll = level.split(":");
@@ -803,35 +803,35 @@ public class OfficeTools {
           }
           int numLevel = Integer.parseInt(levelSD[1]);
           if (numLevel > 0) {
-            if (levelSD[0].equals("sd")) {
+            if ("sd".equals(levelSD[0])) {
               DEBUG_MODE_SD = numLevel;
-            } else if (levelSD[0].equals("sc")) {
+            } else if ("sc".equals(levelSD[0])) {
               DEBUG_MODE_SC = numLevel;
-            } else if (levelSD[0].equals("cr")) {
+            } else if ("cr".equals(levelSD[0])) {
               DEBUG_MODE_CR = numLevel;
             }
           }
-        } else if (level.equals("md")) {
+        } else if ("md".equals(level)) {
           DEBUG_MODE_MD = true;
-        } else if (level.equals("dc")) {
+        } else if ("dc".equals(level)) {
           DEBUG_MODE_DC = true;
-        } else if (level.equals("fp")) {
+        } else if ("fp".equals(level)) {
           DEBUG_MODE_FP = true;
-        } else if (level.equals("lm")) {
+        } else if ("lm".equals(level)) {
           DEBUG_MODE_LM = true;
-        } else if (level.equals("tq")) {
+        } else if ("tq".equals(level)) {
           DEBUG_MODE_TQ = true;
-        } else if (level.equals("ld")) {
+        } else if ("ld".equals(level)) {
           DEBUG_MODE_LD = true;
-        } else if (level.equals("cd")) {
+        } else if ("cd".equals(level)) {
           DEBUG_MODE_CD = true;
-        } else if (level.equals("io")) {
+        } else if ("io".equals(level)) {
           DEBUG_MODE_IO = true;
-        } else if (level.equals("sr")) {
+        } else if ("sr".equals(level)) {
           DEBUG_MODE_SR = true;
         } else if (level.startsWith("tm")) {
           String[] levelTm = level.split(":");
-          if (levelTm[0].equals("tm")) {
+          if ("tm".equals(levelTm[0])) {
             DEBUG_MODE_TM = true;
             if(levelTm.length > 1) {
               int time = Integer.parseInt(levelTm[1]);
@@ -840,9 +840,9 @@ public class OfficeTools {
               }
             }
           }
-        } else if (level.equals("st")) {
+        } else if ("st".equals(level)) {
           DEVELOP_MODE_ST = true;
-        } else if (level.equals("dev")) {
+        } else if ("dev".equals(level)) {
           DEVELOP_MODE = true;
         }
       }

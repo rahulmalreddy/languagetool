@@ -175,27 +175,27 @@ public final class MorfologikFrenchSpellerRule extends MorfologikSpellerRule {
   }
 
   private List<String> getAdditionalTopSuggestionsString(List<String> suggestions, String word) {
-    if (word.equals("voulai")) {
+    if ("voulai".equals(word)) {
       return Arrays.asList("voulais", "voulait");
-    } else if (word.equalsIgnoreCase("mm2")) {
+    } else if ("mm2".equalsIgnoreCase(word)) {
       return Arrays.asList("mm²");
-    } else if (word.equalsIgnoreCase("cm2")) {
+    } else if ("cm2".equalsIgnoreCase(word)) {
       return Arrays.asList("cm²");
-    } else if (word.equalsIgnoreCase("dm2")) {
+    } else if ("dm2".equalsIgnoreCase(word)) {
       return Arrays.asList("dm²");
-    } else if (word.equalsIgnoreCase("m2")) {
+    } else if ("m2".equalsIgnoreCase(word)) {
       return Arrays.asList("m²");
-    } else if (word.equalsIgnoreCase("km2")) {
+    } else if ("km2".equalsIgnoreCase(word)) {
       return Arrays.asList("km²");
-    } else if (word.equalsIgnoreCase("mm3")) {
+    } else if ("mm3".equalsIgnoreCase(word)) {
       return Arrays.asList("mm³");
-    } else if (word.equalsIgnoreCase("cm3")) {
+    } else if ("cm3".equalsIgnoreCase(word)) {
       return Arrays.asList("cm³");
-    } else if (word.equalsIgnoreCase("dm3")) {
+    } else if ("dm3".equalsIgnoreCase(word)) {
       return Arrays.asList("dm³");
-    } else if (word.equalsIgnoreCase("m3")) {
+    } else if ("m3".equalsIgnoreCase(word)) {
       return Arrays.asList("m³");
-    } else if (word.equalsIgnoreCase("km3")) {
+    } else if ("km3".equalsIgnoreCase(word)) {
       return Arrays.asList("km³");
     }
     /*

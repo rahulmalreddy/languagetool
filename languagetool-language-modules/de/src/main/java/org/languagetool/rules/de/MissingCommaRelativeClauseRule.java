@@ -195,7 +195,7 @@ public class MissingCommaRelativeClauseRule extends Rule {
    * is a separator
    */
   private static boolean isSeparator(String token) {
-    return (MARKS_REGEX.matcher(token).matches() || token.equals("und") || token.equals("oder"));
+    return (MARKS_REGEX.matcher(token).matches() || "und".equals(token) || "oder".equals(token));
   }
 
   /**
@@ -223,7 +223,7 @@ public class MissingCommaRelativeClauseRule extends Rule {
   private static boolean isVerb(AnalyzedTokenReadings[] tokens, int n) {
     return (tokens[n].matchesPosTagRegex("(VER:[1-3]:|VER:.*:[1-3]:).*")
         && !tokens[n].matchesPosTagRegex("(ZAL|AD[JV]|ART|SUB|PRO:POS|PRP).*")
-        && (!tokens[n].hasPosTagStartingWith("VER:INF:") || !tokens[n-1].getToken().equals("zu"))
+        && (!tokens[n].hasPosTagStartingWith("VER:INF:") || !"zu".equals(tokens[n-1].getToken()))
         && !tokens[n].isImmunized()
       );
   }
@@ -234,7 +234,7 @@ public class MissingCommaRelativeClauseRule extends Rule {
   private static boolean isAnyVerb(AnalyzedTokenReadings[] tokens, int n) {
     return tokens[n].hasPosTagStartingWith("VER:")
         || (n < tokens.length - 1
-            && ((tokens[n].getToken().equals("zu") && tokens[n+1].hasPosTagStartingWith("VER:INF:"))
+            && (("zu".equals(tokens[n].getToken()) && tokens[n+1].hasPosTagStartingWith("VER:INF:"))
              || (tokens[n].hasPosTag("NEG") && tokens[n+1].hasPosTagStartingWith("VER:"))));
   }
 
@@ -242,7 +242,7 @@ public class MissingCommaRelativeClauseRule extends Rule {
    * is a verb after sub clause
    */
   static boolean isVerbBehind(AnalyzedTokenReadings[] tokens, int end) {
-    return (end < tokens.length - 1 && tokens[end].getToken().equals(",") && tokens[end+1].hasPosTagStartingWith("VER:"));
+    return (end < tokens.length - 1 && ",".equals(tokens[end].getToken()) && tokens[end+1].hasPosTagStartingWith("VER:"));
   }
 
   /**
@@ -310,8 +310,8 @@ public class MissingCommaRelativeClauseRule extends Rule {
     if(verbs.size() == 3) {
       if(tokens[verbs.get(0)].hasPosTagStartingWith("VER:MOD:")
           && ((tokens[verbs.get(2) - 1].matchesPosTagRegex("VER:(INF|PA2):.*") && tokens[verbs.get(2)].hasPosTagStartingWith("VER:INF:"))
-              || (tokens[verbs.get(1) - 1].getToken().equals("weder") && tokens[verbs.get(1)].hasPosTagStartingWith("VER:INF:")
-                  && tokens[verbs.get(2) - 1].getToken().equals("noch") && tokens[verbs.get(1)].hasPosTagStartingWith("VER:INF:")))
+              || ("weder".equals(tokens[verbs.get(1) - 1].getToken()) && tokens[verbs.get(1)].hasPosTagStartingWith("VER:INF:")
+                  && "noch".equals(tokens[verbs.get(2) - 1].getToken()) && tokens[verbs.get(1)].hasPosTagStartingWith("VER:INF:")))
         ) {
         return -1;
       }
@@ -327,7 +327,7 @@ public class MissingCommaRelativeClauseRule extends Rule {
    */
   private static boolean isPronoun(AnalyzedTokenReadings[] tokens, int n) {
     return (tokens[n].getToken().matches("(d(e[mnr]|ie|as|e([nr]|ss)en)|welche[mrs]?|wessen|was)")
-            && !tokens[n - 1].getToken().equals("sowie"));
+            && !"sowie".equals(tokens[n - 1].getToken()));
   }
 
   /**
@@ -517,7 +517,7 @@ public class MissingCommaRelativeClauseRule extends Rule {
    * is participle plus special combination of two verbs combination
    */
   private static boolean isInfinitivZu(AnalyzedTokenReadings[] tokens, int last) {
-    return tokens[last - 1 ].getToken().equals("zu")&& tokens[last].matchesPosTagRegex("VER:.*INF.*");
+    return "zu".equals(tokens[last - 1 ].getToken())&& tokens[last].matchesPosTagRegex("VER:.*INF.*");
   }
 
   /**
@@ -594,7 +594,7 @@ public class MissingCommaRelativeClauseRule extends Rule {
    */
   private static boolean isSeparatorOrInf(AnalyzedTokenReadings[] tokens, int n) {
     return isSeparator(tokens[n].getToken()) || tokens[n].hasPosTagStartingWith("VER:INF")
-        || (tokens.length > n + 1 && tokens[n].getToken().equals("zu") && tokens[n + 1].matchesPosTagRegex("VER:.*INF.*"));
+        || (tokens.length > n + 1 && "zu".equals(tokens[n].getToken()) && tokens[n + 1].matchesPosTagRegex("VER:.*INF.*"));
   }
 
   /**

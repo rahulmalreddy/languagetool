@@ -202,7 +202,7 @@ public class GermanTagger extends BaseTagger {
     //Skip words ending in a dash as they'll be misrecognized
     if (!word.endsWith("-")) {
       String[] splitWord = word.split("-");
-      String lastPart = splitWord.length > 1 && !splitWord[splitWord.length - 1].trim().equals("") ? splitWord[splitWord.length - 1] : word;
+      String lastPart = splitWord.length > 1 && !"".equals(splitWord[splitWord.length - 1].trim()) ? splitWord[splitWord.length - 1] : word;
 
       //Find only the actual important part of the word
       List<String> compoundedWord = GermanCompoundTokenizer.getStrictInstance().tokenize(lastPart);
@@ -353,7 +353,7 @@ public class GermanTagger extends BaseTagger {
                   } else if (!StringUtils.startsWithAny(tag.getPosTag(),"VER:IMP")) {
                     readings.add(new AnalyzedToken(word, tag.getPosTag(), verbInfo.prefix + tag.getLemma()));
                   } else if (StringUtils.startsWithAny(tag.getPosTag(),"VER:IMP:SIN") && (!readings.contains("VER:1:SIN:PRÄ"))) {
-                    if (flektion.equals("SFT") || !word.matches(".*i.+")) { // Avoids 'aufnimm'
+                    if ("SFT".equals(flektion) || !word.matches(".*i.+")) { // Avoids 'aufnimm'
                       readings.add(new AnalyzedToken(word, "VER:1:SIN:PRÄ:" + flektion + ":NEB", verbInfo.prefix + tag.getLemma()));
                     }
                   }
@@ -361,7 +361,7 @@ public class GermanTagger extends BaseTagger {
                   && (!StringUtils.containsAny(word, notAVerb))) {
                     if ((StringUtils.startsWithAny(tag.getPosTag(),"VER:IMP:SIN") && (!readings.contains("VER:1:SIN:PRÄ")))
                        || (StringUtils.startsWithAny(tag.getPosTag(),"VER:1:SIN:PRÄ") && (!readings.contains("VER:IMP:SIN")))) {
-                         if (flektion.equals("SFT") || !word.matches(".*i.+")) { // Avoids 'zernimm'
+                         if ("SFT".equals(flektion) || !word.matches(".*i.+")) { // Avoids 'zernimm'
                            readings.add(new AnalyzedToken(word, "VER:IMP:SIN" + flektion, verbInfo.prefix + tag.getLemma()));
                            readings.add(new AnalyzedToken(word, "VER:1:SIN:PRÄ:" + flektion, verbInfo.prefix + tag.getLemma()));
                          }
@@ -511,7 +511,7 @@ public class GermanTagger extends BaseTagger {
                                         readings.add(new AnalyzedToken(word, "VER:1:SIN:PRÄ:" + flekt, firstPart + taggedWord.getLemma()));
                                       }
                                     }
-                                  } else if (!readings.contains("VER:1:SIN:PRÄ") && (flekt.equals("SFT") || !word.matches(".*i.+"))) {
+                                  } else if (!readings.contains("VER:1:SIN:PRÄ") && ("SFT".equals(flekt) || !word.matches(".*i.+"))) {
                                     readings.add(new AnalyzedToken(word, "VER:1:SIN:PRÄ:" + flekt + ":NEB", firstPart + taggedWord.getLemma()));
                                   }
                                 }
@@ -629,7 +629,7 @@ public class GermanTagger extends BaseTagger {
                 readings.add(getNoInfoToken(word));
               }
             }
-          } else if (!(idxPos+2 < sentenceTokens.size() && sentenceTokens.get(idxPos+1).equals(".") && sentenceTokens.get(idxPos+2).matches("com|net|org|de|at|ch|fr|uk|gov"))) {  // TODO: find better way to ignore domains
+          } else if (!(idxPos+2 < sentenceTokens.size() && ".".equals(sentenceTokens.get(idxPos+1)) && sentenceTokens.get(idxPos+2).matches("com|net|org|de|at|ch|fr|uk|gov"))) {  // TODO: find better way to ignore domains
             // last part governs a word's POS:
             String lastPart = compoundParts.get(compoundParts.size() - 1);
             if (StringTools.startsWithUppercase(word) && !StringUtils.containsAny(lastPart, "freie", "freier", "freien", "freies", "freiem")) {
@@ -764,7 +764,7 @@ public class GermanTagger extends BaseTagger {
       }
       String femaleForm = word.substring(0, word.length()-1);
       List<TaggedWord> taggedFemaleForm = getWordTagger().tag(femaleForm);
-      boolean isSubstantivatedForm = taggedFemaleForm.stream().anyMatch(t -> t.getPosTag().equals("SUB:NOM:SIN:FEM:ADJ"));
+      boolean isSubstantivatedForm = taggedFemaleForm.stream().anyMatch(t -> "SUB:NOM:SIN:FEM:ADJ".equals(t.getPosTag()));
       if (isSubstantivatedForm) {
         List<AnalyzedToken> list = new ArrayList<>();
         list.add(new AnalyzedToken(word, "SUB:NOM:SIN:MAS:ADJ", word));

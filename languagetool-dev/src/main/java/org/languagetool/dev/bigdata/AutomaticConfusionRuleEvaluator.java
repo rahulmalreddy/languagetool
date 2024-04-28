@@ -278,7 +278,7 @@ class AutomaticConfusionRuleEvaluator {
     }
     Language lang = Languages.getLanguageForShortCode(args[0]);
     List<String> lines = IOUtils.readLines(new FileInputStream(args[1]), "utf-8");
-    boolean caseInsensitive = args[5].equalsIgnoreCase("true");
+    boolean caseInsensitive = "true".equalsIgnoreCase(args[5]);
     AutomaticConfusionRuleEvaluator eval = new AutomaticConfusionRuleEvaluator(new File(args[2]), args[4], caseInsensitive, lang);
     eval.run(lines, new File(args[3]));
   }

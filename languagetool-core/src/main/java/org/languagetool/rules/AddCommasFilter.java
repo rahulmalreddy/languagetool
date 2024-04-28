@@ -62,7 +62,7 @@ public class AddCommasFilter extends RuleFilter {
       return null;
     }
     RuleMatch newMatch = null;
-    if (bSuggestSemicolon && tokens[postagFrom - 1].getToken().equals(",") && !afterOK) {
+    if (bSuggestSemicolon && ",".equals(tokens[postagFrom - 1].getToken()) && !afterOK) {
       newMatch = new RuleMatch(match.getRule(), match.getSentence(), tokens[postagFrom - 1].getStartPos(),
           tokens[postagTo].getEndPos(), match.getMessage(), match.getShortMessage());
       newMatch.addSuggestedReplacement(

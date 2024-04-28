@@ -39,13 +39,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected int getDayOfWeek(String dayStr) {
     String day = dayStr.toLowerCase();
-    if (day.startsWith("по") || day.equals("понедељак")) return Calendar.MONDAY;
+    if (day.startsWith("по") || "понедељак".equals(day)) return Calendar.MONDAY;
     if (day.startsWith("ут")) return Calendar.TUESDAY;
     if (day.startsWith("ср")) return Calendar.WEDNESDAY;
-    if (day.startsWith("че") || day.equals("четвртак")) return Calendar.THURSDAY;
-    if (day.startsWith("пе") || day.equals("петак")) return Calendar.FRIDAY;
-    if (day.startsWith("су") || day.equals("субота")) return Calendar.SATURDAY;
-    if (day.startsWith("не") || day.equals("недеља")) return Calendar.SUNDAY;
+    if (day.startsWith("че") || "четвртак".equals(day)) return Calendar.THURSDAY;
+    if (day.startsWith("пе") || "петак".equals(day)) return Calendar.FRIDAY;
+    if (day.startsWith("су") || "субота".equals(day)) return Calendar.SATURDAY;
+    if (day.startsWith("не") || "недеља".equals(day)) return Calendar.SUNDAY;
     throw new RuntimeException("Редни број дана у недељи за '" + dayStr + "' не постоји.");
   }
 
@@ -58,18 +58,18 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected int getMonth(String monthStr) {
     String mon = monthStr.toLowerCase();
-    if (mon.equals("јануар") || monthStr.equals("I") || mon.equals("јануара") || mon.equals("јан")) return 1;
-    if (mon.equals("фебруар") || monthStr.equals("II") || mon.equals("фебруара") || mon.equals("феб")) return 2;
-    if (mon.equals("март") || monthStr.equals("III") || mon.equals("марта") || mon.equals("мар")) return 3;
-    if (mon.equals("април") || monthStr.equals("IV") || mon.equals("априла") || mon.equals("апр")) return 4;
-    if (mon.equals("мај") || monthStr.equals("V") || mon.equals("маја")) return 5;
-    if (mon.equals("јун") || monthStr.equals("VI") || mon.equals("јуна") || mon.equals("јун")) return 6;
-    if (mon.equals("јул") || monthStr.equals("VII") || mon.equals("јула") || mon.equals("јул")) return 7;
-    if (mon.equals("август") || monthStr.equals("VIII") || mon.equals("августа") || mon.equals("авг")) return 8;
-    if (mon.equals("септембар") || monthStr.equals("IX") || mon.equals("септембра") || mon.equals("сеп")) return 9;
-    if (mon.equals("октобар") || monthStr.equals("X") || mon.equals("октобра") || mon.equals("окт")) return 10;
-    if (mon.equals("новембар") || monthStr.equals("XI") || mon.equals("новембра") || mon.equals("нов")) return 11;
-    if (mon.equals("децембар") || monthStr.equals("XII") || mon.equals("децембра") || mon.equals("дец")) return 12;
+    if ("јануар".equals(mon) || "I".equals(monthStr) || "јануара".equals(mon) || "јан".equals(mon)) return 1;
+    if ("фебруар".equals(mon) || "II".equals(monthStr) || "фебруара".equals(mon) || "феб".equals(mon)) return 2;
+    if ("март".equals(mon) || "III".equals(monthStr) || "марта".equals(mon) || "мар".equals(mon)) return 3;
+    if ("април".equals(mon) || "IV".equals(monthStr) || "априла".equals(mon) || "апр".equals(mon)) return 4;
+    if ("мај".equals(mon) || "V".equals(monthStr) || "маја".equals(mon)) return 5;
+    if ("јун".equals(mon) || "VI".equals(monthStr) || "јуна".equals(mon) || "јун".equals(mon)) return 6;
+    if ("јул".equals(mon) || "VII".equals(monthStr) || "јула".equals(mon) || "јул".equals(mon)) return 7;
+    if ("август".equals(mon) || "VIII".equals(monthStr) || "августа".equals(mon) || "авг".equals(mon)) return 8;
+    if ("септембар".equals(mon) || "IX".equals(monthStr) || "септембра".equals(mon) || "сеп".equals(mon)) return 9;
+    if ("октобар".equals(mon) || "X".equals(monthStr) || "октобра".equals(mon) || "окт".equals(mon)) return 10;
+    if ("новембар".equals(mon) || "XI".equals(monthStr) || "новембра".equals(mon) || "нов".equals(mon)) return 11;
+    if ("децембар".equals(mon) || "XII".equals(monthStr) || "децембра".equals(mon) || "дец".equals(mon)) return 12;
     throw new RuntimeException("Месец '" + monthStr + "' не постоји.");
   }
 }

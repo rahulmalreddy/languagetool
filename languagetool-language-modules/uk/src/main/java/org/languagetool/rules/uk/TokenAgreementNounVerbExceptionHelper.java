@@ -204,7 +204,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
 
     // Збережені Я позбудуться необхідності
     if( nounPos > 1
-        && tokens[nounPos].getToken().equals("Я") ) {
+        && "Я".equals(tokens[nounPos].getToken()) ) {
       logException();
       return true;
     }
@@ -212,7 +212,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
     // а він давай пити горілку
     // а він давай за своє
     if( verbPos > 2 && verbPos < tokens.length - 1
-        && tokens[verbPos].getToken().equals("давай") ) {
+        && "давай".equals(tokens[verbPos].getToken()) ) {
       logException();
       return true;
     }
@@ -221,8 +221,8 @@ public final class TokenAgreementNounVerbExceptionHelper {
     // but not: Як ви може оцінити
     // and not: що ми не може просто так
     if( verbPos > 1 && verbPos < tokens.length-1
-        && tokens[verbPos].getToken().equals("може")
-        && ! tokens[verbPos-1].getToken().equals("не")
+        && "може".equals(tokens[verbPos].getToken())
+        && ! "не".equals(tokens[verbPos-1].getToken())
         && ! PosTagHelper.hasPosTag(tokens[verbPos+1], PosTagHelper.VERB_INF_PATTERN)) {
       logException();
       return true;
@@ -292,7 +292,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
     // — це були невільники
     // — це передбачено
     if( nounPos > 1 && verbPos < tokens.length - 1
-        && tokens[nounPos].getToken().equals("це") 
+        && "це".equals(tokens[nounPos].getToken()) 
         && LemmaHelper.DASHES_PATTERN.matcher(tokens[nounPos-1].getToken()).matches() ) {
 //        && ! Collections.disjoint(verbInflections, TokenAgreementNounVerbRule.getNounInflections(tokens[i+1].getReadings())) ) {
       logException();
@@ -300,7 +300,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
     }
 
     // це не передбачено
-    if( tokens[nounPos].getToken().equals("це")
+    if( "це".equals(tokens[nounPos].getToken())
         && PosTagHelper.hasPosTagPart(verbTokenReadings, "impers") ) {
       logException();
       return true;
@@ -333,8 +333,8 @@ public final class TokenAgreementNounVerbExceptionHelper {
       // Колесніков/Ахметов посилили
       // Олександр Недовєсов / Сергій Стаховський не змогли
       if( nounPos > 2
-          && (tokens[nounPos-1].getToken().equals("/")
-              || tokens[nounPos-2].getToken().equals("/")) ) {
+          && ("/".equals(tokens[nounPos-1].getToken())
+              || "/".equals(tokens[nounPos-2].getToken())) ) {
         logException();
         return true;
       }
@@ -383,7 +383,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
       }
 
       // і мама, і тато
-      if( pos0left > 1 && tokens[pos0left-1].getToken().equals(",") ) {
+      if( pos0left > 1 && ",".equals(tokens[pos0left-1].getToken()) ) {
         pos0left -= 1;
       }
       
@@ -416,7 +416,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
           }
           
           // Німеччина (ще демократична) та Росія почали
-          if( tokens[pos0left-1].getToken().equals(")") ) {
+          if( ")".equals(tokens[pos0left-1].getToken()) ) {
             logException();
             return true;
           }
@@ -567,7 +567,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
 
       // 100 чоловік - handled by styling rule
       if( PosTagHelper.hasPosTagPart(tokens[nounPos-1], "num")
-          && tokens[nounPos].getToken().equals("чоловік") 
+          && "чоловік".equals(tokens[nounPos].getToken()) 
           && LemmaHelper.tokenSearch(tokens, 1, "noun:anim:f:.*", Pattern.compile("жінк[аи]"), Pattern.compile(".*"), Dir.FORWARD) == -1 ) {
         logException();
         return true;
@@ -608,7 +608,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
       }
 
       if( nounPos > 2
-          && tokens[verbPos-1].getToken().equals("не")
+          && "не".equals(tokens[verbPos-1].getToken())
           && LemmaHelper.reverseSearch(tokens, nounPos-1, 5, Pattern.compile("а?ні"), null) ) {
         logException();
         return true;
@@ -623,7 +623,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
       
 
       if( nounPos > 3
-          && tokens[verbPos-1].getToken().equals("не")
+          && "не".equals(tokens[verbPos-1].getToken())
           && tokens[nounPos-2].getToken().matches("а?ні")
           && ! Collections.disjoint(
               InflectionHelper.getAdjInflections(tokens[nounPos-1].getReadings()),
@@ -717,7 +717,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
 
     // Угорщина було пішла шляхом
     if( verbPos < tokens.length - 1
-        && tokens[verbPos].getCleanToken().equals("було") ) {
+        && "було".equals(tokens[verbPos].getCleanToken()) ) {
         int pos = LemmaHelper.tokenSearch(tokens, verbPos+1, "verb:", null, Pattern.compile("adv.*"), Dir.FORWARD); // PosTagHelper.hasPosTag(tokens[i+1], "verb.*:past.*")
         if( pos >= 0 
             && ! Collections.disjoint(
@@ -731,7 +731,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
     // клан Рана було знищено
     if( verbPos < tokens.length - 1
         && PosTagHelper.hasPosTagPart(tokens[nounPos], ":prop")
-        && tokens[verbPos].getCleanToken().equals("було")
+        && "було".equals(tokens[verbPos].getCleanToken())
         && PosTagHelper.hasPosTag(tokens[verbPos+1], "verb.*:impers.*") ) {
       logException();
       return true;
@@ -789,7 +789,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
 
     // вона візьми та й скажи
     if( verbPos < tokens.length-2
-        && tokens[verbPos].getToken().equals("візьми")
+        && "візьми".equals(tokens[verbPos].getToken())
         && LemmaHelper.hasLemma(tokens[verbPos+1], Arrays.asList("і", "й", "та"))) {
       logException();
       return true;
@@ -843,7 +843,7 @@ public final class TokenAgreementNounVerbExceptionHelper {
 
   static boolean isNonPluralA(AnalyzedTokenReadings[] tokens, int pos) {
     // both Cyrillic and Latin :(
-    return (tokens[pos].getToken().equals("а") || tokens[pos].getToken().equals("a"))
+    return ("а".equals(tokens[pos].getToken()) || "a".equals(tokens[pos].getToken()))
         && ! LemmaHelper.hasLemma(tokens[pos+1], Arrays.asList("також", "потім", "пізніше"));
   }
   

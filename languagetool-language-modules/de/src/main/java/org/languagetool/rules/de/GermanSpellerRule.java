@@ -1726,7 +1726,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
   protected void addIgnoreWords(String origLine) {
     // hack: Swiss German doesn't use "ß" but always "ss" - replace this, otherwise
     // misspellings (from Swiss point-of-view) like "äußere" wouldn't be found:
-    String line = language.getShortCodeWithCountryAndVariant().equals("de-CH") ? origLine.replace("ß", "ss") : origLine;
+    String line = "de-CH".equals(language.getShortCodeWithCountryAndVariant()) ? origLine.replace("ß", "ss") : origLine;
     if (origLine.endsWith("-*")) {
       // words whose line ends with "-*" are only allowed in hyphenated compounds
       wordsToBeIgnoredInCompounds.add(line.substring(0, line.length() - 2));
@@ -1878,7 +1878,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
 
   @Override
   protected void filterForLanguage(List<String> suggestions) {
-    if (language.getShortCodeWithCountryAndVariant().equals("de-CH")) {
+    if ("de-CH".equals(language.getShortCodeWithCountryAndVariant())) {
       for (int i = 0; i < suggestions.size(); i++) {
         String s = suggestions.get(i);
         suggestions.set(i, s.replace("ß", "ss"));
@@ -2047,7 +2047,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
     if (word.startsWith("Spielzug") && !word.matches("Spielzugs?|Spielzugangs?|Spielzuganges|Spielzugbuchs?|Spielzugbüchern?|Spielzuges|Spielzugverluste?|Spielzugverluste[ns]")) {
       return true;
     }
-    if (word.startsWith("Standart") && !word.equals("Standarte") && !word.equals("Standarten") && !word.startsWith("Standartenträger") && !word.startsWith("Standartenführer")) {
+    if (word.startsWith("Standart") && !"Standarte".equals(word) && !"Standarten".equals(word) && !word.startsWith("Standartenträger") && !word.startsWith("Standartenführer")) {
       return true;
     }
     if (word.endsWith("schafte") && word.matches("[A-ZÖÄÜ][a-zöäß-]+schafte")) {
@@ -2130,7 +2130,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
         return true;
       }
     }
-    if ((idx+1 < words.size() && (word.endsWith(".mp") || word.endsWith(".woff")) && words.get(idx+1).equals("")) ||
+    if ((idx+1 < words.size() && (word.endsWith(".mp") || word.endsWith(".woff")) && "".equals(words.get(idx+1))) ||
         (idx > 0 && "".equals(words.get(idx-1)) && StringUtils.equalsAny(word, "sat", "stel", "tel", "stels", "tels") )) {
       // e.g. ".mp3", "3sat", "100stel", "5tel" - the check for the empty string is because digits were removed during
       // hunspell-style tokenization before
@@ -2168,7 +2168,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
         part2 = part2.substring(1);
         hasInfixS = true;
       }
-    } else if (parts.size() == 3 && parts.get(1).equals("s") && word.contains("-") && startsWithUppercase(parts.get(2))) {
+    } else if (parts.size() == 3 && "s".equals(parts.get(1)) && word.contains("-") && startsWithUppercase(parts.get(2))) {
       // e.g. "Prioritäts-Dings" gets split like "Priorität", "s", "dings" -> treat it as if there was no "-":
       part1 = parts.get(0) + "s";
       part2 = lowercaseFirstChar(parts.get(2));
@@ -2377,52 +2377,52 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       if (hunspell.spell(suggestion)) {
         return singletonList(suggestion);
       }
-    } else if (word.equals("gin")) {
+    } else if ("gin".equals(word)) {
       return singletonList("ging");
-    } else if (word.equals("dh") || word.equals("dh.")) {
+    } else if ("dh".equals(word) || "dh.".equals(word)) {
       return singletonList("d.\u202fh.");
-    } else if (word.equals("ua") || word.equals("ua.")) {
+    } else if ("ua".equals(word) || "ua.".equals(word)) {
       return singletonList("u.\u202fa.");
     } else if (word.matches("z[bB]") || word.matches("z[bB].")) {
       return singletonList("z.\u202fB.");
-    } else if (word.equals("uvm") || word.equals("uvm.")) {
+    } else if ("uvm".equals(word) || "uvm.".equals(word)) {
       return singletonList("u.\u202fv.\u202fm.");
-    } else if (word.equals("udgl") || word.equals("udgl.")) {
+    } else if ("udgl".equals(word) || "udgl.".equals(word)) {
       return singletonList("u.\u202fdgl.");
-    } else if (word.equals("Ruhigkeit")) {
+    } else if ("Ruhigkeit".equals(word)) {
       return singletonList("Ruhe");
-    } else if (word.equals("angepreist")) {
+    } else if ("angepreist".equals(word)) {
       return singletonList("angepriesen");
-    } else if (word.equals("halo")) {
+    } else if ("halo".equals(word)) {
       return singletonList("hallo");
-    } else if (word.equalsIgnoreCase("zumindestens")) {
+    } else if ("zumindestens".equalsIgnoreCase(word)) {
       return singletonList(word.replace("ens", ""));
-    } else if (word.equals("ca")) {
+    } else if ("ca".equals(word)) {
       return singletonList("ca.");
-    } else if (word.equals("Jezt")) {
+    } else if ("Jezt".equals(word)) {
       return singletonList("Jetzt");
-    } else if (word.equals("Wollst")) {
+    } else if ("Wollst".equals(word)) {
       return singletonList("Wolltest");
-    } else if (word.equals("wollst")) {
+    } else if ("wollst".equals(word)) {
       return singletonList("wolltest");
-    } else if (word.equals("Rolladen")) {
+    } else if ("Rolladen".equals(word)) {
       return singletonList("Rollladen");
-    } else if (word.equals("Maßname")) {
+    } else if ("Maßname".equals(word)) {
       return singletonList("Maßnahme");
-    } else if (word.equals("Maßnamen")) {
+    } else if ("Maßnamen".equals(word)) {
       return singletonList("Maßnahmen");
-    } else if (word.equals("nanten")) {
+    } else if ("nanten".equals(word)) {
       return singletonList("nannten");
-    } else if (word.equals("diees")) {
+    } else if ("diees".equals(word)) {
       return Arrays.asList("dieses", "dies");
-    } else if (word.equals("Diees")) {
+    } else if ("Diees".equals(word)) {
       return Arrays.asList("Dieses", "Dies");
     } else if (word.endsWith("ies")) {
-      if (word.equals("Lobbies")) {
+      if ("Lobbies".equals(word)) {
         return singletonList("Lobbys");
-      } else if (word.equals("Parties")) {
+      } else if ("Parties".equals(word)) {
         return singletonList("Partys");
-      } else if (word.equals("Babies")) {
+      } else if ("Babies".equals(word)) {
         return singletonList("Babys");
       } else if (word.endsWith("derbies")) {
         suggestion = word.replaceFirst("derbies$", "derbys");
@@ -2440,37 +2440,37 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
           return singletonList(suggestion);
         }
       }
-    } else if (word.equals("Hallochen")) {
+    } else if ("Hallochen".equals(word)) {
       return Arrays.asList("Hallöchen", "hallöchen");
-    } else if (word.equals("hallochen")) {
+    } else if ("hallochen".equals(word)) {
       return singletonList("hallöchen");
-    } else if (word.equals("ok")) {
+    } else if ("ok".equals(word)) {
       return Arrays.asList("okay", "O.\u202fK."); // Duden-like suggestion with no-break space
-    } else if (word.equals("gesuchen")) {
+    } else if ("gesuchen".equals(word)) {
       return Arrays.asList("gesuchten", "gesucht");
-    } else if (word.equals("Germanistiker")) {
+    } else if ("Germanistiker".equals(word)) {
       return Arrays.asList("Germanist", "Germanisten");
-    } else if (word.equals("Abschlepper")) {
+    } else if ("Abschlepper".equals(word)) {
       return Arrays.asList("Abschleppdienst", "Abschleppwagen");
-    } else if (word.equals("par")) {
+    } else if ("par".equals(word)) {
       return singletonList("paar");
-    } else if (word.equals("iwie")) {
+    } else if ("iwie".equals(word)) {
       return singletonList("irgendwie");
-    } else if (word.equals("bzgl")) {
+    } else if ("bzgl".equals(word)) {
       return singletonList("bzgl.");
-    } else if (word.equals("bau")) {
+    } else if ("bau".equals(word)) {
       return singletonList("baue");
-    } else if (word.equals("sry")) {
+    } else if ("sry".equals(word)) {
       return singletonList("sorry");
-    } else if (word.equals("Sry")) {
+    } else if ("Sry".equals(word)) {
       return singletonList("Sorry");
-    } else if (word.equals("thx")) {
+    } else if ("thx".equals(word)) {
       return singletonList("danke");
-    } else if (word.equals("Thx")) {
+    } else if ("Thx".equals(word)) {
       return singletonList("Danke");
-    } else if (word.equals("Zynik")) {
+    } else if ("Zynik".equals(word)) {
       return singletonList("Zynismus");
-    } else if (word.equalsIgnoreCase("email")) {
+    } else if ("email".equalsIgnoreCase(word)) {
       return singletonList("E-Mail");
     } else if (word.length() > 9 && word.startsWith("Email")) {
       String suffix = word.substring(5);
@@ -2479,9 +2479,9 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
         suffix = suffixSuggestions.isEmpty() ? suffix : suffixSuggestions.get(0);
       }
       return singletonList("E-Mail-"+Character.toUpperCase(suffix.charAt(0))+suffix.substring(1));
-    } else if (word.equals("wiederspiegeln")) {
+    } else if ("wiederspiegeln".equals(word)) {
       return singletonList("widerspiegeln");
-    } else if (word.equals("ch")) {
+    } else if ("ch".equals(word)) {
       return singletonList("ich");
     } else {
       for (Map.Entry<StringMatcher, Function<String, List<String>>> entry : ADDITIONAL_SUGGESTIONS.entrySet()) {
@@ -2828,7 +2828,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       case "Büffett":
       case "Bufet":
       case "Büfet":
-        if (language.getShortCodeWithCountryAndVariant().equals("de-CH") || language.getShortCodeWithCountryAndVariant().equals("de-AT")) {
+        if ("de-CH".equals(language.getShortCodeWithCountryAndVariant()) || "de-AT".equals(language.getShortCodeWithCountryAndVariant())) {
           return topMatch("Buffet", "zum Verzehr bereitgestellte Speisen");
         } else {
           return topMatch("Büfett", "zum Verzehr bereitgestellte Speisen");

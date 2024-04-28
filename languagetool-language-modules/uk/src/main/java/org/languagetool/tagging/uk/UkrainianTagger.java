@@ -240,7 +240,7 @@ public class UkrainianTagger extends BaseTagger {
         else if( word.startsWith("сьві") ) {
           tokens = convertTokens(tokens, word, "сьві", "сві", ":arch");
         }
-        else if( word.contains("ьск") && ! word.endsWith("ская") && ! word.equals("Комсомольском")) {
+        else if( word.contains("ьск") && ! word.endsWith("ская") && ! "Комсомольском".equals(word)) {
           tokens = convertTokens(tokens, word, "ьск", "ьськ", ":bad");
         }
 
@@ -260,7 +260,7 @@ public class UkrainianTagger extends BaseTagger {
             }
             // гааа
             if( tokens.get(0).hasNoTag()
-                && ! word.equalsIgnoreCase("ііі") ) {// often stands for Latin number
+                && ! "ііі".equalsIgnoreCase(word) ) {// often stands for Latin number
               Matcher matcher = Pattern.compile("([аеєиіїоуюя])\\1{2,}", Pattern.CASE_INSENSITIVE|Pattern.UNICODE_CASE).matcher(word);
               if( matcher.find() ) {
                 String adjustedWord = matcher.replaceAll("$1");

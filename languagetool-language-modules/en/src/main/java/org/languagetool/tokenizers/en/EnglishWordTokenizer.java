@@ -126,10 +126,10 @@ public class EnglishWordTokenizer extends WordTokenizer {
               l.add(s);
             }
             // some camel-case words containing hyphen (is there any better fix?)
-            else if (s.equalsIgnoreCase("mers-cov") || s.equalsIgnoreCase("mcgraw-hill")
-                || s.equalsIgnoreCase("sars-cov-2") || s.equalsIgnoreCase("sars-cov") || s.equalsIgnoreCase("ph-metre")
-                || s.equalsIgnoreCase("ph-metres") || s.equalsIgnoreCase("anti-ivg") || s.equalsIgnoreCase("anti-uv")
-                || s.equalsIgnoreCase("anti-vih") || s.equalsIgnoreCase("al-qaida")) {
+            else if ("mers-cov".equalsIgnoreCase(s) || "mcgraw-hill".equalsIgnoreCase(s)
+                || "sars-cov-2".equalsIgnoreCase(s) || "sars-cov".equalsIgnoreCase(s) || "ph-metre".equalsIgnoreCase(s)
+                || "ph-metres".equalsIgnoreCase(s) || "anti-ivg".equalsIgnoreCase(s) || "anti-uv".equalsIgnoreCase(s)
+                || "anti-vih".equalsIgnoreCase(s) || "al-qaida".equalsIgnoreCase(s)) {
               l.add(s);
             } else {
               // if not found, the word is split

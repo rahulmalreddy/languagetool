@@ -38,13 +38,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected int getDayOfWeek(String dayStr) {
     String day = dayStr.toLowerCase();
-    if (day.startsWith("do") || day.equals("domenica")) return Calendar.SUNDAY;
-    if (day.startsWith("lu") || day.equals("lunedì")) return Calendar.MONDAY;
-    if (day.startsWith("ma") || day.equals("martedì")) return Calendar.TUESDAY;
-    if (day.startsWith("me") || day.equals("mercoledì")) return Calendar.WEDNESDAY;
-    if (day.startsWith("gi") || day.equals("giovedì")) return Calendar.THURSDAY;
-    if (day.startsWith("ve") || day.equals("venerdì")) return Calendar.FRIDAY;
-    if (day.startsWith("sa") || day.equals("sabato")) return Calendar.SATURDAY;
+    if (day.startsWith("do") || "domenica".equals(day)) return Calendar.SUNDAY;
+    if (day.startsWith("lu") || "lunedì".equals(day)) return Calendar.MONDAY;
+    if (day.startsWith("ma") || "martedì".equals(day)) return Calendar.TUESDAY;
+    if (day.startsWith("me") || "mercoledì".equals(day)) return Calendar.WEDNESDAY;
+    if (day.startsWith("gi") || "giovedì".equals(day)) return Calendar.THURSDAY;
+    if (day.startsWith("ve") || "venerdì".equals(day)) return Calendar.FRIDAY;
+    if (day.startsWith("sa") || "sabato".equals(day)) return Calendar.SATURDAY;
     throw new RuntimeException("Could not find day of week for '" + dayStr + "'");
   }
 
@@ -52,13 +52,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected String getDayOfWeek(Calendar date) {
     String englishDay = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.UK);
-    if (englishDay.equals("Sunday")) return "domenica";
-    if (englishDay.equals("Monday")) return "lunedì";
-    if (englishDay.equals("Tuesday")) return "martedì";
-    if (englishDay.equals("Wednesday")) return "mercoledì";
-    if (englishDay.equals("Thursday")) return "giovedì";
-    if (englishDay.equals("Friday")) return "venerdì";
-    if (englishDay.equals("Saturday")) return "sabato";
+    if ("Sunday".equals(englishDay)) return "domenica";
+    if ("Monday".equals(englishDay)) return "lunedì";
+    if ("Tuesday".equals(englishDay)) return "martedì";
+    if ("Wednesday".equals(englishDay)) return "mercoledì";
+    if ("Thursday".equals(englishDay)) return "giovedì";
+    if ("Friday".equals(englishDay)) return "venerdì";
+    if ("Saturday".equals(englishDay)) return "sabato";
     return "";
   }
 

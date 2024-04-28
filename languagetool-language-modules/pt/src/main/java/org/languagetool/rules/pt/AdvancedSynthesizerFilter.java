@@ -39,7 +39,7 @@ public class AdvancedSynthesizerFilter extends AbstractAdvancedSynthesizerFilter
   
   @Override
   protected boolean isSuggestionException(String token, String desiredPostag) {
-    if ((desiredPostag.equals("VMIP1P0") || desiredPostag.equals("VMIP2P0"))
+    if (("VMIP1P0".equals(desiredPostag) || "VMIP2P0".equals(desiredPostag))
         && !token.endsWith("s")) {
       return true;
     }

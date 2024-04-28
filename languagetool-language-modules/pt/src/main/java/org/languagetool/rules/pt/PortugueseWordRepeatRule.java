@@ -80,7 +80,7 @@ public class PortugueseWordRepeatRule extends WordRepeatRule {
   }
 
   private boolean isHyphenated(AnalyzedTokenReadings[] tokens, int position) {
-    return tokens[position - 2].getToken().equals("-") && !(tokens[position - 1].isWhitespaceBefore());
+    return "-".equals(tokens[position - 2].getToken()) && !(tokens[position - 1].isWhitespaceBefore());
   }
 
   private boolean isPronoun(AnalyzedTokenReadings token) {

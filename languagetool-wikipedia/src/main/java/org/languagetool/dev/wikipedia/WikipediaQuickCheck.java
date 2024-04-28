@@ -247,7 +247,7 @@ public class WikipediaQuickCheck {
   private void enableWikipediaRules(JLanguageTool lt) {
     List<Rule> allRules = lt.getAllRules();
     for (Rule rule : allRules) {
-      if (rule.getCategory().getName().equals("Wikipedia")) {
+      if ("Wikipedia".equals(rule.getCategory().getName())) {
         lt.enableRule(rule.getId());
       }
     }

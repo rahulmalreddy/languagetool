@@ -232,7 +232,7 @@ final class ServerTools {
    * @since 5.0
    */
   public static String cleanUserTextFromMessage(String s, Map<String, String> params) {
-    if (params.getOrDefault("inputLogging", "").equals("no")) {
+    if ("no".equals(params.getOrDefault("inputLogging", ""))) {
       return sentContentPattern.matcher(s).replaceAll("<< content removed >>");
     }
     return s;

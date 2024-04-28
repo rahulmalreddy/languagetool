@@ -69,7 +69,7 @@ public class XmlIndenter {
       if (line.startsWith("<category") || line.startsWith("</category")) {
         level = INDENT;
       }
-      if (line.equals("</token>")) {
+      if ("</token>".equals(line)) {
         level -= INDENT;
       }
       String indentSpaces = StringUtils.repeat(' ', level);

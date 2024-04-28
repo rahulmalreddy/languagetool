@@ -72,8 +72,8 @@ public class SimilarNameRule extends TextLevelRule {
         //boolean isName = word.length() > MIN_LENGTH && (token.hasPartialPosTag("EIG:") || !token.isTagged());
         boolean isMaybeName = word.length() >= MIN_LENGTH 
                 && ((token.hasPartialPosTag("EIG:") && !token.hasPartialPosTag(":COU")) || token.isPosTagUnknown())
-                && !word.equals("Dein") && !word.equals("Deine") && !word.equals("Deinen") && !word.equals("Deiner") && !word.equals("Deines") && !word.equals("Deinem")
-                && !word.equals("Ihr") && !word.equals("Ihre") && !word.equals("Ihren") && !word.equals("Ihrer") && !word.equals("Ihres") && !word.equals("Ihrem");
+                && !"Dein".equals(word) && !"Deine".equals(word) && !"Deinen".equals(word) && !"Deiner".equals(word) && !"Deines".equals(word) && !"Deinem".equals(word)
+                && !"Ihr".equals(word) && !"Ihre".equals(word) && !"Ihren".equals(word) && !"Ihrer".equals(word) && !"Ihres".equals(word) && !"Ihrem".equals(word);
         if (isMaybeName && StringTools.startsWithUppercase(word)) {
           String similarName = similarName(word, namesSoFar);
           if (similarName != null) {

@@ -175,7 +175,7 @@ class RealWordCorpusEvaluator {
   }
 
   private boolean isConfusionRule(RuleMatch match) {
-    return match.getRule().getId().equals("CONFUSION_RULE");
+    return "CONFUSION_RULE".equals(match.getRule().getId());
   }
 
   private void printResults() {

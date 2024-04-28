@@ -114,7 +114,7 @@ public class UkrainianHybridDisambiguator extends AbstractDisambiguator {
 
       for(String gen: new String[] {"f", "m"}) {
         
-        List<String> prefix = gen.equals("f") 
+        List<String> prefix = "f".equals(gen) 
             ? Arrays.asList("пані", "місіс", "місис", "міс", "леді", "княгиня", "німкеня")
                 : Arrays.asList("пан", "містер", "м-р", "сер", "князь", "німець", "поляк");
 
@@ -134,7 +134,7 @@ public class UkrainianHybridDisambiguator extends AbstractDisambiguator {
             }
           }
           // леді Черчилль
-          else if ( gen.equals("f") && PosTagHelper.hasPosTagStart(nameToken, "noun:anim:m:v_naz:prop") ) {
+          else if ( "f".equals(gen) && PosTagHelper.hasPosTagStart(nameToken, "noun:anim:m:v_naz:prop") ) {
             for (AnalyzedToken analyzedToken : nameToken) {
               nameToken.removeReading(analyzedToken, ruleApplied);
             }
@@ -489,7 +489,7 @@ public class UkrainianHybridDisambiguator extends AbstractDisambiguator {
 
       // 10 мм рт. ст.
       if (i > 1) {
-        if (tokens[i - 1].getToken().equals("рт.")) {
+        if ("рт.".equals(tokens[i - 1].getToken())) {
           Pattern pattern = Pattern.compile("noun.*:xp3.*");
           removeTokensWithout(tokens[i], pattern);
           continue;
@@ -520,7 +520,7 @@ public class UkrainianHybridDisambiguator extends AbstractDisambiguator {
       if (i < tokens.length - 1) {
         // столова
         if (LemmaHelper.hasLemma(tokens[i + 1], "ложка") 
-            || tokens[i + 1].getToken().equals("л.")) {
+            || "л.".equals(tokens[i + 1].getToken())) {
           Pattern pattern = Pattern.compile("adj:[fp]:.*");
           removeTokensWithout(tokens[i], pattern);
           i++;

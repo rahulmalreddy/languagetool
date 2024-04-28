@@ -93,12 +93,12 @@ public class TextToNumberFilter extends AbstractTextToNumberFilter {
   
   @Override
   protected boolean isComma(String s) {
-    return s.equalsIgnoreCase("comma") || s.equalsIgnoreCase("coma");
+    return "comma".equalsIgnoreCase(s) || "coma".equalsIgnoreCase(s);
   }
   
   @Override
   protected boolean isPercentage(AnalyzedTokenReadings[] patternTokens, int i) {
-    return patternTokens[i].getToken().equals("ciento") && patternTokens[i - 1].getToken().toLowerCase().equals("por");
+    return "ciento".equals(patternTokens[i].getToken()) && "por".equals(patternTokens[i - 1].getToken().toLowerCase());
   }
 
 }

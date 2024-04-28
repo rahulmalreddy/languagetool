@@ -722,7 +722,7 @@ public class VerbAgreementRule extends TextLevelRule {
       if (tokens[i].hasPartialPosTag("VER")
           && (Character.isLowerCase(tokens[i].getToken().charAt(0)) || i == 1 || isQuotationMark(tokens[i-1])) ) {
         if (hasUnambiguouslyPersonAndNumber(tokens[i], "1", "SIN")
-            && !(strToken.equals("bin") && (BIN_IGNORE.contains(tokens[i-1].getToken())
+            && !("bin".equals(strToken) && (BIN_IGNORE.contains(tokens[i-1].getToken())
                   || (tokens.length != i + 1 && tokens[i+1].getToken().startsWith("Laden")) ))) {
           posVer1Sin = i;
         } 
@@ -761,10 +761,10 @@ public class VerbAgreementRule extends TextLevelRule {
         ruleMatches.add(ruleMatchWrongVerb(tokens[posVer1Sin], pos, wholeSentence));
       }
     } else if (posIch > 0 && !isNear(posPossibleVer1Sin, posIch) // check whether verb next to "ich" is 1st pers sg
-               && (tokens[posIch].getToken().equals("ich") || tokens[posIch].getStartPos() <= 1 ||
-                   (tokens[posIch].getToken().equals("Ich") && posIch >= 2 && tokens[posIch-2].getToken().equals(":")) ||
-                   (tokens[posIch].getToken().equals("Ich") && posIch >= 1 && tokens[posIch-1].getToken().equals(":"))) // ignore "lyrisches Ich" etc.
-               && (!isQuotationMark(tokens[posIch-1]) || posIch < 3 || (posIch > 1 && tokens[posIch-2].getToken().equals(":")))) {
+               && ("ich".equals(tokens[posIch].getToken()) || tokens[posIch].getStartPos() <= 1 ||
+                   ("Ich".equals(tokens[posIch].getToken()) && posIch >= 2 && ":".equals(tokens[posIch-2].getToken())) ||
+                   ("Ich".equals(tokens[posIch].getToken()) && posIch >= 1 && ":".equals(tokens[posIch-1].getToken()))) // ignore "lyrisches Ich" etc.
+               && (!isQuotationMark(tokens[posIch-1]) || posIch < 3 || (posIch > 1 && ":".equals(tokens[posIch-2].getToken())))) {
       int plus1 = ((posIch + 1) == tokens.length) ? 0 : +1; // prevent posIch+1 segfault
       BooleanAndFiniteVerb check = verbDoesMatchPersonAndNumber(tokens[posIch - 1], tokens[posIch + plus1], "1", "SIN", finiteVerb);
       if (!check.verbDoesMatchPersonAndNumber && !nextButOneIsModal(tokens, posIch) && !"äußerst".equals(check.finiteVerb.getToken())) {
@@ -779,7 +779,7 @@ public class VerbAgreementRule extends TextLevelRule {
         ruleMatches.add(ruleMatchWrongVerb(tokens[posVer2Sin], pos, wholeSentence));
       }
     } else if (posDu > 0 && !isNear(posPossibleVer2Sin, posDu)
-               &&(!isQuotationMark(tokens[posDu-1]) || posDu < 3 || (posDu > 1 && tokens[posDu-2].getToken().equals(":")))) {
+               &&(!isQuotationMark(tokens[posDu-1]) || posDu < 3 || (posDu > 1 && ":".equals(tokens[posDu-2].getToken())))) {
       int plus1 = ((posDu + 1) == tokens.length) ? 0 : +1;
       BooleanAndFiniteVerb check = verbDoesMatchPersonAndNumber(tokens[posDu - 1], tokens[posDu + plus1], "2", "SIN", finiteVerb);
       if (!check.verbDoesMatchPersonAndNumber &&
@@ -794,7 +794,7 @@ public class VerbAgreementRule extends TextLevelRule {
     }
     
     if (posEr > 0 && !isNear(posPossibleVer3Sin, posEr)
-        && (!isQuotationMark(tokens[posEr-1])  || posEr < 3 || (posEr > 1 && tokens[posEr-2].getToken().equals(":")))) {
+        && (!isQuotationMark(tokens[posEr-1])  || posEr < 3 || (posEr > 1 && ":".equals(tokens[posEr-2].getToken())))) {
       int plus1 = ((posEr + 1) == tokens.length) ? 0 : +1;
       BooleanAndFiniteVerb check = verbDoesMatchPersonAndNumber(tokens[posEr - 1], tokens[posEr + plus1], "3", "SIN", finiteVerb);
       if (!check.verbDoesMatchPersonAndNumber 
@@ -815,7 +815,7 @@ public class VerbAgreementRule extends TextLevelRule {
       int plus1 = ((posWir + 1) == tokens.length) ? 0 : +1;
       BooleanAndFiniteVerb check = verbDoesMatchPersonAndNumber(tokens[posWir - 1], tokens[posWir + plus1], "1", "PLU", finiteVerb);
       if (!check.verbDoesMatchPersonAndNumber && !nextButOneIsModal(tokens, posWir) && !tokens[posWir].isImmunized() &&
-          !check.finiteVerb.getToken().equals("äußerst")) {
+          !"äußerst".equals(check.finiteVerb.getToken())) {
         ruleMatches.add(ruleMatchWrongVerbSubject(tokens[posWir], check.finiteVerb, "1:PLU", pos, wholeSentence));
       }
     }

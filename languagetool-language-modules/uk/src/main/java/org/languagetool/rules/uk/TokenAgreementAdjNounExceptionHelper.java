@@ -164,7 +164,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // лава запасних партії
     if( adjPos > 1
-        && tokens[adjPos].getToken().equals("запасних")
+        && "запасних".equals(tokens[adjPos].getToken())
         && LemmaHelper.hasLemma(tokens[adjPos-1], "лава")) {
       logException();
       return true;
@@ -179,7 +179,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // на повну людей розкрутили
     if( adjPos > 1
-        && tokens[adjPos].getToken().equals("повну")
+        && "повну".equals(tokens[adjPos].getToken())
         && tokens[adjPos-1].getToken().equalsIgnoreCase("на")) {
       logException();
       return true;
@@ -221,7 +221,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // молодшого гвардії сержанта
     if( nounPos < tokens.length - 1
-        && tokens[nounPos].getToken().equals("гвардії")
+        && "гвардії".equals(tokens[nounPos].getToken())
         && PosTagHelper.hasPosTag(tokens[nounPos+1], "noun.*")
         && ! Collections.disjoint(masterInflections, InflectionHelper.getNounInflections(tokens[nounPos+1].getReadings())) ) {
       logException();
@@ -231,7 +231,7 @@ final class TokenAgreementAdjNounExceptionHelper {
     // 200% річних прибутку
     if( adjPos > 1
         && tokens[adjPos-1].getToken().endsWith("%") 
-        && tokens[adjPos].getToken().equals("річних") ) {
+        && "річних".equals(tokens[adjPos].getToken()) ) {
       logException();
       return true;
     }
@@ -239,7 +239,7 @@ final class TokenAgreementAdjNounExceptionHelper {
     // пасли задніх
     if( adjPos > 1
         && LemmaHelper.hasLemma(tokens[adjPos-1], "пасти")
-        && tokens[adjPos].getToken().equals("задніх") ) {
+        && "задніх".equals(tokens[adjPos].getToken()) ) {
       logException();
       return true;
     }
@@ -247,7 +247,7 @@ final class TokenAgreementAdjNounExceptionHelper {
     // не мати рівних
     if( adjPos > 1
         && LemmaHelper.hasLemma(tokens[adjPos-1], "мати")
-        && tokens[adjPos].getToken().equals("рівних") ) {
+        && "рівних".equals(tokens[adjPos].getToken()) ) {
       logException();
       return true;
     }
@@ -255,7 +255,7 @@ final class TokenAgreementAdjNounExceptionHelper {
     // taken care by barbarism rule
     // на манер
     if( adjPos > 1 
-        && tokens[nounPos].getToken().equals("манер")
+        && "манер".equals(tokens[nounPos].getToken())
         && tokens[adjPos-1].getToken().equalsIgnoreCase("на") ) {
       logException();
       return true;
@@ -264,8 +264,8 @@ final class TokenAgreementAdjNounExceptionHelper {
     // taken care by barbarism rule
     // усі до єдиного
     if( adjPos > 2
-        && tokens[adjPos].getToken().equals("єдиного")
-        && tokens[adjPos-1].getToken().equals("до")
+        && "єдиного".equals(tokens[adjPos].getToken())
+        && "до".equals(tokens[adjPos-1].getToken())
         && LemmaHelper.hasLemma(tokens[adjPos-2], Arrays.asList("весь", "увесь"), ":p:") ) {
       logException();
       return true;
@@ -305,7 +305,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // вольному воля
     if( Arrays.asList("вольному", "вільному").contains(adjAnalyzedTokenReadings.getToken().toLowerCase())
-        && tokens[nounPos].getToken().equals("воля") ) {
+        && "воля".equals(tokens[nounPos].getToken()) ) {
       logException();
       return true;
     }
@@ -384,7 +384,7 @@ final class TokenAgreementAdjNounExceptionHelper {
         && PosTagHelper.hasPosTag(tokens[adjPos], "adj:.*")
         && PosTagHelper.hasPosTag(tokens[adjPos-1], "prep.*")
         && LemmaHelper.hasLemma(tokens[adjPos-2], Arrays.asList("ні", "ані", "хоч", "що", "як"))
-        && tokens[adjPos-3].getToken().equals(",")
+        && ",".equals(tokens[adjPos-3].getToken())
         && hasOverlapIgnoreGender(masterInflections, slaveInflections) ) {
       logException();
       return true;
@@ -405,10 +405,10 @@ final class TokenAgreementAdjNounExceptionHelper {
     if( adjPos > 5
         && PosTagHelper.hasPosTag(tokens[nounPos], "noun:.*:p:.*")
         && PosTagHelper.hasPosTag(tokens[adjPos], "adj:.*")
-        && tokens[adjPos-1].getToken().equals(",")
-        && ( (tokens[adjPos-3].getToken().equals(",") && CONJ_FOR_PLURAL_WITH_COMMA.contains(tokens[adjPos-4].getToken().toLowerCase())
+        && ",".equals(tokens[adjPos-1].getToken())
+        && ( (",".equals(tokens[adjPos-3].getToken()) && CONJ_FOR_PLURAL_WITH_COMMA.contains(tokens[adjPos-4].getToken().toLowerCase())
                 && ! PosTagHelper.hasPosTag(tokens[adjPos-2], VERB_NOT_INSERT_PATTERN))
-            || (tokens[adjPos-4].getToken().equals(",") && CONJ_FOR_PLURAL_WITH_COMMA.contains(tokens[adjPos-5].getToken().toLowerCase())
+            || (",".equals(tokens[adjPos-4].getToken()) && CONJ_FOR_PLURAL_WITH_COMMA.contains(tokens[adjPos-5].getToken().toLowerCase())
                             && ! PosTagHelper.hasPosTag(tokens[adjPos-2], VERB_NOT_INSERT_PATTERN)
                             && ! PosTagHelper.hasPosTag(tokens[adjPos-3], VERB_NOT_INSERT_PATTERN)) )
         && hasOverlapIgnoreGender(masterInflections, slaveInflections) ) {
@@ -437,7 +437,7 @@ final class TokenAgreementAdjNounExceptionHelper {
     // на довгих чверть століття
     if( nounPos < tokens.length-1
         && PosTagHelper.hasPosTag(adjAnalyzedTokenReadings, "adj:p:v_rod.*")
-        && tokens[nounPos].getToken().equals("чверть")
+        && "чверть".equals(tokens[nounPos].getToken())
         && PosTagHelper.hasPosTag(tokens[nounPos+1], "noun.*v_rod.*") ) {
       logException();
       return true;
@@ -471,8 +471,8 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // чинних станом на
     if( nounPos < tokens.length-1
-        && tokens[nounPos].getToken().equals("станом")
-        && tokens[nounPos+1].getToken().equals("на") ) {
+        && "станом".equals(tokens[nounPos].getToken())
+        && "на".equals(tokens[nounPos+1].getToken()) ) {
       logException();
       return true;
     }
@@ -508,7 +508,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // той мантію надів
     if( nounPos < tokens.length - 1
-        && tokens[adjPos].getCleanToken().toLowerCase().equals("той")
+        && "той".equals(tokens[adjPos].getCleanToken().toLowerCase())
         && PosTagHelper.hasPosTag(tokens[nounPos], Pattern.compile("noun.*:v_(zna|oru).*"))
         && PosTagHelper.hasPosTagStart(tokens[nounPos+1], "verb") ) {
       logException();
@@ -517,7 +517,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // що таке звук
     if( adjPos > 1
-        && tokens[adjPos].getToken().equals("таке")
+        && "таке".equals(tokens[adjPos].getToken())
 //        && (tokens[adjPos-1].getToken().equalsIgnoreCase("що")
         && LemmaHelper.reverseSearch(tokens, adjPos-1, 3, Pattern.compile("що"), null)
             ) {
@@ -534,7 +534,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // постійно на рівних міністри, президенти
     if( adjPos > 1
-        && tokens[adjPos].getToken().equals("рівних")
+        && "рівних".equals(tokens[adjPos].getToken())
         && tokens[adjPos-1].getToken().equalsIgnoreCase("на") ) {
       logException();
       return true;
@@ -542,7 +542,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
     // польські зразка 1620—1650 років
     if( nounPos < tokens.length-1
-        && tokens[nounPos].getToken().equals("зразка") ) {
+        && "зразка".equals(tokens[nounPos].getToken()) ) {
       logException();
       return true;
     }
@@ -1145,7 +1145,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
       if( i >= 1
           && ! PosTagHelper.hasPosTag(tokens[i-1], Pattern.compile("(adj|conj:coord|num|prep|adv(?!p)).*"))
-          && ! tokens[i-1].getToken().equals(",")
+          && ! ",".equals(tokens[i-1].getToken())
            )
         return false;
     }
@@ -1162,10 +1162,10 @@ final class TokenAgreementAdjNounExceptionHelper {
 
         if( i < 2
             || ( (! tokens[i-1].hasPosTag("number") || ! PosTagHelper.hasPosTag(tokens[i+1], Pattern.compile("adj.*?&numr.*"))) // 1, 2 та 3-й 
-                && ! tokens[i-1].getToken().equals(",") )
+                && ! ",".equals(tokens[i-1].getToken()) )
                 && ! tokens[i-1].getToken().matches(".*[–-]")   // дво- і тривимірний формати
                 && ! tokens[i-1].getToken().matches("[)»”]")   // 1-й (...) та 2-й ряди
-                && (! tokens[i-1].getToken().equals("/") || ! tokens[i].getToken().equals("або"))
+                && (! "/".equals(tokens[i-1].getToken()) || ! "або".equals(tokens[i].getToken()))
                 && ! PosTagHelper.isUnknownWord(tokens[i-1])
                 )
           return false;
@@ -1175,7 +1175,7 @@ final class TokenAgreementAdjNounExceptionHelper {
 
       if( i >= 1
           && ! PosTagHelper.hasPosTag(tokens[i-1], Pattern.compile("(adj|conj:coord|num|prep|adv(?!p)).*"))
-          && ! tokens[i-1].getToken().equals(",")
+          && ! ",".equals(tokens[i-1].getToken())
            )
         return false;
     }

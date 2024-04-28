@@ -159,7 +159,7 @@ public abstract class AbstractSimpleReplaceRule2 extends Rule {
           if (line.isEmpty() || line.charAt(0) == '#') { // ignore comments
             continue;
           }
-          if (line.contains("  ") && !lang.getShortCode().equals("ar")) {
+          if (line.contains("  ") && !"ar".equals(lang.getShortCode())) {
             throw new RuntimeException("More than one consecutive space in " + fileUrl.toString() + " - use a tab character as a delimiter for the message: " + line);
           }
           if (checkingCase) {

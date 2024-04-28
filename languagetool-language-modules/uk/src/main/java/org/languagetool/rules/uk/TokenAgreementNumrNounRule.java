@@ -364,7 +364,7 @@ public class TokenAgreementNumrNounRule extends Rule {
                 : Arrays.asList(new Inflection("p", "v_rod", null));
         
         List<Inflection> pVnazZna = masterInflections.stream()
-            .filter(inf -> inf.gender.equals("p") && (inf._case.equals("v_naz") || inf._case.equals("v_zna")))
+            .filter(inf -> "p".equals(inf.gender) && ("v_naz".equals(inf._case) || "v_zna".equals(inf._case)))
             .collect(Collectors.toList());
         
         if( pVnazZna.size() > 0 ) {
@@ -481,10 +481,10 @@ public class TokenAgreementNumrNounRule extends Rule {
           msg = "Після числівника, що закінчується на 5-9 і потім «,5», іменник має стояти в родовому відмінку множини (якщо вимовляємо «з половиною»)";
           msg += ", або в родовом відмінку однини (якщо вимовляємо «і п'ять десятих»)";
         }
-        else if( numrCleanToken.equalsIgnoreCase("півтора") ) {
+        else if( "півтора".equalsIgnoreCase(numrCleanToken) ) {
           msg = "Існує правило, що після «півтора» треба вживати родовий відмінок ч. або с.р., однак у текстах в багатьох випадках вживають і форму множини, надто коли перед іменником іде прикметник";
         }
-        else if( numrCleanToken.equalsIgnoreCase("півтори") ) {
+        else if( "півтори".equalsIgnoreCase(numrCleanToken) ) {
           msg = "Існує правило, що після «півтора» треба вживати родовий відмінок ж.р., однак у текстах в багатьох випадках вживають і форму множини, надто коли перед іменником іде прикметник";
         }
         else if( masterInflections.contains(new Inflection("m", "v_rod", null))
@@ -534,8 +534,8 @@ public class TokenAgreementNumrNounRule extends Rule {
 
               for (String s : synthesized) {
 
-                if( numrCleanToken.equalsIgnoreCase("півтора")
-                    && nounToken.getLemma().equals("раз") && ! s.equals("раза") )
+                if( "півтора".equalsIgnoreCase(numrCleanToken)
+                    && "раз".equals(nounToken.getLemma()) && ! "раза".equals(s) )
                   continue;
 
                 String suggestion = state.numrAnalyzedTokenReadings.getToken();

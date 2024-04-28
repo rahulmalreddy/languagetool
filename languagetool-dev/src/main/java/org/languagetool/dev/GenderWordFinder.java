@@ -51,7 +51,7 @@ public class GenderWordFinder {
     GermanyGerman de = new GermanyGerman();
     JLanguageTool lt = new JLanguageTool(de);
     for (Rule rule : lt.getAllActiveRules()) {
-      if (!rule.getId().equals("GERMAN_SPELLER_RULE")) {
+      if (!"GERMAN_SPELLER_RULE".equals(rule.getId())) {
         lt.disableRule(rule.getId());
       }
     }

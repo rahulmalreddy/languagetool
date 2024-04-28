@@ -206,9 +206,9 @@ public class CatalanWordTokenizer extends WordTokenizer {
             l.add(s);
           }
           // some camel-case words containing hyphen (is there any better fix?)
-          else if (s.equalsIgnoreCase("mers-cov") || s.equalsIgnoreCase("mcgraw-hill") 
-              || s.equalsIgnoreCase("sars-cov-2") || s.equalsIgnoreCase("sars-cov") 
-              || s.equalsIgnoreCase("ph-metre") || s.equalsIgnoreCase("ph-metres")) {
+          else if ("mers-cov".equalsIgnoreCase(s) || "mcgraw-hill".equalsIgnoreCase(s) 
+              || "sars-cov-2".equalsIgnoreCase(s) || "sars-cov".equalsIgnoreCase(s) 
+              || "ph-metre".equalsIgnoreCase(s) || "ph-metres".equalsIgnoreCase(s)) {
             l.add(s);
           }
           // words with "ela geminada" with typo: col-legi (col·legi)

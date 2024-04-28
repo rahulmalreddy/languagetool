@@ -60,7 +60,7 @@ public class QuestionWhitespaceStrictRule extends QuestionWhitespaceRule {
     if (i < 0) {
       return false;
     }
-    return tokens[i].getToken().equals("\u202f") || tokens[i].getToken().equals("\u00a0")
+    return "\u202f".equals(tokens[i].getToken()) || "\u00a0".equals(tokens[i].getToken())
       // covered by FRENCH_WHITESPACE (non strict). This makes both rules mutually exclusive
       || !tokens[i].isWhitespace();
   }

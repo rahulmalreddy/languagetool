@@ -71,7 +71,7 @@ public class PortarTempsSuggestionsFilter extends RuleFilter {
     }
     int adjustEndPos = 0;
     AnalyzedTokenReadings lastToken = tokens[lastTokenPos];
-    if (lastToken.getToken().equals("que")) {
+    if ("que".equals(lastToken.getToken())) {
       suggestion.append(" que");
     } else if (lastToken.hasPosTagStartingWith("VMG") || lastToken.hasPosTagStartingWith("VSG")) {
       suggestion.append(" que ");
@@ -87,7 +87,7 @@ public class PortarTempsSuggestionsFilter extends RuleFilter {
         suggestion.append(PronomsFeblesHelper.transformDavant(pronoms, synthForms2[0]));
       }
       suggestion.append(synthForms2[0]);
-    } else if (lastToken.getToken().equals("sense")
+    } else if ("sense".equals(lastToken.getToken())
       && (tokens[lastTokenPos + 1].hasPosTagStartingWith("VSN")
       || tokens[lastTokenPos + 1].hasPosTagStartingWith("VMN"))) {
       suggestion.append(" que no ");
@@ -104,10 +104,10 @@ public class PortarTempsSuggestionsFilter extends RuleFilter {
         suggestion.append(PronomsFeblesHelper.transformDavant(pronoms, synthForms2[0]));
       }
       suggestion.append(synthForms2[0]);
-    } else if (lastToken.getToken().equals("així") || lastToken.getToken().equals("a") || lastToken.getToken().equals("en")
-      || lastToken.getToken().equals("ací") || lastToken.getToken().equals("aquí") || lastToken.getToken().equals("ahí")
-      || lastToken.getToken().equals("allí") || lastToken.getToken().equals("allà")
-      || lastToken.getToken().equals("de")
+    } else if ("així".equals(lastToken.getToken()) || "a".equals(lastToken.getToken()) || "en".equals(lastToken.getToken())
+      || "ací".equals(lastToken.getToken()) || "aquí".equals(lastToken.getToken()) || "ahí".equals(lastToken.getToken())
+      || "allí".equals(lastToken.getToken()) || "allà".equals(lastToken.getToken())
+      || "de".equals(lastToken.getToken())
       || lastToken.hasPosTagStartingWith("AQ")
       || lastToken.hasPosTagStartingWith("VMP")) {
       AnalyzedToken at2 = new AnalyzedToken("", "", "estar");

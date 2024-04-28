@@ -72,7 +72,7 @@ public class DemoRule extends Rule {
       // You can add your own logic here to find errors. Here, we just consider
       // the word "demo" an error and create a rule match that LanguageTool will
       // then show to the user:
-      if (token.getToken().equals("demo")) {
+      if ("demo".equals(token.getToken())) {
         RuleMatch ruleMatch = new RuleMatch(this, sentence, token.getStartPos(), token.getEndPos(), "The demo rule thinks this looks wrong");
         ruleMatch.setSuggestedReplacement("blablah");  // the user will see this as a suggested correction
         ruleMatches.add(ruleMatch);

@@ -146,7 +146,7 @@ public class PronomFebleDuplicateRule extends Rule {
   }
 
   private boolean isException(AnalyzedTokenReadings[] tokens, int i) {
-    if (tokens[i].getToken().equals("poder") && tokens[i-1].hasPosTagStartingWith("V")) {
+    if ("poder".equals(tokens[i].getToken()) && tokens[i-1].hasPosTagStartingWith("V")) {
       return true;
     }
     return false;
@@ -165,7 +165,7 @@ public class PronomFebleDuplicateRule extends Rule {
     if (lemesPronomsAbans.size() > 1 && lemesPronomsDespres.size() > 1) {
       return true;
     }
-    if ((tokens[lastVerbPos].getToken().equals("haver") || tokens[lastVerbPos].getToken().equals("havent"))
+    if (("haver".equals(tokens[lastVerbPos].getToken()) || "havent".equals(tokens[lastVerbPos].getToken()))
       && PRONOMS_EN_HI.contains(lemesPronomsDespres.get(0))
       && PRONOMS_EN_HI.contains(lemesPronomsAbans.get(0))) {
       correctedPronouns = "n'hi";

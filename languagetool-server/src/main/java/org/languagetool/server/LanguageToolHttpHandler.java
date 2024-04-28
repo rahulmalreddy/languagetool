@@ -202,11 +202,11 @@ class LanguageToolHttpHandler implements HttpHandler {
           TelemetryProvider.INSTANCE.createSpan("/v2", Attributes.empty(), () -> apiV2.handleRequest(pathWithoutVersion, httpExchange, finalParameters, errorRequestLimiter, finalRemoteAddress, config));
         } else if (path.endsWith("/Languages")) {
           throw new BadRequestException("You're using an old version of our API that's not supported anymore. Please see " + API_DOC_URL);
-        } else if (path.equals("/")) {
+        } else if ("/".equals(path)) {
           throw new BadRequestException("Missing arguments for LanguageTool API. Please see " + API_DOC_URL);
         } else if (path.contains("/v2/")) {
           throw new BadRequestException("You have '/v2/' in your path, but not at the root. Try an URL like 'http://server/v2/...' ");
-        } else if (path.equals("/favicon.ico")) {
+        } else if ("/favicon.ico".equals(path)) {
           sendError(httpExchange, HttpURLConnection.HTTP_NOT_FOUND, "Not found");
         } else {
           throw new BadRequestException("This is the LanguageTool API. You have not specified any parameters. Please see " + API_DOC_URL);

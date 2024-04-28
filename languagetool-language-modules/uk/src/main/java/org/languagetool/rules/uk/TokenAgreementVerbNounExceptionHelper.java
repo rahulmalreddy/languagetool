@@ -89,9 +89,9 @@ public final class TokenAgreementVerbNounExceptionHelper {
     
     // світ за очі
     if( nounAdjPos < tokens.length - 2 
-        && tokens[nounAdjPos].getCleanToken().equals("світ")
+        && "світ".equals(tokens[nounAdjPos].getCleanToken())
         && LemmaHelper.hasLemma(tokens[nounAdjPos+1], "за")
-        && tokens[nounAdjPos+2].getCleanToken().equals("очі") ) {
+        && "очі".equals(tokens[nounAdjPos+2].getCleanToken()) ) {
       logException();
       return true;
     }
@@ -263,7 +263,7 @@ public final class TokenAgreementVerbNounExceptionHelper {
 
     // не бачити вам цирку
     if( verbPos > 1 && nounAdjPos < tokens.length - 1
-        && tokens[verbPos-1].getCleanToken().toLowerCase().equals("не")
+        && "не".equals(tokens[verbPos-1].getCleanToken().toLowerCase())
         && PosTagHelper.hasPosTagPart(tokens[verbPos], ":inf")
         && PosTagHelper.hasPosTagPart(tokens[nounAdjPos], "v_dav")
         && PosTagHelper.hasPosTagPart(tokens[nounAdjPos+1], "v_rod") ) {
@@ -273,7 +273,7 @@ public final class TokenAgreementVerbNounExceptionHelper {
 
     // слід проходити людям
     if( verbPos > 1
-        && tokens[verbPos-1].getCleanToken().toLowerCase().equals("слід")
+        && "слід".equals(tokens[verbPos-1].getCleanToken().toLowerCase())
         && PosTagHelper.hasPosTagPart(tokens[verbPos], ":inf")
         && PosTagHelper.hasPosTagPart(tokens[nounAdjPos], "v_dav")) {
       logException();
@@ -289,7 +289,7 @@ public final class TokenAgreementVerbNounExceptionHelper {
 
     // став жовтого кольору
     if( nounAdjPos < tokens.length - 1
-        && tokens[nounAdjPos + 1].getCleanToken().toLowerCase().equals("кольору")
+        && "кольору".equals(tokens[nounAdjPos + 1].getCleanToken().toLowerCase())
         && PosTagHelper.hasPosTagStart(tokens[nounAdjPos], "adj:m:v_rod")) {
       logException();
       return true;
@@ -358,7 +358,7 @@ public final class TokenAgreementVerbNounExceptionHelper {
           logException();
           return true;
         }
-        if( tokens[v2pos-1].getCleanToken().equals("не") ) { 
+        if( "не".equals(tokens[v2pos-1].getCleanToken()) ) { 
           logException();
           return true;
         }

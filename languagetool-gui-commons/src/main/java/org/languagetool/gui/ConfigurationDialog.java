@@ -1301,7 +1301,7 @@ public class ConfigurationDialog implements ActionListener {
       String profileName = (String) profileBox.getSelectedItem();
       while (noName) {
         profileName = JOptionPane.showInputDialog(dialog, messages.getString("guiRenameProfile") + ":", profileName);
-        if (profileName == null || profileName.equals("")) {
+        if (profileName == null || "".equals(profileName)) {
           break;
         }
         profileName = profileName.replaceAll("[ \t=]", "_");

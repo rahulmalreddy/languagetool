@@ -189,22 +189,22 @@ public class ArabicNumberPhraseFilter extends RuleFilter {
         String postag = tk.getPOSTag();
         if (tagmanager.isNoun(postag) && !tagmanager.isDefinite(postag) && !tagmanager.hasPronoun(postag)) {
           // add inflection flag
-          if (inflection.equals("jar")) {
+          if ("jar".equals(inflection)) {
             postag = tagmanager.setMajrour(postag);
-          } else if (inflection.equals("raf3")) {
+          } else if ("raf3".equals(inflection)) {
             postag = tagmanager.setMarfou3(postag);
-          } else if (inflection.equals("nasb")) {
+          } else if ("nasb".equals(inflection)) {
             postag = tagmanager.setMansoub(postag);
           } else {
             postag = tagmanager.setMarfou3(postag);
           }
 
           // add number flag
-          if (number.equals("one")) {
+          if ("one".equals(number)) {
             postag = tagmanager.setSingle(postag);
-          } else if (number.equals("two")) {
+          } else if ("two".equals(number)) {
             postag = tagmanager.setDual(postag);
-          } else if (number.equals("plural")) {
+          } else if ("plural".equals(number)) {
             postag = tagmanager.setPlural(postag);
 
           } else {
@@ -212,7 +212,7 @@ public class ArabicNumberPhraseFilter extends RuleFilter {
 
           }
           //  add Tanwin
-          if (number.equals("one") && inflection.equals("nasb")) {
+          if ("one".equals(number) && "nasb".equals(inflection)) {
             postag = tagmanager.setTanwin(postag);
           }
 

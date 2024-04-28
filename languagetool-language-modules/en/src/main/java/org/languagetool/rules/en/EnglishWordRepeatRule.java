@@ -84,9 +84,9 @@ public class EnglishWordRepeatRule extends WordRepeatRule {
       return true; // log them in in the
     } else if (repetitionOf("in", tokens, position) && position > 1 && tokens[position - 2].getToken().matches("log(ged|s)?|sign(ed|s)?")) {
       return true; // log in in the
-    } else if (repetitionOf("a", tokens, position) && position > 1 && tokens[position - 2].getToken().equals(".")) {
+    } else if (repetitionOf("a", tokens, position) && position > 1 && ".".equals(tokens[position - 2].getToken())) {
       return true; // "a.k.a a"
-    } else if (repetitionOf("on", tokens, position) && position > 1 && tokens[position - 2].getToken().equals(".")) {
+    } else if (repetitionOf("on", tokens, position) && position > 1 && ".".equals(tokens[position - 2].getToken())) {
       return true; // "You can contact E.ON on Instagram"
     } else if (tokens[position - 1].getToken().equalsIgnoreCase(word) && (((position + 1 < tokens.length) && tokens[position + 1].getToken().equalsIgnoreCase(word)) || (position > 1 && tokens[position - 2].getToken().equalsIgnoreCase(word)))) {
       // three time word repetition
@@ -237,19 +237,19 @@ public class EnglishWordRepeatRule extends WordRepeatRule {
     } else if (repetitionOf("no", tokens, position)) {
       return true;   // "no no"
     } else if (tokens[position].getToken().endsWith("ay")) {
-      if (tokens[position - 1].getToken().equals("may") && tokens[position].getToken().equals("May")) {
+      if ("may".equals(tokens[position - 1].getToken()) && "May".equals(tokens[position].getToken())) {
         return true;   // "may May"
       }
-      if (tokens[position - 1].getToken().equals("May") && tokens[position].getToken().equals("may")) {
+      if ("May".equals(tokens[position - 1].getToken()) && "may".equals(tokens[position].getToken())) {
         return true;   // "May may"
       }
-      if (tokens[1].getToken().equals("May") && tokens[2].getToken().equals("May")) {
+      if ("May".equals(tokens[1].getToken()) && "May".equals(tokens[2].getToken())) {
         return true;   // "May May" SENT_START
       }
     } else if (tokens[position].getToken().endsWith("ill")) {
-      return (position > 0 && tokens[position - 1].getToken().equals("will") && tokens[position].getToken().equals("Will")) // will Wills
-        || (tokens[position - 1].getToken().equals("Will") && tokens[position].getToken().equals("will")) // Will will ...
-        || (tokens[1].getToken().equals("Will") && tokens[2].getToken().equals("Will")); // "Will Will" SENT_START
+      return (position > 0 && "will".equals(tokens[position - 1].getToken()) && "Will".equals(tokens[position].getToken())) // will Wills
+        || ("Will".equals(tokens[position - 1].getToken()) && "will".equals(tokens[position].getToken())) // Will will ...
+        || ("Will".equals(tokens[1].getToken()) && "Will".equals(tokens[2].getToken())); // "Will Will" SENT_START
     }
     return super.ignore(tokens, position);
   }

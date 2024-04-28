@@ -175,9 +175,9 @@ public class BeoLingusTranslator implements Translator {
   @Override
   public List<TranslationEntry> translate(String term, String fromLang, String toLang) {
     Map<String, List<TranslationEntry>> map;
-    if (fromLang.equals("de") && toLang.equals("en")) {
+    if ("de".equals(fromLang) && "en".equals(toLang)) {
       map = this.de2en;
-    } else if (fromLang.equals("en") && toLang.equals("de")) {
+    } else if ("en".equals(fromLang) && "de".equals(toLang)) {
       map = this.en2de;
     } else {
       throw new RuntimeException("Not supported: " + fromLang + " -> " + toLang);

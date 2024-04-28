@@ -49,7 +49,7 @@ public class CommonWordsDetector {
       if (word2langs.isEmpty()) {
         for (Language lang : Languages.get()) {
           if (lang.isVariant() &&
-              !lang.getShortCode().equals("no")) {  // ugly hack to quick fix https://github.com/languagetooler-gmbh/languagetool-premium/issues/822 
+              !"no".equals(lang.getShortCode())) {  // ugly hack to quick fix https://github.com/languagetooler-gmbh/languagetool-premium/issues/822 
             continue;
           }
           ResourceDataBroker dataBroker = JLanguageTool.getDataBroker();

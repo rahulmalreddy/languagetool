@@ -118,11 +118,11 @@ public class SynthesizeWithDeterminerFilter extends RuleFilter {
       String form = potentialSuggestion.getToken();
       for (String genderNumber : genderNumberList) {
         String apos = ""; // s'apostrofa o no
-        if (genderNumber.equals("MS")) {
+        if ("MS".equals(genderNumber)) {
           if (pMascYes.matcher(form).matches() && !pMascNo.matcher(form).matches()) {
             apos = "apos";
           }
-        } else if (genderNumber.equals("FS")) {
+        } else if ("FS".equals(genderNumber)) {
           if (pFemYes.matcher(form).matches() && !pFemNo.matcher(form).matches()) {
             apos = "apos";
           }

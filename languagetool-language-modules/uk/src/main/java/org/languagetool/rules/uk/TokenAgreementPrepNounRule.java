@@ -270,7 +270,7 @@ public class TokenAgreementPrepNounRule extends Rule {
             continue;
           }
         }
-        else if ( thisToken.equals("їх") ) {
+        else if ( "їх".equals(thisToken) ) {
           RuleMatch potentialRuleMatch = createRuleMatch(tokenReadings, prepTokenReadings, posTagsToFind, sentence, tokens, i);
           ruleMatches.add(potentialRuleMatch);
           prepTokenReadings = null;
@@ -349,7 +349,7 @@ public class TokenAgreementPrepNounRule extends Rule {
 
     if( tokenReadings.isPosTagUnknown() && tokenReadings.getCleanToken().matches("[,(]") ) {
       int commaPos = LemmaHelper.tokenSearch(tokens, i+1, (String)null, Pattern.compile("[,)]"), null, Dir.FORWARD);
-      if( commaPos > i+1 && commaPos < i+6 && commaPos < tokens.length-1 && ! tokens[commaPos+1].getCleanToken().equals("що") ) {
+      if( commaPos > i+1 && commaPos < i+6 && commaPos < tokens.length-1 && ! "що".equals(tokens[commaPos+1].getCleanToken()) ) {
         if( tokenReadings.getCleanToken().replace('(', ')').equals(tokens[commaPos].getCleanToken()) )
           return commaPos;
       }
@@ -459,7 +459,7 @@ public class TokenAgreementPrepNounRule extends Rule {
         && PosTagHelper.hasPosTag(tokenReadings.getReadings(), "noun.*?:m:v_dav.*") ) {
       msg += CaseGovernmentHelper.USED_U_INSTEAD_OF_A_MSG;
     }
-    else if( tokenString.equals("їх") && requiredPostTagsRegEx != null ) {
+    else if( "їх".equals(tokenString) && requiredPostTagsRegEx != null ) {
       msg += ". Можливо, тут потрібно присвійний займенник «їхній» або нормативна форма р.в. «них»?";
       try {
         String newYihPostag = "adj:p" + requiredPostTagsRegEx + ".*";
@@ -469,8 +469,8 @@ public class TokenAgreementPrepNounRule extends Rule {
         throw new RuntimeException(e);
       }
     }
-    else if( (tokenString.equals("його") || tokenString.equals("її")) && requiredPostTagsRegEx != null ) {
-      String repl = tokenString.equals("його") ? "нього" : "неї";
+    else if( ("його".equals(tokenString) || "її".equals(tokenString)) && requiredPostTagsRegEx != null ) {
+      String repl = "його".equals(tokenString) ? "нього" : "неї";
       msg += ". Можливо, тут потрібно присвійний займенник «" + repl + "»?";
       try {
         String newYihPostag = "adj:p" + requiredPostTagsRegEx + ".*";

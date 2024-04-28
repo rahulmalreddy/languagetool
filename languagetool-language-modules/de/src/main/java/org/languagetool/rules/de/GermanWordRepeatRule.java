@@ -316,16 +316,16 @@ public class GermanWordRepeatRule extends WordRepeatRule {
   @Override
   public boolean ignore(AnalyzedTokenReadings[] tokens, int position) {
     // "Warum fragen Sie sie nicht selbst?"
-    if (position != 2 && tokens[position - 1].getToken().equals("Sie") && tokens[position].getToken().equals("sie") ||
-        tokens[position - 1].getToken().equals("sie") && tokens[position].getToken().equals("Sie")) {
+    if (position != 2 && "Sie".equals(tokens[position - 1].getToken()) && "sie".equals(tokens[position].getToken()) ||
+        "sie".equals(tokens[position - 1].getToken()) && "Sie".equals(tokens[position].getToken())) {
       return true;
     }
     // "Ihre verbotenen Waren waren bisher nicht aufgeflogen"
-    if (position != 2 && tokens[position - 1].getToken().equals("Waren") && tokens[position].getToken().equals("waren") ||
-        tokens[position - 1].getToken().equals("waren") && tokens[position].getToken().equals("Waren")) {
+    if (position != 2 && "Waren".equals(tokens[position - 1].getToken()) && "waren".equals(tokens[position].getToken()) ||
+        "waren".equals(tokens[position - 1].getToken()) && "Waren".equals(tokens[position].getToken())) {
       return true;
     }
-    if (position > 2 && tokens[position - 1].getToken().equals("sie") && tokens[position].getToken().equals("sie")) {
+    if (position > 2 && "sie".equals(tokens[position - 1].getToken()) && "sie".equals(tokens[position].getToken())) {
       if (tokens[position - 2].hasPosTag("KON:UNT")) {
         // "Sie tut das, damit sie sie nicht fortschickt"
         return true;

@@ -37,30 +37,30 @@ class CommandLineParser {
     }
     CommandLineOptions options = new CommandLineOptions();
     for (int i = 0; i < args.length; i++) {
-      if (args[i].equals("--version")) {
+      if ("--version".equals(args[i])) {
         options.setPrintVersion(true);
-      } else if (args[i].equals("--list")) {
+      } else if ("--list".equals(args[i])) {
         options.setPrintLanguages(true);
-      } else if (args[i].equals("-h") || args[i].equals("-help") || args[i].equals("--help") || args[i].equals("--?")) {
+      } else if ("-h".equals(args[i]) || "-help".equals(args[i]) || "--help".equals(args[i]) || "--?".equals(args[i])) {
         options.setPrintUsage(true);
-      } else if (args[i].equals("-adl") || args[i].equals("--autoDetect")) {    // set autoDetect flag
+      } else if ("-adl".equals(args[i]) || "--autoDetect".equals(args[i])) {    // set autoDetect flag
         options.setAutoDetect(true);
-      } else if (args[i].equals("-v") || args[i].equals("--verbose")) {
+      } else if ("-v".equals(args[i]) || "--verbose".equals(args[i])) {
         options.setVerbose(true);
-      } else if (args[i].equals("--line-by-line")) {
+      } else if ("--line-by-line".equals(args[i])) {
         options.setLineByLine(true);
-      } else if (args[i].equals("--enable-temp-off")) {
+      } else if ("--enable-temp-off".equals(args[i])) {
         options.setEnableTempOff(true);
-      } else if (args[i].equals("--clean-overlapping")) {
+      } else if ("--clean-overlapping".equals(args[i])) {
         options.setCleanOverlapping(true);
-      } else if (args[i].equals("--level")) {
+      } else if ("--level".equals(args[i])) {
         String level = args[++i];
         try {
           options.setLevel(JLanguageTool.Level.valueOf(level));
         } catch (IllegalArgumentException e) {
           throw new IllegalArgumentException("Unknown level '" + level + "' - currently, only 'PICKY' is supported");
         }
-      } else if (args[i].equals("-t") || args[i].equals("--taggeronly")) {
+      } else if ("-t".equals(args[i]) || "--taggeronly".equals(args[i])) {
         options.setTaggerOnly(true);
         if (options.isListUnknown()) {
           throw new IllegalArgumentException("You cannot list unknown words when tagging only");
@@ -68,72 +68,72 @@ class CommandLineParser {
         if (options.isApplySuggestions()) {
           throw new IllegalArgumentException("You cannot apply suggestions when tagging only");
         }
-      } else if (args[i].equals("-r") || args[i].equals("--recursive")) {
+      } else if ("-r".equals(args[i]) || "--recursive".equals(args[i])) {
         options.setRecursive(true);
-      } else if (args[i].equals("-b2") || args[i].equals("--bitext")) {
+      } else if ("-b2".equals(args[i]) || "--bitext".equals(args[i])) {
         options.setBitext(true);
-      } else if (args[i].equals("-eo") || args[i].equals("--enabledonly")) {
+      } else if ("-eo".equals(args[i]) || "--enabledonly".equals(args[i])) {
         if (options.getDisabledRules().size() > 0) {
           throw new IllegalArgumentException("You cannot specify both disabled rules and enabledonly");
         }
         options.setUseEnabledOnly();
-      } else if (args[i].equals("-d") || args[i].equals("--disable")) {
+      } else if ("-d".equals(args[i]) || "--disable".equals(args[i])) {
         if (options.isUseEnabledOnly()) {
           throw new IllegalArgumentException("You cannot specify both disabled rules and enabledonly");
         }
         checkArguments("-d/--disable", i, args);
         String rules = args[++i];
         options.setDisabledRules(Arrays.asList(rules.split(",")));
-      } else if (args[i].equals("-e") || args[i].equals("--enable")) {
+      } else if ("-e".equals(args[i]) || "--enable".equals(args[i])) {
         checkArguments("-e/--enable", i, args);
         String rules = args[++i];
         options.setEnabledRules(Arrays.asList(rules.split(",")));
-      } else if (args[i].equals("--enablecategories")) {
+      } else if ("--enablecategories".equals(args[i])) {
         checkArguments("--enablecategories", i, args);
         String categories = args[++i];
         options.setEnabledCategories(Arrays.asList(categories.split(",")));
-      } else if (args[i].equals("--disablecategories")) {
+      } else if ("--disablecategories".equals(args[i])) {
         checkArguments("--disablecategories", i, args);
         String categories = args[++i];
         options.setDisabledCategories(Arrays.asList(categories.split(",")));
-      } else if (args[i].equals("-l") || args[i].equals("--language")) {
+      } else if ("-l".equals(args[i]) || "--language".equals(args[i])) {
         checkArguments("-l/--language", i, args);
         options.setLanguage(getLanguage(args[++i]));
-      } else if (args[i].equals("-m") || args[i].equals("--mothertongue")) {
+      } else if ("-m".equals(args[i]) || "--mothertongue".equals(args[i])) {
         checkArguments("-m/--mothertongue", i, args);
         options.setMotherTongue(getLanguage(args[++i]));
-      } else if (args[i].equals("--languagemodel")) {
+      } else if ("--languagemodel".equals(args[i])) {
         checkArguments("--languagemodel", i, args);
         options.setLanguageModel(new File(args[++i]));
-      } else if (args[i].equals("--fasttextmodel")) {
+      } else if ("--fasttextmodel".equals(args[i])) {
         checkArguments("--fasttextmodel", i, args);
         options.setFasttextModel(new File(args[++i]));
-      } else if (args[i].equals("--fasttextbinary")) {
+      } else if ("--fasttextbinary".equals(args[i])) {
         checkArguments("--fasttextbinary", i, args);
         options.setFasttextBinary(new File(args[++i]));
-      } else if (args[i].equals("--rulefile")) {
+      } else if ("--rulefile".equals(args[i])) {
         checkArguments("--rulefile", i, args);
         options.setRuleFile(args[++i]);
-      } else if (args[i].equals("--remoterules")) {
+      } else if ("--remoterules".equals(args[i])) {
         checkArguments("--remoterules", i, args);
         options.setRemoteRulesFile(args[++i]);
-      } else if (args[i].equals("--falsefriends")) {
+      } else if ("--falsefriends".equals(args[i])) {
         checkArguments("--falsefriends", i, args);
         options.setFalseFriendFile(args[++i]);
-      } else if (args[i].equals("--bitextrules")) {
+      } else if ("--bitextrules".equals(args[i])) {
         checkArguments("--bitextrules", i, args);
         options.setBitextRuleFile(args[++i]);
-      } else if (args[i].equals("-c") || args[i].equals("--encoding")) {
+      } else if ("-c".equals(args[i]) || "--encoding".equals(args[i])) {
         checkArguments("-c/--encoding", i, args);
         options.setEncoding(args[++i]);
-      } else if (args[i].equals("-u") || args[i].equals("--list-unknown")) {
+      } else if ("-u".equals(args[i]) || "--list-unknown".equals(args[i])) {
         options.setListUnknown(true);
         if (options.isTaggerOnly()) {
           throw new IllegalArgumentException("You cannot list unknown words when tagging only");
         }
-      } else if (args[i].equals("-b")) {
+      } else if ("-b".equals(args[i])) {
         options.setSingleLineBreakMarksParagraph(true);
-      } else if (args[i].equals("--json")) {
+      } else if ("--json".equals(args[i])) {
         options.setJsonFormat();
         if (options.isApplySuggestions()) {
           throw new IllegalArgumentException("JSON output format makes no sense for automatic application of suggestions");
@@ -147,7 +147,7 @@ class CommandLineParser {
         if (options.isListUnknown()) {
           throw new IllegalArgumentException("You cannot list unknown words in JSON output format");
         }
-      } else if (args[i].equals("-a") || args[i].equals("--apply")) {
+      } else if ("-a".equals(args[i]) || "--apply".equals(args[i])) {
         options.setApplySuggestions(true);
         if (options.isTaggerOnly()) {
           throw new IllegalArgumentException("You cannot apply suggestions when tagging only");
@@ -155,7 +155,7 @@ class CommandLineParser {
         if (options.isJsonFormat()) {
           throw new IllegalArgumentException("JSON output format makes no sense for automatic application of suggestions");
         }
-      } else if (args[i].equals("-p") || args[i].equals("--profile")) {
+      } else if ("-p".equals(args[i]) || "--profile".equals(args[i])) {
         options.setProfile(true);
         if (options.isJsonFormat()) {
           throw new IllegalArgumentException("JSON output format makes no sense for profiling");
@@ -166,7 +166,7 @@ class CommandLineParser {
         if (options.isTaggerOnly()) {
           throw new IllegalArgumentException("Tagging makes no sense for profiling");
         }
-      } else if (args[i].equals("--xmlfilter")) {
+      } else if ("--xmlfilter".equals(args[i])) {
         options.setXmlFiltering(true);
       } else if (i == args.length - 1) {
         options.setFilename(args[i]);

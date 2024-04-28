@@ -161,7 +161,7 @@ public class EsperantoTagger implements Tagger {
     } else if (verb.endsWith("igi")) {
       // The verb "memmortigi is strange: even though it ends in -igi, it
       // is intransitive.
-      return verb.equals("memmortigi") ? "nt" : "tr";
+      return "memmortigi".equals(verb) ? "nt" : "tr";
     }
 
     // This loop executes only once for most verbs (or very few times).
@@ -246,12 +246,12 @@ public class EsperantoTagger implements Tagger {
             if (accGroup == null) {
               accusative = "xxx";
             } else {
-              accusative = accGroup.equalsIgnoreCase("n") ? "akz" : "nak";
+              accusative = "n".equalsIgnoreCase(accGroup) ? "akz" : "nak";
             }
             if (plGroup == null) {
               plural = " pn ";
             } else {
-              plural = plGroup.equalsIgnoreCase("j") ? " pl " : " np ";
+              plural = "j".equalsIgnoreCase(plGroup) ? " pl " : " np ";
             }
             type = ((type2Group == null) ? type3Group : type2Group).toLowerCase();
 
@@ -308,10 +308,10 @@ public class EsperantoTagger implements Tagger {
             if (!setNonParticiple.contains(matcher.group(1))) {
               String verb = matcher.group(2) + "i";
               String aio = matcher.group(3);
-              String antAt = matcher.group(4).equals("n") ? "n" : "-";
+              String antAt = "n".equals(matcher.group(4)) ? "n" : "-";
               String aoe = matcher.group(5);
-              String plural = matcher.group(6).equals("j") ? "pl" : "np";
-              String accusative = matcher.group(7).equals("n") ? "akz" : "nak";
+              String plural = "j".equals(matcher.group(6)) ? "pl" : "np";
+              String accusative = "n".equals(matcher.group(7)) ? "akz" : "nak";
               String transitive = findTransitivity(verb);
 
               l.add(new AnalyzedToken(word, "C " + accusative + " " + plural + " " +

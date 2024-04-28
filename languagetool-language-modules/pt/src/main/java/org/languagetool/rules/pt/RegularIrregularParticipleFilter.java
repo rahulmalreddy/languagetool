@@ -73,13 +73,13 @@ public class RegularIrregularParticipleFilter extends RuleFilter {
         throw new IOException("Cannot synthesize " + selectedAT.toString() + e);
       }
       if (participles != null && participles.length > 1) {
-        if (direction.equalsIgnoreCase("RegularToIrregular") && isRegular(atr.getToken())) {
+        if ("RegularToIrregular".equalsIgnoreCase(direction) && isRegular(atr.getToken())) {
           if (!isRegular(participles[0])) {
             replacement = participles[0];
           } else if (!isRegular(participles[1])) {
             replacement = participles[1];
           }
-        } else if (direction.equalsIgnoreCase("IrregularToRegular") && !isRegular(atr.getToken())) {
+        } else if ("IrregularToRegular".equalsIgnoreCase(direction) && !isRegular(atr.getToken())) {
           if (isRegular(participles[0])) {
             replacement = participles[0];
           } else if (isRegular(participles[1])) {

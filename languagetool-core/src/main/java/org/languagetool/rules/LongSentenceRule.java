@@ -108,9 +108,9 @@ public class LongSentenceRule extends TextLevelRule {
       AnalyzedTokenReadings toPosToken = null;
       while (i < tokens.length) {
         int numWords = 0;
-        while (i < tokens.length && !tokens[i].getToken().equals(":") && !tokens[i].getToken().equals(";")
-          && !tokens[i].getToken().equals("\n") && !tokens[i].getToken().equals("\r\n")
-          && !tokens[i].getToken().equals("\n\r")
+        while (i < tokens.length && !":".equals(tokens[i].getToken()) && !";".equals(tokens[i].getToken())
+          && !"\n".equals(tokens[i].getToken()) && !"\r\n".equals(tokens[i].getToken())
+          && !"\n\r".equals(tokens[i].getToken())
         ) {
           if (isWordCount(tokens[i].getToken())) {
             //Get first word token

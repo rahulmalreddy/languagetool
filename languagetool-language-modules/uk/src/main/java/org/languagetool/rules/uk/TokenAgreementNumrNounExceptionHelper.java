@@ -94,7 +94,7 @@ final class TokenAgreementNumrNounExceptionHelper {
     // У свої вісімдесят пан Василь
     if( state.numrPos > 2
         && PosTagHelper.hasPosTagStart(tokens[state.numrPos-2], "prep")
-        && tokens[state.numrPos-1].getCleanToken().toLowerCase().equals("свої")
+        && "свої".equals(tokens[state.numrPos-1].getCleanToken().toLowerCase())
         && PosTagHelper.hasPosTag(tokens[state.numrPos], Pattern.compile("numr:p:v_zna.*"))
         && PosTagHelper.hasPosTag(tokens[state.nounPos], Pattern.compile("noun:anim:.:v_naz.*"))
         ) {
@@ -158,7 +158,7 @@ final class TokenAgreementNumrNounExceptionHelper {
 
     // 3 / 4 понеділка
     if( state.numrPos > 2 ) {
-      if( tokens[state.numrPos-1].getCleanToken().equals("/") ) {
+      if( "/".equals(tokens[state.numrPos-1].getCleanToken()) ) {
         logException();
         return true;
       }
@@ -166,7 +166,7 @@ final class TokenAgreementNumrNounExceptionHelper {
 
     if( state.numrPos > 1 
         && ( LemmaHelper.hasLemma(tokens[state.numrPos-1], Arrays.asList("ч.", "ст.", "п.", "частина", "стаття", "пункт", "підпункт", "абзац", "№", "номер")) 
-            || tokens[state.numrPos-1].getCleanToken().equals("№"))
+            || "№".equals(tokens[state.numrPos-1].getCleanToken()))
             ) {
         logException();
         return true;

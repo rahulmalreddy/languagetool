@@ -187,17 +187,17 @@ public class CatalanSynthesizer extends BaseSynthesizer {
       int len0 = arg0.length();
       int len1 = arg1.length();
       if (len0 > 4 && len1 > 4) {
-        if (arg0.equals("VMIS3S00") && arg1.equals("VMIS1S00")) {
+        if ("VMIS3S00".equals(arg0) && "VMIS1S00".equals(arg1)) {
           return 150;
         }
-        if (arg0.equals("VMIS1S00") && arg1.equals("VMIS3S00")) {
+        if ("VMIS1S00".equals(arg0) && "VMIS3S00".equals(arg1)) {
           return -150;
         }
-        if (arg0.equals("VMIP2P00") && arg1.equals("VMIS3S00")) {
+        if ("VMIP2P00".equals(arg0) && "VMIS3S00".equals(arg1)) {
           //feu (present/passat)
           return 150;
         }
-        if (arg1.equals("VMIP2P00") && arg0.equals("VMIS3S00")) {
+        if ("VMIP2P00".equals(arg1) && "VMIS3S00".equals(arg0)) {
           return -150;
         }
         if (arg0.charAt(2) == 'I' && arg1.charAt(2) != 'I') {

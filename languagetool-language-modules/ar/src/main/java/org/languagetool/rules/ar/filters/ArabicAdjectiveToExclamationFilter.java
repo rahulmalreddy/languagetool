@@ -152,11 +152,11 @@ public class ArabicAdjectiveToExclamationFilter extends RuleFilter {
     if (word == null) {
       return false;
     }
-    return word.equals("هو")
-      || word.equals("هي")
-      || word.equals("هم")
-      || word.equals("هما")
-      || word.equals("أنا");
+    return "هو".equals(word)
+      || "هي".equals(word)
+      || "هم".equals(word)
+      || "هما".equals(word)
+      || "أنا".equals(word);
   }
 
   /* get corresponding attached to unattached pronoun */

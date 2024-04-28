@@ -222,7 +222,7 @@ public class ArabicSynthesizer extends BaseSynthesizer {
             // if the stem is ended by Yeh for 1st person pronoun
             // if suffix is Yeh pronoun, ignore suffix
             // else ignore stem
-            if (suffix.equals("ي"))
+            if ("ي".equals(suffix))
               newWord = procletic + stem;
             else
               newWord = "";
@@ -268,7 +268,7 @@ public class ArabicSynthesizer extends BaseSynthesizer {
     // case of definate word:
     // إضافة الجار إلى أل التعريف
     if (tagmanager.isDefinite(postag)) {
-      if (prefix.equals("ل")) {
+      if ("ل".equals(prefix)) {
         prefix += "ل";
       } else {
         //  if(prefprefix.equals("ب")||prefix.equals("ك"))

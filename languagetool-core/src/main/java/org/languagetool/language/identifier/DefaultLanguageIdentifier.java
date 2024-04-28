@@ -257,7 +257,7 @@ public class DefaultLanguageIdentifier extends LanguageIdentifier {
         } else {
           System.out.println("FastText above threshold: " + result.getValue().floatValue() + " for " + cleanText.length() + " chars");
         }*/
-        if ((usingFastText && result.getValue().floatValue() < FASTTEXT_CONFIDENCE_THRESHOLD) || result.getKey().equals("zz")) {
+        if ((usingFastText && result.getValue().floatValue() < FASTTEXT_CONFIDENCE_THRESHOLD) || "zz".equals(result.getKey())) {
           //System.out.println(cleanText + " ->" + result.getValue().floatValue() + " " + result.getKey());
           Map<Language, Integer> lang2Count = COMMON_WORDS_LANG_IDENTIFIER.getKnownWordsPerLanguage(text);
           Set<String> baseLangAlreadyHandled = new HashSet<>();

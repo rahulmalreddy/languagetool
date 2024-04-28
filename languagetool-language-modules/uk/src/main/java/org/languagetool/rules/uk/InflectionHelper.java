@@ -58,8 +58,8 @@ public class InflectionHelper {
       if( gender1.equals(gender2) )
         return true;
       
-      if( gender1.equals("s") && gender2.matches("[mfn]") 
-          || gender2.equals("s") && gender1.matches("[mfn]") )
+      if( "s".equals(gender1) && gender2.matches("[mfn]") 
+          || "s".equals(gender2) && gender1.matches("[mfn]") )
         return true;
 
       return false;
@@ -73,7 +73,7 @@ public class InflectionHelper {
     }
   
     boolean animMatters() {
-      return animTag != null && ! "unanim".equals(animTag) && _case.equals("v_zna") && isAnimalSensitive();
+      return animTag != null && ! "unanim".equals(animTag) && "v_zna".equals(_case) && isAnimalSensitive();
     }
   
     private boolean isAnimalSensitive() {

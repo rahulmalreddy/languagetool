@@ -69,8 +69,8 @@ public class NonSignificantVerbsRule extends AbstractStatisticStyleRule {
       if (isHaben) {
         for (int i = 1; i < tokens.length; i++) {
           String sToken = tokens[i].getToken();
-          if (sToken.equals("Glück") || sToken.equals("Angst")  || sToken.equals("Mühe") || 
-              sToken.equals("Recht") || sToken.equals("recht")) {
+          if ("Glück".equals(sToken) || "Angst".equals(sToken)  || "Mühe".equals(sToken) || 
+              "Recht".equals(sToken) || "recht".equals(sToken)) {
             return true;
           }
         }

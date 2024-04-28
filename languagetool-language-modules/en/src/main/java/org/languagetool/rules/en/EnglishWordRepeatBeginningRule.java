@@ -91,7 +91,7 @@ public class EnglishWordRepeatBeginningRule extends WordRepeatBeginningRule {
 
 	@Override
 	public boolean isException(String token) {
-		return super.isException(token) || token.equals("The") || token.equals("A") || token.equals("An");
+		return super.isException(token) || "The".equals(token) || "A".equals(token) || "An".equals(token);
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class EnglishWordRepeatBeginningRule extends WordRepeatBeginningRule {
 		String tok = token.getToken();
 		// the repeated word is a personal pronoun
 		if (token.hasPosTag("PRP")) {
-			String adaptedToken = tok.equals("I") ? tok : tok.toLowerCase();
+			String adaptedToken = "I".equals(tok) ? tok : tok.toLowerCase();
 			return Arrays.asList("Furthermore, " + adaptedToken, "Likewise, " + adaptedToken,
 					"Not only that, but " + adaptedToken);
 		} else if (ADD_ADVERBS.contains(tok)) {

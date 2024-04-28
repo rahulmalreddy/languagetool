@@ -48,8 +48,8 @@ public class SentenceAnnotator {
         }
       }
       String automaticAnnotationStr = prop.getProperty("automaticAnnotation", "").trim();
-      cfg.automaticAnnotation = automaticAnnotationStr.equalsIgnoreCase("yes")
-          || automaticAnnotationStr.equalsIgnoreCase("true");
+      cfg.automaticAnnotation = "yes".equalsIgnoreCase(automaticAnnotationStr)
+          || "true".equalsIgnoreCase(automaticAnnotationStr);
       String enabledOnlyRulesStr = prop.getProperty("enabledOnlyRules", "").trim();
       if (!enabledOnlyRulesStr.isEmpty()) {
         cfg.enabledOnlyRules = Arrays.asList(enabledOnlyRulesStr.split(","));

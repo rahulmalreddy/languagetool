@@ -104,7 +104,7 @@ public class OblidarseSugestionsFilter extends RuleFilter {
     }
     String verbPostag = tokens[posWord + 2].readingWithTagRegex("V.*").getPOSTag();
     String lemma = tokens[posWord + 2].readingWithTagRegex("V.*").getLemma();
-    if (lemma.equals("passar")) {
+    if ("passar".equals(lemma)) {
       lemma = "descuidar";
     }
     AnalyzedToken at = new AnalyzedToken("", "", lemma);

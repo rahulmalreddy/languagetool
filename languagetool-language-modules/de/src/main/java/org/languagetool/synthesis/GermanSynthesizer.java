@@ -60,7 +60,7 @@ public class GermanSynthesizer extends BaseSynthesizer {
       // https://github.com/languagetool-org/languagetool/issues/4712
       boolean lcLemma = StringTools.startsWithLowercase(lemma);
       boolean lcLookup = StringTools.startsWithLowercase(s);
-      if (lcLemma == lcLookup || lemma.equals("mein") || lemma.equals("ich") && !REMOVE.contains(s)) {  // mein/ich wegen Ihr/Sie
+      if (lcLemma == lcLookup || "mein".equals(lemma) || "ich".equals(lemma) && !REMOVE.contains(s)) {  // mein/ich wegen Ihr/Sie
         results.add(s);
       }
     }

@@ -60,7 +60,7 @@ public class WhiteSpaceAtBeginOfParagraph extends Rule {
   private boolean isWhitespaceDel (AnalyzedTokenReadings token) {
     // returns only whitespaces that may be deleted
     // "\u200B" is excluded to prevent function (e.g. page number, page count) in LO/OO
-    return token.isWhitespace() && !token.getToken().equals("\u200B") && !token.isLinebreak();
+    return token.isWhitespace() && !"\u200B".equals(token.getToken()) && !token.isLinebreak();
   }
 
   @Override

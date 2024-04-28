@@ -42,10 +42,10 @@ public class ConvertToSentenceCaseFilter extends RuleFilter {
         continue;
       }
       String normalizedCase = normalizedCase(patternTokens[i]);
-      if (i + 1 < patternTokens.length && patternTokens[i + 1].getToken().equals(".")) {
+      if (i + 1 < patternTokens.length && ".".equals(patternTokens[i + 1].getToken())) {
         if (normalizedCase.length() == 1) {
           normalizedCase = normalizedCase.toUpperCase();
-        } else if (normalizedCase.equals("corp")) {
+        } else if ("corp".equals(normalizedCase)) {
           normalizedCase = "Corp";
         }
       }

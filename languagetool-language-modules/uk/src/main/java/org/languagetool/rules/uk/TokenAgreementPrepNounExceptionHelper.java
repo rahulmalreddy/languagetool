@@ -56,12 +56,12 @@ public class TokenAgreementPrepNounExceptionHelper {
 
     
     // на дивом уцілілій техніці
-    if( tokenReadings.getToken().equals("дивом") )
+    if( "дивом".equals(tokenReadings.getToken()) )
       return new RuleException(0);
 
     // в тисяча шістсот якомусь році
     if( i < tokens.length - 1 
-        && tokenReadings.getToken().equals("тисяча")
+        && "тисяча".equals(tokenReadings.getToken())
         && PosTagHelper.hasPosTagPart(tokens[i+1], "numr")) {
       return new RuleException(0);
     }
@@ -73,7 +73,7 @@ public class TokenAgreementPrepNounExceptionHelper {
       return new RuleException(1);
     }
 
-    if (prep.equals("на")) {
+    if ("на".equals(prep)) {
       // 1) на (свято) Купала, на (вулиці) Мазепи, на (вулиці) Тюльпанів
       if (LemmaHelper.isCapitalized(token) && PosTagHelper.hasPosTag(tokenReadings, Pattern.compile("noun.*?:.:v_rod.*"))) {
         return new RuleException(Type.exception);
@@ -85,7 +85,7 @@ public class TokenAgreementPrepNounExceptionHelper {
       }
 
       // handled by xml rule
-      if( token.equals("манер") ) {
+      if( "манер".equals(token) ) {
         return new RuleException(Type.exception);
       }
       // на біс (TODO: можливо краще tag=intj?)
@@ -96,25 +96,25 @@ public class TokenAgreementPrepNounExceptionHelper {
 
     // TODO: temporary until we have better logic - skip
     // при їх виборі
-    if( prep.equals("при") ) {
-      if( token.equals("їх") ) {
+    if( "при".equals(prep) ) {
+      if( "їх".equals(token) ) {
         return new RuleException(Type.skip);
       }
     }
     else
-      if( prep.equals("з") ) {
-        if( token.equals("рана") ) {
+      if( "з".equals(prep) ) {
+        if( "рана".equals(token) ) {
           return new RuleException(Type.exception);
         }
       }
       else
-        if( prep.equals("від") ) {
-          if( token.equalsIgnoreCase("а") || token.equals("рана") || token.equals("корки") || token.equals("мала") ) {  // корки/мала ловиться іншим правилом
+        if( "від".equals(prep) ) {
+          if( "а".equalsIgnoreCase(token) || "рана".equals(token) || "корки".equals(token) || "мала".equals(token) ) {  // корки/мала ловиться іншим правилом
             return new RuleException(Type.exception);
           }
         }
-        else if( prep.equals("до") ) {
-          if( token.equalsIgnoreCase("я") || token.equals("корки") || token.equals("велика") ) {  // корки/велика ловиться іншим правилом
+        else if( "до".equals(prep) ) {
+          if( "я".equalsIgnoreCase(token) || "корки".equals(token) || "велика".equals(token) ) {  // корки/велика ловиться іншим правилом
             return new RuleException(Type.exception);
           }
         }
@@ -135,7 +135,7 @@ public class TokenAgreementPrepNounExceptionHelper {
 
       // від мінус 1 до плюс 1
       if( (PosTagHelper.hasPosTagStart(tokens[i+1], "num")
-            || tokens[i+1].getToken().equals("$"))
+            || "$".equals(tokens[i+1].getToken()))
           && PLUS_MINUS.contains(tokenLower) ) {
         return new RuleException(Type.exception);
       }
@@ -146,12 +146,12 @@ public class TokenAgreementPrepNounExceptionHelper {
         return new RuleException(1);
       }
 
-      if( token.equals("святая")
-          && tokens[i+1].getToken().equals("святих") ) {
+      if( "святая".equals(token)
+          && "святих".equals(tokens[i+1].getToken()) ) {
         return new RuleException(Type.exception);
       }
 
-      if( (prep.equals("через") || prep.equals("на"))  // років 10, відсотки 3-4
+      if( ("через".equals(prep) || "на".equals(prep))  // років 10, відсотки 3-4
           && (//PosTagHelper.hasPosTagStart(tokenReadings, "noun:inanim:p:v_naz") 
 //              || PosTagHelper.hasPosTagStart(tokenReadings, "noun:inanim:p:v_rod")) // token.equals("років")
               LemmaHelper.hasLemma(tokenReadings, LemmaHelper.TIME_PLUS_LEMMAS, Pattern.compile("noun:inanim:p:v_(rod|zna).*")))
@@ -173,13 +173,13 @@ public class TokenAgreementPrepNounExceptionHelper {
           && tokens[i+1].getCleanToken().startsWith("подібн") ) {
         return new RuleException(0);
       }
-      if( (token.equals("усім") || token.equals("всім"))
+      if( ("усім".equals(token) || "всім".equals(token))
           && tokens[i+1].getCleanToken().startsWith("відом") ) {
         return new RuleException(0);
       }
 
-      if( prep.equalsIgnoreCase("до") && token.equals("схід") 
-          && tokens[i+1].getCleanToken().equals("сонця") ) {
+      if( "до".equalsIgnoreCase(prep) && "схід".equals(token) 
+          && "сонця".equals(tokens[i+1].getCleanToken()) ) {
         return new RuleException(Type.exception);
       }
 
@@ -201,7 +201,7 @@ public class TokenAgreementPrepNounExceptionHelper {
 
         if( // (token.equals("нікому") || token.equals("ніким") || token.equals("нічим") || token.equals("нічому"))
           PosTagHelper.hasPosTag(tokenReadings, Pattern.compile("noun.*v_(dav|oru):&pron:neg.*"))
-            && tokens[i+1].getCleanToken().equals("не")) {
+            && "не".equals(tokens[i+1].getCleanToken())) {
           //          reqTokenReadings = null;
           return new RuleException(Type.skip);
         }
@@ -227,13 +227,13 @@ public class TokenAgreementPrepNounExceptionHelper {
 
     // TODO: про вчора, щодо завтра
 
-    if( prep.equals("до") || prep.equals("по") ) {
+    if( "до".equals(prep) || "по".equals(prep) ) {
       if( tokenLower.matches("сьогодні|[ву]чора|позавчора|(після)?завтра|тепер|зараз|нині|опівдня|опівночі|досі|навпаки") ) {
         return new RuleException(Type.exception);
       }
     }
 
-    if( prep.equals("на") || prep.equals("від") || prep.equals("про") ) {
+    if( "на".equals(prep) || "від".equals(prep) || "про".equals(prep) ) {
       if( tokenLower.matches("сьогодні|[ву]чора|позавчора|(після)?завтра|тепер|зараз|нині|тоді|потім|щодень|повсякдень") ) {
         return new RuleException(Type.exception);
       }
@@ -245,7 +245,7 @@ public class TokenAgreementPrepNounExceptionHelper {
       }
     }
 
-    if( prep.equals("в") || prep.equals("у") ) {
+    if( "в".equals(prep) || "у".equals(prep) ) {
       if( Arrays.asList("нікуди").contains(tokenLower) ) {
         return new RuleException(Type.exception);
       }
@@ -253,7 +253,7 @@ public class TokenAgreementPrepNounExceptionHelper {
 
     // помилка: до не властиву йому функцію
     if( i < tokens.length - 1
-        && token.equals("не")
+        && "не".equals(token)
         && PosTagHelper.hasPosTagStart(tokens[i+1], "ad") )
       return new RuleException(0);
 
@@ -268,14 +268,14 @@ public class TokenAgreementPrepNounExceptionHelper {
     // за цілком собі реалістичною соціальною
     if( PosTagHelper.hasPosTagAll(tokenReadings.getReadings(), Pattern.compile("adv(?!p).*"))) {
       if( i < tokens.length - 1 
-          && tokens[i+1].getCleanToken().equals("собі") ) { 
+          && "собі".equals(tokens[i+1].getCleanToken()) ) { 
         return new RuleException(1);
       }
       return new RuleException(0);
     }
 
     // замість вже самому засвоїти
-    if( prep.equals("замість") ) {
+    if( "замість".equals(prep) ) {
       if( new Match()
           .target(Condition.postag(Pattern.compile("verb.*:inf.*")))
           .limit(4)
@@ -315,7 +315,7 @@ public class TokenAgreementPrepNounExceptionHelper {
       return new RuleException(0);
     }
 
-    if( tokenReadings.getToken().equals("наприклад") )
+    if( "наприклад".equals(tokenReadings.getToken()) )
       return new RuleException(0);
 
     if( PosTagHelper.hasPosTag(tokenReadings, Pattern.compile("adv(?!p).*")) ) {
@@ -345,8 +345,8 @@ public class TokenAgreementPrepNounExceptionHelper {
     }    
     if( tokens.length > i+2 ) {
       // на нічого не вартий папірець
-      if ( token.equals("нічого")
-          && tokens[i+1].getToken().equals("не")
+      if ( "нічого".equals(token)
+          && "не".equals(tokens[i+1].getToken())
           && PosTagHelper.hasPosTagStart(tokens[i+2], "adj")
           ) {
         return new RuleException(1);

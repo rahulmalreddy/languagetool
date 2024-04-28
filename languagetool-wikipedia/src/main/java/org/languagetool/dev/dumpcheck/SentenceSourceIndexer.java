@@ -144,9 +144,9 @@ public class SentenceSourceIndexer extends DefaultHandler implements AutoCloseab
     long start = System.currentTimeMillis();
     Analyzer analyzer;
     String indexPos = args[4];
-    if (indexPos.equals("1")) {
+    if ("1".equals(indexPos)) {
       analyzer = null;  // this will use LanguageToolAnalyzer
-    } else if (indexPos.equals("0")) {
+    } else if ("0".equals(indexPos)) {
       analyzer = new StandardAnalyzer(new CharArraySet(Collections.emptyList(), false));
     } else {
       throw new IllegalArgumentException("Unknown value '" + indexPos + "' for indexPosTags parameter, use 0 or 1");

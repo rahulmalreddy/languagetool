@@ -116,7 +116,7 @@ abstract class Server {
   }
 
   protected static boolean usageRequested(String[] args) {
-    return args.length == 1 && (args[0].equals("-h") || args[0].equals("--help"));
+    return args.length == 1 && ("-h".equals(args[0]) || "--help".equals(args[0]));
   }
 
   protected static void printCommonConfigFileOptions() {

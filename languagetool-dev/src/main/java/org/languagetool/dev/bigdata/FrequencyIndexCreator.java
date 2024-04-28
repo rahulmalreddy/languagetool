@@ -361,9 +361,9 @@ public class FrequencyIndexCreator {
       System.exit(1);
     }
     Mode mode;
-    if (args[0].equals("text")) {
+    if ("text".equals(args[0])) {
       mode = Mode.PlainText;
-    } else if (args[0].equals("lucene")) {
+    } else if ("lucene".equals(args[0])) {
       mode = Mode.Lucene;
     } else {
       throw new RuntimeException("Unknown mode: " + args[0]);

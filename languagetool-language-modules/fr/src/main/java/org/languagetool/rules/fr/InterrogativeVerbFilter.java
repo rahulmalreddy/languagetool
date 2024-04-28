@@ -148,7 +148,7 @@ public class InterrogativeVerbFilter extends RuleFilter {
             if (analyzedSuggestion.matchesPosTagRegex(desiredPostag)) {
               String separator = (atrPronoun.getToken().startsWith("-") ? "" : "-");
               String completeSuggestion = analyzedSuggestion.getToken() + separator + atrPronoun.getToken();
-              if (completeSuggestion.equalsIgnoreCase("peux-je")) {
+              if ("peux-je".equalsIgnoreCase(completeSuggestion)) {
                 completeSuggestion = StringTools.preserveCase("puis-je", completeSuggestion);
               }
               if (completeSuggestion.endsWith("e-je")) {// exclude trompe-je -> trompé-je, trompè-je

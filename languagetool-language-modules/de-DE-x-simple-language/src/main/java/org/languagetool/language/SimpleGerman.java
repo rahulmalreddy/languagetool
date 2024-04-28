@@ -94,9 +94,9 @@ public class SimpleGerman extends GermanyGerman {
 
   @Override
   protected int getPriorityForId(String id) {
-    if (id.equals("TOO_LONG_SENTENCE")) {
+    if ("TOO_LONG_SENTENCE".equals(id)) {
       return 10;
-    } else if (id.equals("LANGES_WORT")) {
+    } else if ("LANGES_WORT".equals(id)) {
       return -1;
     }
     return super.getPriorityForId(id);

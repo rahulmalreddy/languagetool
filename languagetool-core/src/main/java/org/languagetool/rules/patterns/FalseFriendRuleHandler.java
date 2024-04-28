@@ -90,7 +90,7 @@ class FalseFriendRuleHandler extends XMLRuleHandler {
       }
     } else if (qName.equals(TOKEN)) {
       setToken(attrs);
-    } else if (qName.equals(TRANSLATION)) {
+    } else if (TRANSLATION.equals(qName)) {
       inTranslation = true;
       String languageStr = attrs.getValue("lang");
       if (Languages.isLanguageSupported(languageStr)) {

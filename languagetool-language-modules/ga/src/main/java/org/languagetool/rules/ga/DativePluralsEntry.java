@@ -74,13 +74,13 @@ class DativePluralsEntry {
     this.lemmaModern = modernised;
   }
   boolean hasEquivalent() {
-    return !(equivalent == null || equivalent.equals(""));
+    return !(equivalent == null || "".equals(equivalent));
   }
   boolean hasModernised() {
-    return !(formModern == null || formModern.equals(""));
+    return !(formModern == null || "".equals(formModern));
   }
   boolean hasModernLemma() {
-    return !(lemmaModern == null || lemmaModern.equals(""));
+    return !(lemmaModern == null || "".equals(lemmaModern));
   }
   String getBaseTag() {
     return (this.gender.equals("f")) ? "Noun:Fem:Dat:Pl" : "Noun:Masc:Dat:Pl";

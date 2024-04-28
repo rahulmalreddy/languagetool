@@ -89,31 +89,31 @@ public class CatalanUnpairedQuestionMarksRule extends TextLevelRule {
           // put the question mark in: ¿de què... ¿de quina
           // put the question mark in: ¿de qué... ¿para cuál... ¿cómo...
           if (i > 2 && i + 2 < tokens.length) {
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("CC") && tokens[i + 1].hasPosTag("SPS00")
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("CC") && tokens[i + 1].hasPosTag("SPS00")
               && (tokens[i + 2].hasPosTagStartingWith("PT") || tokens[i + 2].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("SPS00")
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("SPS00")
               && (tokens[i + 1].hasPosTagStartingWith("PT") || tokens[i + 1].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("CC")
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("CC")
               && (tokens[i + 1].hasPosTagStartingWith("PT") || tokens[i + 1].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",")
+            if (",".equals(tokens[i - 1].getToken())
               && (tokens[i].hasPosTagStartingWith("PT") || tokens[i].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("CC")
-              && (tokens[i + 1].getToken().equals("no") || tokens[i + 1].getToken().equals("sí"))) {
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("CC")
+              && ("no".equals(tokens[i + 1].getToken()) || "sí".equals(tokens[i + 1].getToken()))) {
               firstToken = tokens[i];
             }
           }
           if (i > 2 && i < tokens.length) {
-            if (tokens[i - 1].getToken().equals(",")
-              && (tokens[i].getToken().equals("no") || tokens[i].getToken().equals("sí")
-              || tokens[i].getToken().equals("oi") || tokens[i].getToken().equals("eh"))) {
+            if (",".equals(tokens[i - 1].getToken())
+              && ("no".equals(tokens[i].getToken()) || "sí".equals(tokens[i].getToken())
+              || "oi".equals(tokens[i].getToken()) || "eh".equals(tokens[i].getToken()))) {
               firstToken = tokens[i];
             }
           }

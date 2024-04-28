@@ -322,10 +322,10 @@ public class TokenAgreementVerbNounRule extends Rule {
                 state.verbTokenReadings.get(0).getToken(), formatInflections(cases), 
                 state.nounAdjIndirTokenReadings.get(0).getToken(), TokenAgreementAdjNounRule.formatInflections(nounAdjInflections2, false));
 
-            if( state.verbTokenReadings.get(0).getLemma().equals("сипіти") ) {
+            if( "сипіти".equals(state.verbTokenReadings.get(0).getLemma()) ) {
               msg += ". Можливо ви мали на увазі слово «си́пати», а не «сипі́ти»?";
             }
-            else if( state.verbTokenReadings.get(0).getLemma().equals("сиплячи") ) {
+            else if( "сиплячи".equals(state.verbTokenReadings.get(0).getLemma()) ) {
               msg += ". Можливо ви мали на увазі «сиплючи»?";
             }
             
@@ -337,7 +337,7 @@ public class TokenAgreementVerbNounRule extends Rule {
 //            }
             
             List<String> suggestions = getSuggestions(state.cases, tokenReadings);
-            if( tokenReadings.getCleanToken().equals("піку") && suggestions.contains("піка") ) {
+            if( "піку".equals(tokenReadings.getCleanToken()) && suggestions.contains("піка") ) {
               suggestions = Arrays.asList("піка");
             }
             potentialRuleMatch.addSuggestedReplacements(suggestions);

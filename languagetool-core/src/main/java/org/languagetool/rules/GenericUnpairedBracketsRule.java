@@ -126,11 +126,11 @@ public class GenericUnpairedBracketsRule extends TextLevelRule {
       String prevPrevToken = tokens[i - 2].getToken();
       String prevToken = tokens[i - 1].getToken();
       // Smiley ":-)" and ":-("
-      if (prevPrevToken.equals(":") && prevToken.equals("-") && (tokenStr.equals(")") || tokenStr.equals("("))) {
+      if (":".equals(prevPrevToken) && "-".equals(prevToken) && (")".equals(tokenStr) || "(".equals(tokenStr))) {
         return false;
       }
       // Smiley ";-)" and ";-("
-      if (prevPrevToken.equals(";") && prevToken.equals("-") && (tokenStr.equals(")") || tokenStr.equals("("))) {
+      if (";".equals(prevPrevToken) && "-".equals(prevToken) && (")".equals(tokenStr) || "(".equals(tokenStr))) {
         return false;
       }
       // Smiley ")))"  TODO: need more testing 
@@ -142,11 +142,11 @@ public class GenericUnpairedBracketsRule extends TextLevelRule {
     if (i >= 1) {
       String prevToken = tokens[i - 1].getToken();
       // Smiley ":)" and  ":("
-      if (prevToken.equals(":") && !tokens[i].isWhitespaceBefore() && (tokenStr.equals(")") || tokenStr.equals("("))) {
+      if (":".equals(prevToken) && !tokens[i].isWhitespaceBefore() && (")".equals(tokenStr) || "(".equals(tokenStr))) {
         return false;
       }
       // Smiley ";)" and  ";("
-      if (prevToken.equals(";") && !tokens[i].isWhitespaceBefore() && (tokenStr.equals(")") || tokenStr.equals("("))) {
+      if (";".equals(prevToken) && !tokens[i].isWhitespaceBefore() && (")".equals(tokenStr) || "(".equals(tokenStr))) {
         return false;
       }
     }
@@ -246,13 +246,13 @@ public class GenericUnpairedBracketsRule extends TextLevelRule {
         return true;
       } else if (noException && (isSpecialCase || tokens[i].isSentenceEnd())
               && token.equals(endSymbols.get(j))) {
-        if ((i > 2 && endSymbols.get(j).equals(")")
+        if ((i > 2 && ")".equals(endSymbols.get(j))
                 && (tokens[i - 3].hasPosTag("SENT_START") || tokens[i - 2].isWhitespaceBefore())
-                && tokens[i - 1].getToken().equals(".")
+                && ".".equals(tokens[i - 1].getToken())
                 && (numerals.matcher(tokens[i - 2].getToken()).matches()
                 && !(!symbolStack.empty()
                 && "(".equals(symbolStack.peek().getSymbol().symbol))))
-        || (i > 1 && endSymbols.get(j).equals(")")
+        || (i > 1 && ")".equals(endSymbols.get(j))
                 && (numerals.matcher(tokens[i - 1].getToken()).matches()
                 && !(!symbolStack.empty()
                 && "(".equals(symbolStack.peek().getSymbol().symbol))))) {

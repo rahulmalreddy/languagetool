@@ -70,7 +70,7 @@ public class CaseGovernmentHelper {
     for(AnalyzedToken token: analyzedTokenReadings.getReadings()) {
       if( ! token.hasNoTag()
           && (token.getPOSTag() != null && token.getPOSTag().startsWith(startPosTag)
-              || (startPosTag.equals("prep") && token.getPOSTag() != null && token.getPOSTag().equals("<prep>")) )
+              || ("prep".equals(startPosTag) && token.getPOSTag() != null && "<prep>".equals(token.getPOSTag())) )
           && CASE_GOVERNMENT_MAP.containsKey(token.getLemma()) ) {
 
         Set<String> rvList = CASE_GOVERNMENT_MAP.get(token.getLemma());
@@ -140,10 +140,10 @@ public class CaseGovernmentHelper {
 
   private static String getAdvpVerbLemma(AnalyzedToken token) {
     String vLemma = token.getLemma();
-    if( vLemma.equals("даючи") ) {
+    if( "даючи".equals(vLemma) ) {
       vLemma = "давати";
     }
-    else if( vLemma.equals("змушуючи") ) {
+    else if( "змушуючи".equals(vLemma) ) {
       vLemma = "змушувати";
     }
     else {

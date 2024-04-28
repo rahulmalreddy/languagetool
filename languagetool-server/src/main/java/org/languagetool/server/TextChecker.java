@@ -398,13 +398,13 @@ abstract class TextChecker {
     List<String> preferredLangs = params.get("preferredLanguages") != null ?
             Arrays.asList(params.get("preferredLanguages").split(",")) : Collections.emptyList();
     DetectedLanguage detLang = TelemetryProvider.INSTANCE.createSpan(SPAN_NAME_PREFIX + "DetetectLanguage", Attributes.empty(), () -> getLanguage(aText.getPlainText(), params, preferredVariants, noopLangs, preferredLangs,
-      params.getOrDefault("ld", "control").equalsIgnoreCase("test")));
+      "test".equalsIgnoreCase(params.getOrDefault("ld", "control"))));
     Language lang = detLang.getGivenLanguage();
 
     List<Rule> userRules = TelemetryProvider.INSTANCE.createSpan(SPAN_NAME_PREFIX + "GetUserRules", Attributes.empty(), () -> getUserRules(limits, lang, finalDictGroups));
     boolean isMultiLangEnabled = false;
     //only enable this feature with parameter
-    if (params.get("enableMultiLanguageChecks") != null && params.get("enableMultiLanguageChecks").equals("true")) {
+    if (params.get("enableMultiLanguageChecks") != null && "true".equals(params.get("enableMultiLanguageChecks"))) {
       isMultiLangEnabled = true;
     }
     
@@ -484,7 +484,7 @@ abstract class TextChecker {
         toneTags.add(ToneTag.ALL_WITHOUT_GOAL_SPECIFIC);
       } else {
         for (String toneTagName : toneTagNames) {
-          if (toneTagNames.length > 1 && (toneTagName.equals("NO_TONE_RULE") || toneTagName.equals("ALL_TONE_RULES"))) { //&toneTags=ALL_TONE_RULES or //&toneTags=NO_TONE_RULE
+          if (toneTagNames.length > 1 && ("NO_TONE_RULE".equals(toneTagName) || "ALL_TONE_RULES".equals(toneTagName))) { //&toneTags=ALL_TONE_RULES or //&toneTags=NO_TONE_RULE
             log.warn("NO_TONE_RULE and ALL_TONE_RULES will be ignored if more than one toneTag is in params.");
             continue;
           }
@@ -501,7 +501,7 @@ abstract class TextChecker {
     }
     String callback = params.get("callback");
     // allowed to log input on errors?
-    boolean inputLogging = !params.getOrDefault("inputLogging", "").equals("no");
+    boolean inputLogging = !"no".equals(params.getOrDefault("inputLogging", ""));
     QueryParams qParams = new QueryParams(altLanguages, enabledRules, disabledRules,
       enabledCategories, disabledCategories, useEnabledOnly,
       useQuerySettings, allowIncompleteResults, enableHiddenRules, limits.getPremiumUid() != null && limits.hasPremium(), enableTempOffRules, mode, level, toneTags, callback, inputLogging);

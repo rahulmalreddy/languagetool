@@ -57,17 +57,17 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
       // Remove hyphen as in "dudek-trian".
       day = day.substring(1);
     }
-    if (day.equals("unua"))  n += 1;
-    if (day.equals("dua"))   n += 2;
-    if (day.equals("tria"))  n += 3;
-    if (day.equals("kvara")) n += 4;
-    if (day.equals("kvina")) n += 5;
-    if (day.equals("sesa"))  n += 6;
-    if (day.equals("sepa"))  n += 7;
-    if (day.equals("oka"))   n += 8;
-    if (day.equals("naŭa"))  n += 9;
-    if (day.equals("nauxa")) n += 9;
-    if (day.equals("naua"))  n += 9;
+    if ("unua".equals(day))  n += 1;
+    if ("dua".equals(day))   n += 2;
+    if ("tria".equals(day))  n += 3;
+    if ("kvara".equals(day)) n += 4;
+    if ("kvina".equals(day)) n += 5;
+    if ("sesa".equals(day))  n += 6;
+    if ("sepa".equals(day))  n += 7;
+    if ("oka".equals(day))   n += 8;
+    if ("naŭa".equals(day))  n += 9;
+    if ("nauxa".equals(day)) n += 9;
+    if ("naua".equals(day))  n += 9;
     return n;
   }
 
@@ -92,13 +92,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected String getDayOfWeek(Calendar date) {
     String englishDay=date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.UK);
-    if (englishDay.equals("Sunday"))    return "dimanĉo";
-    if (englishDay.equals("Monday"))    return "lundo";
-    if (englishDay.equals("Tuesday"))   return "mardo";
-    if (englishDay.equals("Wednesday")) return "merkredo";
-    if (englishDay.equals("Thursday"))  return "jaŭdo";
-    if (englishDay.equals("Friday"))    return "vendredo";
-    if (englishDay.equals("Saturday"))  return "sabato";
+    if ("Sunday".equals(englishDay))    return "dimanĉo";
+    if ("Monday".equals(englishDay))    return "lundo";
+    if ("Tuesday".equals(englishDay))   return "mardo";
+    if ("Wednesday".equals(englishDay)) return "merkredo";
+    if ("Thursday".equals(englishDay))  return "jaŭdo";
+    if ("Friday".equals(englishDay))    return "vendredo";
+    if ("Saturday".equals(englishDay))  return "sabato";
     return "";
   }
 

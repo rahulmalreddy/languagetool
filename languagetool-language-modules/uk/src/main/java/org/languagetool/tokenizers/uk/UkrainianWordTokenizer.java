@@ -208,7 +208,7 @@ public class UkrainianWordTokenizer implements Tokenizer {
 
     for(String token: tokens) {
 
-      if( token.equals(BREAKING_PLACEHOLDER) )
+      if( BREAKING_PLACEHOLDER.equals(token) )
         continue;
 
       token = token.replace(DECIMAL_COMMA_SUBST, ',');

@@ -59,9 +59,9 @@ public class WordWithDeterminerFilter extends RuleFilter {
     // disable rules to avoid an infinite loop
     //lt.disableCategory(new CategoryId("AGREEMENT"));
     for (Rule r : lt.getAllRules()) {
-      if (r.getCategory().getId().toString().equals("CAT_ELISION") || r.getId().equals("CET_CE")
-        || r.getId().equals("CE_CET") || r.getId().equals("MA_VOYELLE") || r.getId().equals("MON_NFS")
-        || r.getId().equals("VIEUX")) {
+      if ("CAT_ELISION".equals(r.getCategory().getId().toString()) || "CET_CE".equals(r.getId())
+        || "CE_CET".equals(r.getId()) || "MA_VOYELLE".equals(r.getId()) || "MON_NFS".equals(r.getId())
+        || "VIEUX".equals(r.getId())) {
         lt.enableRule(r.getId());
       } else {
         lt.disableRule(r.getId());

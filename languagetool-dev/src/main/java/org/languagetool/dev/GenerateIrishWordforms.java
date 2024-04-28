@@ -103,12 +103,12 @@ public class GenerateIrishWordforms {
     Map<String, String> out = new HashMap<>();
     boolean strong = (forms.get("pl.nom").equals(forms.get("pl.gen")));
     StringBuilder builder = new StringBuilder();
-    if(forms.get("pos").equals("n"))  {
+    if("n".equals(forms.get("pos")))  {
       builder.append("Noun");
     }
-    if (forms.get("gender").equals("m")) {
+    if ("m".equals(forms.get("gender"))) {
       builder.append(":Masc");
-    } else if (forms.get("gender").equals("f")) {
+    } else if ("f".equals(forms.get("gender"))) {
       builder.append(":Fem");
     }
     String base = builder.toString();
@@ -178,11 +178,11 @@ public class GenerateIrishWordforms {
     if (mutation == null) {
       return word;
     }
-    if (mutation.equals("len")) {
+    if ("len".equals(mutation)) {
       return Utils.lenite(word);
-    } else if (mutation.equals("ecl")) {
+    } else if ("ecl".equals(mutation)) {
       return Utils.eclipse(word);
-    } else if (mutation.equals("hpref")) {
+    } else if ("hpref".equals(mutation)) {
       return "h" + word;
     } else {
       return word;
@@ -228,7 +228,7 @@ public class GenerateIrishWordforms {
   }
 
   private static String getDefArtMutation(String gender, String form) {
-    if (gender.equals("f")) {
+    if ("f".equals(gender)) {
       switch (form) {
         case "nom.sg":
           return "len";
@@ -241,7 +241,7 @@ public class GenerateIrishWordforms {
         case "voc.pl":
           return "";
       }
-    } else if (gender.equals("fv")) {
+    } else if ("fv".equals(gender)) {
       switch (form) {
         case "nom.sg":
           return "";
@@ -254,7 +254,7 @@ public class GenerateIrishWordforms {
         case "voc.pl":
           return "";
       }
-    } else if (gender.equals("fs")) {
+    } else if ("fs".equals(gender)) {
       switch (form) {
         case "nom.pl":
         case "gen.sg":
@@ -264,7 +264,7 @@ public class GenerateIrishWordforms {
         case "nom.sg":
           return "tpref";
       }
-    } else if (gender.equals("m")) {
+    } else if ("m".equals(gender)) {
       switch (form) {
         case "nom.sg":
           return "";
@@ -277,7 +277,7 @@ public class GenerateIrishWordforms {
         case "voc.pl":
           return "";
       }
-    } else if (gender.equals("mv")) {
+    } else if ("mv".equals(gender)) {
       switch (form) {
         case "nom.sg":
           return "tpref";
@@ -290,7 +290,7 @@ public class GenerateIrishWordforms {
         case "voc.pl":
           return "";
       }
-    } else if (gender.equals("ms")) {
+    } else if ("ms".equals(gender)) {
       switch (form) {
         case "nom.sg":
         case "nom.pl":
@@ -313,7 +313,7 @@ public class GenerateIrishWordforms {
     int end = tpl.indexOf("}}", start);
     String inner = tpl.substring(start, end);
     String[] parts = inner.split("\\|");
-    if(parts[0].equals("ga-decl-m3") && parts.length >= 4) {
+    if("ga-decl-m3".equals(parts[0]) && parts.length >= 4) {
       out.put("class", "m3");
       out.put("stem", parts[1]);
       out.put("sg.nom", parts[2]);

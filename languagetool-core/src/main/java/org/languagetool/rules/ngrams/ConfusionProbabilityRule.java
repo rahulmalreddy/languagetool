@@ -375,16 +375,16 @@ public abstract class ConfusionProbabilityRule extends Rule {
       super(messages, lm, lang);
       this.id = Objects.requireNonNull(id);
       this.desc = desc;
-      if (lang.getShortCode().equals("en") &&
-          (id.equals("CONFUSION_RULE_BARE_BEAR") || id.equals("CONFUSION_RULE_BEAR_BARE"))) {
+      if ("en".equals(lang.getShortCode()) &&
+          ("CONFUSION_RULE_BARE_BEAR".equals(id) || "CONFUSION_RULE_BEAR_BARE".equals(id))) {
         this.setUrl(Tools.getUrl("https://languagetool.org/insights/post/spelling-bear-vs-bare-with-me/"));
       }
-      if (lang.getShortCode().equals("en") &&
-          (id.equals("CONFUSION_RULE_DISCREET_DISCRETE") || id.equals("CONFUSION_RULE_DISCRETE_DISCREET"))) {
+      if ("en".equals(lang.getShortCode()) &&
+          ("CONFUSION_RULE_DISCREET_DISCRETE".equals(id) || "CONFUSION_RULE_DISCRETE_DISCREET".equals(id))) {
         this.setUrl(Tools.getUrl("https://languagetool.org/insights/post/discrete-vs-discreet/"));
       }
-      if (lang.getShortCode().equals("en") &&
-        (id.equals("CONFUSION_RULE_PRECEDENTS_PRECEDENCE") || id.equals("CONFUSION_RULE_PRECEDENCE_PRECEDENTS"))) {
+      if ("en".equals(lang.getShortCode()) &&
+        ("CONFUSION_RULE_PRECEDENTS_PRECEDENCE".equals(id) || "CONFUSION_RULE_PRECEDENCE_PRECEDENTS".equals(id))) {
         this.setUrl(Tools.getUrl("https://languagetool.org/insights/post/precedence-or-precedent/"));
       }
     }

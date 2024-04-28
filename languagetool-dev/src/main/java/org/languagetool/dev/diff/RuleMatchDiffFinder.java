@@ -341,7 +341,7 @@ public class RuleMatchDiffFinder {
   }
 
   private boolean canOverlap(LightRuleMatch match) {
-    return match.getRuleId().equals("TOO_LONG_SENTENCE") || match.getRuleId().equals("TOO_LONG_SENTENCE_DE");
+    return "TOO_LONG_SENTENCE".equals(match.getRuleId()) || "TOO_LONG_SENTENCE_DE".equals(match.getRuleId());
   }
 
   private String escapeSentence(String s) {
@@ -392,7 +392,7 @@ public class RuleMatchDiffFinder {
   }
 
   private void run(LightRuleMatchParser parser, File file1, File file2, File outputDir, String langCode, String date) throws IOException {
-    if (file1.getName().equals("empty.json")) {
+    if ("empty.json".equals(file1.getName())) {
       fullMode = true;
     }
     LightRuleMatchParser.JsonParseResult jsonParseResult1 = parser.parseOutput(file1);

@@ -114,7 +114,7 @@ public abstract class LanguageIdentifier {
 
     List<String> domLangCodes = UNICODE_BASED_LANG_IDENTIFIER.getDominantLangCodes(text);
     String domLangStr = String.join(",", domLangCodes);
-    if (domLangStr.equals("th") || domLangStr.equals("he") || domLangStr.equals("ko") || domLangStr.equals("hi,mr")) {
+    if ("th".equals(domLangStr) || "he".equals(domLangStr) || "ko".equals(domLangStr) || "hi,mr".equals(domLangStr)) {
       // more than 50% of characters are ..., so assume we don't support this cleanText:
       return null;
     }

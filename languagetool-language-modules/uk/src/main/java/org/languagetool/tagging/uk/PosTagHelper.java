@@ -95,7 +95,7 @@ public final class PosTagHelper {
     Matcher pos4matcher = NUM_REGEX.matcher(posTag);
     if( pos4matcher.matches() ) {
       String group = pos4matcher.group(2);
-      if( ! group.equals("p") ) {
+      if( ! "p".equals(group) ) {
         group = "s";
       }
       return group;
@@ -286,7 +286,7 @@ public final class PosTagHelper {
       String posTagBase = "noun:inanim:" + gen + ":";
 
       for(String vidm: VIDMINKY_MAP.keySet()) {
-        if( vidm.equals("v_kly") )
+        if( "v_kly".equals(vidm) )
           continue;
 
         String posTag = posTagBase + vidm + PosTagHelper.NO_VIDMINOK_SUBSTR;

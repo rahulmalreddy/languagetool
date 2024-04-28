@@ -435,7 +435,7 @@ public class MultiWordChunker extends AbstractDisambiguator {
 
   private boolean isLowPriorityTag(String tag) {
     // CA, ES
-    return tag.equals("NPCN000");
+    return "NPCN000".equals(tag);
   }
 
 }

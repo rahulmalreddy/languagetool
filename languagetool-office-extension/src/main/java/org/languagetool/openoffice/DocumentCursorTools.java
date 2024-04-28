@@ -367,7 +367,7 @@ class DocumentCursorTools {
     if (paraStyleName == null) {
       return TEXT_TYPE_NORMAL;
     }
-    if (paraStyleName.equals("Title") || paraStyleName.equals("Subtitle")|| paraStyleName.equals("Heading")) {
+    if ("Title".equals(paraStyleName) || "Subtitle".equals(paraStyleName)|| "Heading".equals(paraStyleName)) {
       return 0;
     } else if (paraStyleName.startsWith("Heading")) {
       String numberString = paraStyleName.substring(7).trim();

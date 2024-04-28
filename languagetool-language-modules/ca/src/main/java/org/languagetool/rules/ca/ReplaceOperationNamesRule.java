@@ -116,7 +116,7 @@ public class ReplaceOperationNamesRule extends AbstractSimpleReplaceRule {
       }
       
       // exceptions
-      if (token.equals("duplicat") && tokens[i-1].getToken().equalsIgnoreCase("per")) {
+      if ("duplicat".equals(token) && tokens[i-1].getToken().equalsIgnoreCase("per")) {
         continue loop;
       }
       // Assecat el braç del riu

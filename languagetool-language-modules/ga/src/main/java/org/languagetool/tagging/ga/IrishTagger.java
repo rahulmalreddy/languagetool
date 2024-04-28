@@ -108,7 +108,7 @@ public class IrishTagger extends BaseTagger {
     for(Retaggable rt : tocheck) {
       boolean pfx = false;
       List<TaggedWord> cur = getWordTagger().tag(rt.getWord());
-      if(rt.getPrefix() != null && !rt.getPrefix().equals("")) {
+      if(rt.getPrefix() != null && !"".equals(rt.getPrefix())) {
         pfx = true;
         String tryword = rt.getPrefix() + Utils.lenite(rt.getWord());
         List<TaggedWord> joined = getWordTagger().tag(tryword);

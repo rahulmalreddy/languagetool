@@ -73,7 +73,7 @@ public class LanguageToolSpellChecker extends WeakBase implements XServiceInfo,
     if (xContext == null) {
       xContext = xContxt;
       OfficeProductInfo officeInfo = OfficeTools.getOfficeProductInfo(xContext);
-      if (officeInfo == null || officeInfo.osArch.equals("x86")) {
+      if (officeInfo == null || "x86".equals(officeInfo.osArch)) {
         noLtSpeller = true;
       }
     }

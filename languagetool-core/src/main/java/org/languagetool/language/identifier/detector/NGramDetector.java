@@ -55,7 +55,7 @@ public class NGramDetector {
       String line;
       while ((line = br.readLine()) != null) {
         String[] values = line.split("\t");
-        if (values[3].equals("1")) {
+        if ("1".equals(values[3])) {
           codes.add(values);
         }
       }
@@ -121,7 +121,7 @@ public class NGramDetector {
     finalProbs = finalProbs.stream().map(StrictMath::exp).collect(Collectors.toList());
     finalProbs = normalize(finalProbs);
     for (int i = 0; i < codes.size(); i++) {
-      String langCode = codes.get(i)[1].equals("NULL") ? codes.get(i)[2] : codes.get(i)[1]; //2-character code if possible
+      String langCode = "NULL".equals(codes.get(i)[1]) ? codes.get(i)[2] : codes.get(i)[1]; //2-character code if possible
       if (LanguageIdentifierService.INSTANCE.canLanguageBeDetected(langCode, additionalLanguageCodes)) {
         result.put(langCode, finalProbs.get(i));
       }

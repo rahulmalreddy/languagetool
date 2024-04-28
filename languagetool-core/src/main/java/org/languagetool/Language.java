@@ -779,10 +779,10 @@ public abstract class Language {
    * @since 3.6
    */
   protected int getPriorityForId(String id) {
-    if (id.equalsIgnoreCase("TOO_LONG_SENTENCE")) {
+    if ("TOO_LONG_SENTENCE".equalsIgnoreCase(id)) {
       return -101;  // don't hide spelling errors
     }
-    if (id.equalsIgnoreCase("STYLE")) {  // category
+    if ("STYLE".equalsIgnoreCase(id)) {  // category
       return -50;  // don't let style issues hide more important errors
     }
     return 0;

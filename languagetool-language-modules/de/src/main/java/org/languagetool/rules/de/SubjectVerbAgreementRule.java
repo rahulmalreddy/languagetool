@@ -518,9 +518,9 @@ public class SubjectVerbAgreementRule extends Rule {
       List<ChunkTag> prevChunkTags = prevToken.getChunkTags();
       boolean match = prevChunkTags.contains(NPP)
                       && !prevChunkTags.contains(PP)
-                      && !prevToken.getToken().equals("Uhr")   // 'um 18 Uhr ist Feierabend'
+                      && !"Uhr".equals(prevToken.getToken())   // 'um 18 Uhr ist Feierabend'
                       && !isCurrency(prevToken)
-                      && !(nextToken != null && nextToken.getToken().equals("es"))   // 'zehn Jahre ist es her'
+                      && !(nextToken != null && "es".equals(nextToken.getToken()))   // 'zehn Jahre ist es her'
                       && prevChunkIsNominative(tokens, i-1)
                       && !hasUnknownTokenToTheLeft(tokens, i)
                       && !hasQuestionPronounToTheLeft(tokens, i-1)
@@ -542,7 +542,7 @@ public class SubjectVerbAgreementRule extends Rule {
       List<ChunkTag> prevChunkTags = prevToken.getChunkTags();
       AnalyzedTokenReadings nextToken = i + 1 < tokens.length ? tokens[i + 1] : null;
       boolean match = prevChunkTags.contains(NPS)
-                      && !(nextToken != null && nextToken.getToken().equals("Sie"))   // 'Eine Persönlichkeit sind Sie selbst.'
+                      && !(nextToken != null && "Sie".equals(nextToken.getToken()))   // 'Eine Persönlichkeit sind Sie selbst.'
                       && !prevChunkTags.contains(NPP)
                       && !prevChunkTags.contains(PP)
                       && !isCurrency(prevToken)

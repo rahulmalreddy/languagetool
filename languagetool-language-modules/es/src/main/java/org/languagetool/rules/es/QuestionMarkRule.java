@@ -66,7 +66,7 @@ public class QuestionMarkRule extends TextLevelRule {
       AnalyzedTokenReadings[] tokens = sentence.getTokensWithoutWhitespace();
       int needsInvQuestionMarkAt = hasTokenAtPos("?", tokens);
       int needsInvExclMarkAt = hasTokenAtPos("!", tokens);
-      boolean endsWithColon = tokens[tokens.length -1].getToken().equals(":");
+      boolean endsWithColon = ":".equals(tokens[tokens.length -1].getToken());
       if (needsInvQuestionMarkAt > 1 || needsInvExclMarkAt > 1) {
         boolean hasInvQuestionMark = false;
         boolean hasInvExlcMark = false;
@@ -76,44 +76,44 @@ public class QuestionMarkRule extends TextLevelRule {
               && !StringTools.isPunctuationMark(tokens[i].getToken())) {
             firstToken = tokens[i];
           }
-          if (tokens[i].getToken().equals("¿") && i < needsInvQuestionMarkAt) {
+          if ("¿".equals(tokens[i].getToken()) && i < needsInvQuestionMarkAt) {
             hasInvQuestionMark = true;
-          } else if (tokens[i].getToken().equals("¡") && i < needsInvExclMarkAt) {
+          } else if ("¡".equals(tokens[i].getToken()) && i < needsInvExclMarkAt) {
             hasInvExlcMark = true;
           }
           // possibly a sentence end
           if (!tokens[i].isSentenceEnd()
-            && (tokens[i].getToken().equals("?") && i > needsInvQuestionMarkAt
-            || tokens[i].getToken().equals("!") && i > needsInvExclMarkAt)) {
+            && ("?".equals(tokens[i].getToken()) && i > needsInvQuestionMarkAt
+            || "!".equals(tokens[i].getToken()) && i > needsInvExclMarkAt)) {
             firstToken = null;
           }
           // put the question mark in: ¿de qué... ¿para cuál... ¿cómo...
           if (i > 2 && i + 2 < tokens.length) {
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("CC") && tokens[i + 1].hasPosTag("SPS00")
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("CC") && tokens[i + 1].hasPosTag("SPS00")
               && (tokens[i + 2].hasPosTagStartingWith("PT") || tokens[i + 2].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("SPS00")
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("SPS00")
               && (tokens[i + 1].hasPosTagStartingWith("PT") || tokens[i + 1].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("CC")
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("CC")
               && (tokens[i + 1].hasPosTagStartingWith("PT") || tokens[i + 1].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",")
+            if (",".equals(tokens[i - 1].getToken())
               && (tokens[i].hasPosTagStartingWith("PT") || tokens[i].hasPosTagStartingWith("DT"))) {
               firstToken = tokens[i];
             }
-            if (tokens[i - 1].getToken().equals(",") && tokens[i].hasPosTag("CC")
-              && (tokens[i + 1].getToken().equals("no") || tokens[i + 1].getToken().equals("sí"))) {
+            if (",".equals(tokens[i - 1].getToken()) && tokens[i].hasPosTag("CC")
+              && ("no".equals(tokens[i + 1].getToken()) || "sí".equals(tokens[i + 1].getToken()))) {
               firstToken = tokens[i];
             }
           }
           if (i > 2 && i < tokens.length) {
-            if (tokens[i - 1].getToken().equals(",")
-              && (tokens[i].getToken().equals("no") || tokens[i].getToken().equals("sí")
-              || tokens[i].getToken().equals("eh"))) {
+            if (",".equals(tokens[i - 1].getToken())
+              && ("no".equals(tokens[i].getToken()) || "sí".equals(tokens[i].getToken())
+              || "eh".equals(tokens[i].getToken()))) {
               firstToken = tokens[i];
             }
           }

@@ -33,26 +33,26 @@ class DateFilterHelper {
   @SuppressWarnings("ControlFlowStatementWithoutBraces")
   protected int getDayOfWeek(String dayStr) {
     String day = dayStr.toLowerCase();
-    if (day.equals("do") || day.equals("domingo")) return Calendar.SUNDAY;
-    if (day.equals("lu") || day.equals("lunes")) return Calendar.MONDAY;
-    if (day.equals("ma") || day.equals("martes")) return Calendar.TUESDAY;
-    if (day.equals("mi") || day.equals("miércoles")) return Calendar.WEDNESDAY;
-    if (day.equals("ju") || day.equals("jueves")) return Calendar.THURSDAY;
-    if (day.equals("vi") || day.equals("viernes")) return Calendar.FRIDAY;
-    if (day.equals("sa") || day.equals("sábado")) return Calendar.SATURDAY;
+    if ("do".equals(day) || "domingo".equals(day)) return Calendar.SUNDAY;
+    if ("lu".equals(day) || "lunes".equals(day)) return Calendar.MONDAY;
+    if ("ma".equals(day) || "martes".equals(day)) return Calendar.TUESDAY;
+    if ("mi".equals(day) || "miércoles".equals(day)) return Calendar.WEDNESDAY;
+    if ("ju".equals(day) || "jueves".equals(day)) return Calendar.THURSDAY;
+    if ("vi".equals(day) || "viernes".equals(day)) return Calendar.FRIDAY;
+    if ("sa".equals(day) || "sábado".equals(day)) return Calendar.SATURDAY;
     throw new RuntimeException("Could not find day of week for '" + dayStr + "'");
   }
 
   @SuppressWarnings("ControlFlowStatementWithoutBraces")
   protected String getDayOfWeek(Calendar date) {
     String englishDay = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.UK);
-    if (englishDay.equals("Sunday")) return "domingo";
-    if (englishDay.equals("Monday")) return "lunes";
-    if (englishDay.equals("Tuesday")) return "martes";
-    if (englishDay.equals("Wednesday")) return "miércoles";
-    if (englishDay.equals("Thursday")) return "jueves";
-    if (englishDay.equals("Friday")) return "viernes";
-    if (englishDay.equals("Saturday")) return "sábado";
+    if ("Sunday".equals(englishDay)) return "domingo";
+    if ("Monday".equals(englishDay)) return "lunes";
+    if ("Tuesday".equals(englishDay)) return "martes";
+    if ("Wednesday".equals(englishDay)) return "miércoles";
+    if ("Thursday".equals(englishDay)) return "jueves";
+    if ("Friday".equals(englishDay)) return "viernes";
+    if ("Saturday".equals(englishDay)) return "sábado";
     return "";
   }
 
@@ -64,8 +64,8 @@ class DateFilterHelper {
     if (mon.startsWith("mar") || mon.startsWith("mzo")) return 3;
     if (mon.startsWith("ab")) return 4;
     if (mon.startsWith("may") || mon.startsWith("my")) return 5;
-    if (mon.startsWith("jun") || mon.equals("jn")) return 6;
-    if (mon.startsWith("jul") || mon.equals("jl")) return 7;
+    if (mon.startsWith("jun") || "jn".equals(mon)) return 6;
+    if (mon.startsWith("jul") || "jl".equals(mon)) return 7;
     if (mon.startsWith("ag")) return 8;
     if (mon.startsWith("se") || mon.startsWith("sep")) return 9;
     if (mon.startsWith("oc")) return 10;

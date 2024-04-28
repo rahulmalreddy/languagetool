@@ -201,7 +201,7 @@ public class DutchTagger extends BaseTagger {
                     }
                   }
                 }
-                if (word.substring(i-2,i).equals("s-")) {
+                if ("s-".equals(word.substring(i-2,i))) {
                   //System.out.println("s-"+front);
                   // front could have an compounding s and dash
                   front=word.substring(0,i-2);
@@ -229,7 +229,7 @@ public class DutchTagger extends BaseTagger {
                     }
                   }
                 }
-                if (word.substring(i-1,i).equals("s")) {
+                if ("s".equals(word.substring(i-1,i))) {
                   //System.out.println("s$");
                   // front could have an compounding s and dash
                   front=word.substring(0,i-1);
@@ -257,7 +257,7 @@ public class DutchTagger extends BaseTagger {
                     }
                   }
                 }
-                if (word.substring(i-1,i).equals("-")) {
+                if ("-".equals(word.substring(i-1,i))) {
                   // front could have an compounding s and dash
                   front=word.substring(0,i-1);
                   if (!front.matches(riskyParts)) {

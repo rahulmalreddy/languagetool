@@ -87,7 +87,7 @@ public class MissingHyphenRule extends Rule {
 
         String extraTag = getPrefixExtraTag(tokenReadings, isCapitalized);
         if ( extraTag != null
-            || (tokenReadings.getCleanToken().toLowerCase().equals("тайм")
+            || ("тайм".equals(tokenReadings.getCleanToken().toLowerCase())
                 && LemmaHelper.hasLemma(nextTokenReadings, "аут")) ) {
 
           // всі медіа країни

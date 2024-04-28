@@ -49,7 +49,7 @@ public class LTMessageChecker {
     }
     LTMessageChecker check = new LTMessageChecker();
     long start = System.currentTimeMillis();
-    if (args[0].equalsIgnoreCase("all")) {
+    if ("all".equalsIgnoreCase(args[0])) {
       for (Language lang : Languages.get()) {
         check.run(lang);
       }

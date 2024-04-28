@@ -58,8 +58,8 @@ public class WordRepeatBeginningRule extends TextLevelRule {
   
   public boolean isException(String token) {
     // avoid warning when having lists like "2007: ..." or the like
-    return token.equals(":") || token.equals("–") || token.equals("-") || token.equals("✔️") || token.equals("➡️")
-        || token.equals("—") || token.equals("⭐️") || token.equals("⚠️");
+    return ":".equals(token) || "–".equals(token) || "-".equals(token) || "✔️".equals(token) || "➡️".equals(token)
+        || "—".equals(token) || "⭐️".equals(token) || "⚠️".equals(token);
   }
 
   public boolean isSentenceException(AnalyzedSentence sentence) {

@@ -1176,7 +1176,7 @@ public final class Main {
       Locale.setDefault(bean.asLocale());
     }
     Main prg = new Main(localStorage);
-    if (args.length == 1 && (args[0].equals("-t") || args[0].equals("--tray"))) {
+    if (args.length == 1 && ("-t".equals(args[0]) || "--tray".equals(args[0]))) {
       // dock to systray on startup
       SwingUtilities.invokeLater(new Runnable() {
         @Override
@@ -1191,7 +1191,7 @@ public final class Main {
           }
         }
       });
-    } else if (args.length == 1 && (args[0].equals("-h") || args[0].equals("--help"))) {
+    } else if (args.length == 1 && ("-h".equals(args[0]) || "--help".equals(args[0]))) {
       printUsage();
     } else if (args.length == 0 || args.length == 1) {
       SwingUtilities.invokeLater(new Runnable() {

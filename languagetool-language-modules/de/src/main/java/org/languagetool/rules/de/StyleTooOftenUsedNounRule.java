@@ -77,7 +77,7 @@ public class StyleTooOftenUsedNounRule extends AbstractStyleTooOftenUsedWordRule
 
   @Override
   protected boolean isException(AnalyzedTokenReadings token) {
-    return token.hasPosTagStartingWith("PRO:") || token.getToken().equals("Ja");
+    return token.hasPosTagStartingWith("PRO:") || "Ja".equals(token.getToken());
   }
   
   private String getLemmaForPosTagStartsWith(String startPos, AnalyzedTokenReadings token) {

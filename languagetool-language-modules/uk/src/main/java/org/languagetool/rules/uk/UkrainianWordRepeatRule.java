@@ -37,20 +37,20 @@ public class UkrainianWordRepeatRule extends WordRepeatRule {
 
     // від добра добра не шукають
     if( position > 2 
-        && token.equals("добра")
+        && "добра".equals(token)
         && tokens[position-2].getToken().equalsIgnoreCase("від") )
       return true;
 
     // Тому що що?
     if( position > 1 
-        && token.equals("що")
+        && "що".equals(token)
         && tokens[position-2].getToken().equalsIgnoreCase("тому") )
       return true;
 
     // ні так, ні ні
     if( position > 3
-        && token.equals("ні")
-        && tokens[position-2].getToken().equals(",")
+        && "ні".equals(token)
+        && ",".equals(tokens[position-2].getToken())
         && tokens[position-3].getToken().equalsIgnoreCase("так") )
       return true;
 
@@ -79,12 +79,12 @@ public class UkrainianWordRepeatRule extends WordRepeatRule {
     return analyzedToken.getPOSTag().contains(IPOSTag.abbr.getText())
         || (analyzedToken.getToken().length() == 1 
         && Character.isUpperCase(analyzedToken.getToken().charAt(0))
-        && position < tokens.length-1 && tokens[position+1].getToken().equals("."));
+        && position < tokens.length-1 && ".".equals(tokens[position+1].getToken()));
   }
 
   @Override
   protected RuleMatch createRuleMatch(String prevToken, String token, int prevPos, int pos, String msg, AnalyzedSentence sentence) {
-    boolean doubleI = prevToken.equals("І") && token.equals("і");
+    boolean doubleI = "І".equals(prevToken) && "і".equals(token);
     if( doubleI ) {
       msg += " або, можливо, перша І має бути латинською.";
     }

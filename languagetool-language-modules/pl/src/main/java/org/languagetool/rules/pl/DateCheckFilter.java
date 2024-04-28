@@ -40,7 +40,7 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
     if (day.startsWith("wt")) return Calendar.TUESDAY;
     if (day.startsWith("śr")) return Calendar.WEDNESDAY;
     if (day.startsWith("czw")) return Calendar.THURSDAY;
-    if (day.equals("pt") || day.startsWith("piątk") || day.equals("piątek")) return Calendar.FRIDAY;
+    if ("pt".equals(day) || day.startsWith("piątk") || "piątek".equals(day)) return Calendar.FRIDAY;
     if (day.startsWith("sob")) return Calendar.SATURDAY;
     if (day.startsWith("niedz")) return Calendar.SUNDAY;
     throw new RuntimeException("Could not find day of week for '" + dayStr + "'");
@@ -55,18 +55,18 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected int getMonth(String monthStr) {
     String mon = monthStr.toLowerCase();
-    if (mon.equals("stycznia") || monthStr.equals("I")) return 1;
-    if (mon.equals("lutego") || monthStr.equals("II")) return 2;
-    if (mon.equals("marca") || monthStr.equals("III")) return 3;
-    if (mon.equals("kwietnia") || monthStr.equals("IV")) return 4;
-    if (mon.equals("maja") || monthStr.equals("V")) return 5;
-    if (mon.equals("czerwca") || monthStr.equals("VI")) return 6;
-    if (mon.equals("lipca") || monthStr.equals("VII")) return 7;
-    if (mon.equals("sierpnia") || monthStr.equals("VIII")) return 8;
-    if (mon.equals("września") || monthStr.equals("IX")) return 9;
-    if (mon.equals("października") || monthStr.equals("X")) return 10;
-    if (mon.equals("listopada") || monthStr.equals("XI")) return 11;
-    if (mon.equals("grudnia") || monthStr.equals("XII")) return 12;
+    if ("stycznia".equals(mon) || "I".equals(monthStr)) return 1;
+    if ("lutego".equals(mon) || "II".equals(monthStr)) return 2;
+    if ("marca".equals(mon) || "III".equals(monthStr)) return 3;
+    if ("kwietnia".equals(mon) || "IV".equals(monthStr)) return 4;
+    if ("maja".equals(mon) || "V".equals(monthStr)) return 5;
+    if ("czerwca".equals(mon) || "VI".equals(monthStr)) return 6;
+    if ("lipca".equals(mon) || "VII".equals(monthStr)) return 7;
+    if ("sierpnia".equals(mon) || "VIII".equals(monthStr)) return 8;
+    if ("września".equals(mon) || "IX".equals(monthStr)) return 9;
+    if ("października".equals(mon) || "X".equals(monthStr)) return 10;
+    if ("listopada".equals(mon) || "XI".equals(monthStr)) return 11;
+    if ("grudnia".equals(mon) || "XII".equals(monthStr)) return 12;
     throw new RuntimeException("Could not find month '" + monthStr + "'");
   }
 }

@@ -362,7 +362,7 @@ public abstract class AbstractUnitConversionRule extends Rule {
         String formattedNumber = getNumberFormat().format(converted);
         String formattedStr = formattedNumber + " " + symbol;
         // TODO: be cleverer than !equals("0"), can prevent valid conversions
-        if (!formatted.contains(formattedStr) && !formattedNumber.equals("0")) {
+        if (!formatted.contains(formattedStr) && !"0".equals(formattedNumber)) {
           formatted.add(formattedStr);
         }
       }

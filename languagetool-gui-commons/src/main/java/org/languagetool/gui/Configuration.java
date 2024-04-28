@@ -907,8 +907,8 @@ public class Configuration {
       }
       if (rule.getLocQualityIssueType().toString().equalsIgnoreCase("STYLE")
               || rule.getLocQualityIssueType().toString().equalsIgnoreCase("REGISTER")
-              || rule.getCategory().getId().toString().equals("STYLE")
-              || rule.getCategory().getId().toString().equals("TYPOGRAPHY")) {
+              || "STYLE".equals(rule.getCategory().getId().toString())
+              || "TYPOGRAPHY".equals(rule.getCategory().getId().toString())) {
         styleLikeCategories.add(rule.getCategory().getName());
       }
     }

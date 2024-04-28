@@ -186,10 +186,10 @@ public class EnglishRepeatedWordsRule extends AbstractRepeatedWordsRule{
     setTags(Collections.singletonList(Tag.picky));
     antiPatterns = cacheAntiPatterns(new AmericanEnglish(), ANTI_PATTERNS);
     String id = this.getId();
-    if (id.equals("EN_REPEATEDWORDS_DEFINITELY")){
+    if ("EN_REPEATEDWORDS_DEFINITELY".equals(id)){
       this.setUrl(Tools.getUrl("https://languagetool.org/insights/post/i-agree-synonyms/"));
     }
-    if (id.equals("EN_REPEATEDWORDS_CHOOSE")){
+    if ("EN_REPEATEDWORDS_CHOOSE".equals(id)){
       this.setUrl(Tools.getUrl("https://languagetool.org/insights/post/choose-vs-chose/"));
     }
     //super.setDefaultTempOff();

@@ -108,7 +108,7 @@ public class CommaWhitespaceRule extends Rule {
       String msg = null;
       String suggestionText = null;
       if (isWhitespace && isLeftBracket(prevToken)) {
-        boolean isException = i + 1 < tokens.length && prevToken.equals("[") && token.equals(" ") && tokens[i+1].getToken().equals("]");  // "- [ ]" syntax e.g. on GitHub
+        boolean isException = i + 1 < tokens.length && prevToken.equals("[") && " ".equals(token) && "]".equals(tokens[i+1].getToken());  // "- [ ]" syntax e.g. on GitHub
         if (!isException) {
           msg = messages.getString("no_space_after");
           suggestionText = prevToken;
@@ -127,7 +127,7 @@ public class CommaWhitespaceRule extends Rule {
         suggestionText = getCommaCharacter() + " " + tokens[i].getToken();
       } else if (prevWhite) {
         if (isRightBracket(token)) {
-          boolean isException = token.equals("]") && prevToken.equals(" ") && prevPrevToken.equals("["); // "- [ ]" syntax e.g. on GitHub
+          boolean isException = "]".equals(token) && prevToken.equals(" ") && prevPrevToken.equals("["); // "- [ ]" syntax e.g. on GitHub
           if (!isException) {
             msg = messages.getString("no_space_before");
             suggestionText = token;
@@ -142,13 +142,13 @@ public class CommaWhitespaceRule extends Rule {
           if (i + 1 < tokens.length && !tokens[i+1].isWhitespace()) {
             suggestionText = getCommaCharacter() + " ";
           }
-        } else if (token.equals(".") && !isDomain(tokens, i+1) && !isFileExtension(tokens, i+1)) {
+        } else if (".".equals(token) && !isDomain(tokens, i+1) && !isFileExtension(tokens, i+1)) {
           msg = messages.getString("no_space_before_dot");
           suggestionText = ".";
           // exception case for figures such as ".5" and ellipsis
           if (i + 1 < tokens.length && isDigitOrDot(tokens[i+1].getToken())) {
             msg = null;
-          } else if (i + 2 < tokens.length && tokens[i+1].getToken().equals("/") && tokens[i+2].getToken().matches("[a-zA-Z]+")) {
+          } else if (i + 2 < tokens.length && "/".equals(tokens[i+1].getToken()) && tokens[i+2].getToken().matches("[a-zA-Z]+")) {
             // commands like "./validate.sh"
             msg = null;
           }
@@ -198,7 +198,7 @@ public class CommaWhitespaceRule extends Rule {
   private static boolean isWhitespaceToken(AnalyzedTokenReadings token) {
     return (token.isWhitespace()
         || StringTools.isNonBreakingWhitespace(token.getToken())
-        || token.isFieldCode()) && !token.getToken().equals("\u200B");
+        || token.isFieldCode()) && !"\u200B".equals(token.getToken());
   }
 
   private static boolean isQuote(String str) {

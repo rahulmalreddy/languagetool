@@ -45,29 +45,29 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
       day = day.substring(0, day.length() - 3);
     }
 
-    if (day.equals("c’hentañ") || day.equals("unan"))    return 1;
-    if (day.equals("daou")     || day.equals("eil"))     return 2;
-    if (day.equals("dri")      || day.equals("drede") || day.equals("deir")) return 3;
-    if (day.equals("bevar"))                             return 4;
+    if ("c’hentañ".equals(day) || "unan".equals(day))    return 1;
+    if ("daou".equals(day)     || "eil".equals(day))     return 2;
+    if ("dri".equals(day)      || "drede".equals(day) || "deir".equals(day)) return 3;
+    if ("bevar".equals(day))                             return 4;
     // bemp or bemvet (vet has been removed).
-    if (day.equals("bemp")     || day.equals("bem"))     return 5;
-    if (day.equals("c’hwerc’h"))                         return 6;
-    if (day.equals("seizh"))                             return 7;
-    if (day.equals("eizh"))                              return 8;
+    if ("bemp".equals(day)     || "bem".equals(day))     return 5;
+    if ("c’hwerc’h".equals(day))                         return 6;
+    if ("seizh".equals(day))                             return 7;
+    if ("eizh".equals(day))                              return 8;
     // nav and navet (vet has been removed).
-    if (day.equals("nav")      || day.equals("na"))     return 9;
-    if (day.equals("dek"))                              return 10;
-    if (day.equals("unnek"))                            return 11;
-    if (day.equals("daouzek"))                          return 12;
-    if (day.equals("drizek"))                           return 13;
-    if (day.equals("bevarzek"))                         return 14;
-    if (day.equals("bemzek"))                           return 15;
-    if (day.equals("c’hwezek"))                         return 16;
-    if (day.equals("seitek"))                           return 17;
-    if (day.equals("driwec’h"))                         return 18;
-    if (day.equals("naontek"))                          return 19;
-    if (day.equals("ugent"))                            return 20;
-    if (day.equals("dregont"))                          return 30;
+    if ("nav".equals(day)      || "na".equals(day))     return 9;
+    if ("dek".equals(day))                              return 10;
+    if ("unnek".equals(day))                            return 11;
+    if ("daouzek".equals(day))                          return 12;
+    if ("drizek".equals(day))                           return 13;
+    if ("bevarzek".equals(day))                         return 14;
+    if ("bemzek".equals(day))                           return 15;
+    if ("c’hwezek".equals(day))                         return 16;
+    if ("seitek".equals(day))                           return 17;
+    if ("driwec’h".equals(day))                         return 18;
+    if ("naontek".equals(day))                          return 19;
+    if ("ugent".equals(day))                            return 20;
+    if ("dregont".equals(day))                          return 30;
     return 0;
   }
 
@@ -79,8 +79,8 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
     if (day.endsWith("lun"))      return Calendar.MONDAY;
     if (day.endsWith("meurzh"))   return Calendar.TUESDAY;
     if (day.endsWith("merc’her")) return Calendar.WEDNESDAY;
-    if (day.equals  ("yaou"))     return Calendar.THURSDAY;
-    if (day.equals  ("diriaou"))  return Calendar.THURSDAY;
+    if ("yaou".equals  (day))     return Calendar.THURSDAY;
+    if ("diriaou".equals  (day))  return Calendar.THURSDAY;
     if (day.endsWith("gwener"))   return Calendar.FRIDAY;
     if (day.endsWith("sadorn"))   return Calendar.SATURDAY;
     throw new RuntimeException("Could not find day of week for '" + dayStr + "'");
@@ -90,13 +90,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected String getDayOfWeek(Calendar date) {
     String englishDay = date.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.UK);
-    if (englishDay.equals("Sunday"))    return "Sul";
-    if (englishDay.equals("Monday"))    return "Lun";
-    if (englishDay.equals("Tuesday"))   return "Meurzh";
-    if (englishDay.equals("Wednesday")) return "Merc’her";
-    if (englishDay.equals("Thursday"))  return "Yaou";
-    if (englishDay.equals("Friday"))    return "Gwener";
-    if (englishDay.equals("Saturday"))  return "Sadorn";
+    if ("Sunday".equals(englishDay))    return "Sul";
+    if ("Monday".equals(englishDay))    return "Lun";
+    if ("Tuesday".equals(englishDay))   return "Meurzh";
+    if ("Wednesday".equals(englishDay)) return "Merc’her";
+    if ("Thursday".equals(englishDay))  return "Yaou";
+    if ("Friday".equals(englishDay))    return "Gwener";
+    if ("Saturday".equals(englishDay))  return "Sadorn";
     return "";
   }
 
@@ -104,18 +104,18 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected int getMonth(String monthStr) {
     String mon = monthStr.toLowerCase();
-    if (mon.equals("genver"))                            return 1;
-    if (mon.equals("c’hwevrer"))                         return 2;
-    if (mon.equals("meurzh"))                            return 3;
-    if (mon.equals("ebrel"))                             return 4;
-    if (mon.equals("mae"))                               return 5;
-    if (mon.equals("mezheven") || mon.equals("even"))    return 6;
-    if (mon.equals("gouere")   || mon.equals("gouhere")) return 7;
-    if (mon.equals("eost"))                              return 8;
-    if (mon.equals("gwengolo"))                          return 9;
-    if (mon.equals("here"))                              return 10;
-    if (mon.equals("du"))                                return 11;
-    if (mon.equals("kerzu"))                             return 12;
+    if ("genver".equals(mon))                            return 1;
+    if ("c’hwevrer".equals(mon))                         return 2;
+    if ("meurzh".equals(mon))                            return 3;
+    if ("ebrel".equals(mon))                             return 4;
+    if ("mae".equals(mon))                               return 5;
+    if ("mezheven".equals(mon) || "even".equals(mon))    return 6;
+    if ("gouere".equals(mon)   || "gouhere".equals(mon)) return 7;
+    if ("eost".equals(mon))                              return 8;
+    if ("gwengolo".equals(mon))                          return 9;
+    if ("here".equals(mon))                              return 10;
+    if ("du".equals(mon))                                return 11;
+    if ("kerzu".equals(mon))                             return 12;
     throw new RuntimeException("Could not find month '" + monthStr + "'");
   }
 }

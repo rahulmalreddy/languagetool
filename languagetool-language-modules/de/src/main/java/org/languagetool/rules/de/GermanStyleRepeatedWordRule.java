@@ -126,8 +126,8 @@ public class GermanStyleRepeatedWordRule extends AbstractStyleRepeatedWordRule {
       if (n > 2 && n < tokens.length &&
           (tokens[n-2].hasPosTagStartingWith("SUB") && tokens[n-1].hasPosTagStartingWith("PRP")
               && tokens[n].hasPosTagStartingWith("SUB"))
-          || (tokens[n-2].getToken().equals("hart") && tokens[n-1].getToken().equals("auf") && tokens[n].getToken().equals("hart"))
-          || (tokens[n-2].getToken().equals("dicht") && tokens[n-1].getToken().equals("an") && tokens[n].getToken().equals("dicht"))
+          || ("hart".equals(tokens[n-2].getToken()) && "auf".equals(tokens[n-1].getToken()) && "hart".equals(tokens[n].getToken()))
+          || ("dicht".equals(tokens[n-2].getToken()) && "an".equals(tokens[n-1].getToken()) && "dicht".equals(tokens[n].getToken()))
          ) {
         return true;
       }
@@ -135,8 +135,8 @@ public class GermanStyleRepeatedWordRule extends AbstractStyleRepeatedWordRule {
       if (n > 0 && n < tokens.length - 2 &&
           (tokens[n].hasPosTagStartingWith("SUB") && tokens[n+1].hasPosTagStartingWith("PRP")
               && tokens[n+2].hasPosTagStartingWith("SUB"))
-          || (tokens[n].getToken().equals("hart") && tokens[n+1].getToken().equals("auf") && tokens[n+2].getToken().equals("hart"))
-          || (tokens[n].getToken().equals("dicht") && tokens[n+1].getToken().equals("an") && tokens[n+2].getToken().equals("dicht"))
+          || ("hart".equals(tokens[n].getToken()) && "auf".equals(tokens[n+1].getToken()) && "hart".equals(tokens[n+2].getToken()))
+          || ("dicht".equals(tokens[n].getToken()) && "an".equals(tokens[n+1].getToken()) && "dicht".equals(tokens[n+2].getToken()))
          ) {
         return true;
       }
@@ -182,8 +182,8 @@ public class GermanStyleRepeatedWordRule extends AbstractStyleRepeatedWordRule {
       return false;
     }
     String lowerTokenText = StringTools.lowercaseFirstChar(tokenText);
-    if (lowerTokenText.equals("frei")
-        || (lowerTokenText.equals("alten") && testTokenText.endsWith("halten"))
+    if ("frei".equals(lowerTokenText)
+        || ("alten".equals(lowerTokenText) && testTokenText.endsWith("halten"))
         ) {
       return false;
     }

@@ -43,16 +43,16 @@ public class GoogleStyleWordTokenizer extends WordTokenizer {
     for (String token : tokens) {
       if ("'".equals(prev)) {
         // TODO: add more cases if needed:
-        if (token.equals("m")) {
+        if ("m".equals(token)) {
           l.pop();
           l.push("'m");
-        } else if (token.equals("re")) {
+        } else if ("re".equals(token)) {
           l.pop();
           l.push("'re");
-        } else if (token.equals("ve")) {
+        } else if ("ve".equals(token)) {
           l.pop();
           l.push("'ve");
-        } else if (token.equals("ll")) {
+        } else if ("ll".equals(token)) {
           l.pop();
           l.push("'ll");
         } else {

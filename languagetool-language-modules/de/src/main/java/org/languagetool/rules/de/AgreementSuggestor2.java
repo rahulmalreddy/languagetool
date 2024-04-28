@@ -180,7 +180,7 @@ class AgreementSuggestor2 {
             continue;
           }
           for (AnalyzedToken detReading : determinerToken.getReadings()) {
-            if (gen.equals("NOG")) {  // needed to offer suggestions for e.g. "meinem Eltern" -> "meine Eltern, ..."
+            if ("NOG".equals(gen)) {  // needed to offer suggestions for e.g. "meinem Eltern" -> "meine Eltern, ..."
               String[] detSynthesized = getDetOrPronounSynth(num, "MAS", aCase, detReading);
               String[] adj1Synthesized = getAdjSynth(num, "MAS", aCase, adjToken1, detReading);
               String[] adj2Synthesized = getAdjSynth(num, "MAS", aCase, adjToken2, detReading);
@@ -237,11 +237,11 @@ class AgreementSuggestor2 {
       templates = proDemTemplates;
     } else if (detPos.contains("PRO:IND:")) {
       templates = proIndTemplates;
-    } else if (detReading.getToken().equals("zur")) {
+    } else if ("zur".equals(detReading.getToken())) {
       templates = singletonList(detTemplate);
       detReading = new AnalyzedToken("der", "", "der");
       isDef = true;
-    } else if (detReading.getToken().equals("ins")) {
+    } else if ("ins".equals(detReading.getToken())) {
       templates = singletonList(detTemplate);
       detReading = new AnalyzedToken("das", "", "der");
       isDef = true;
@@ -270,14 +270,14 @@ class AgreementSuggestor2 {
         if (adjReading.getPOSTag() == null || detReading.getPOSTag() == null) {
           continue;
         }
-        if (adjReading.getToken().equals("meisten") && num.equals("SIN")) {
+        if ("meisten".equals(adjReading.getToken()) && "SIN".equals(num)) {
           continue;
         }
         if (adjReading.getPOSTag().startsWith("ADV:")) {  // adverb, nothing to synthesize
           adjSynthesized.add(adjReading.getToken());
           continue;
         }
-        boolean detIsDef = detReading.getPOSTag().contains(":DEF:") || detReading.getToken().equals("ins");
+        boolean detIsDef = detReading.getPOSTag().contains(":DEF:") || "ins".equals(detReading.getToken());
         String template;
         if (adjReading.getPOSTag().startsWith("PA1")) {
           template = pa1Template;

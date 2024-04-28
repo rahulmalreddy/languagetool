@@ -158,7 +158,7 @@ public abstract class AbstractStyleRepeatedWordRule  extends TextLevelRule {
    */
   private static boolean hasBreakToken(AnalyzedTokenReadings[] tokens) {
     for (int i = 0; i < tokens.length && i < MAX_TOKEN_TO_CHECK; i++) {
-      if (tokens[i].getToken().equals("-") || tokens[i].getToken().equals("—") || tokens[i].getToken().equals("–")) {
+      if ("-".equals(tokens[i].getToken()) || "—".equals(tokens[i].getToken()) || "–".equals(tokens[i].getToken())) {
         return true;
       }
     }
@@ -190,7 +190,7 @@ public abstract class AbstractStyleRepeatedWordRule  extends TextLevelRule {
     } else {
       testToken = testTokens[testTokens.length - 1].getToken();
     }
-    return ((actToken.equals("?") && !testToken.equals("?")) || (testToken.equals("?") && !actToken.equals("?")));
+    return (("?".equals(actToken) && !"?".equals(testToken)) || ("?".equals(testToken) && !"?".equals(actToken)));
   }
   
   private boolean isTokenInSentence(AnalyzedTokenReadings testToken, AnalyzedTokenReadings[] tokens) {

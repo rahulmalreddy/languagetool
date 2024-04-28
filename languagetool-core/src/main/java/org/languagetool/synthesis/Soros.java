@@ -57,13 +57,13 @@ public class Soros {
             continue;
         }
         Matcher sp = p.matcher(s);
-        if (!prefix.equals("") && !s.equals("") && sp.matches()) {
+        if (!prefix.equals("") && !"".equals(s) && sp.matches()) {
             s = sp.group(1).replaceFirst("^\"", "").replaceFirst("\"$","");
-            s = "\"" + (s.startsWith("^") ? "^" : "") + prefix + (s.equals("") ? "" : " ") +
+            s = "\"" + (s.startsWith("^") ? "^" : "") + prefix + ("".equals(s) ? "" : " ") +
                  s.replaceFirst("^\\^", "") + "\" " + sp.group(2);
             sp = p.matcher(s);
         }
-        if (!s.equals("") && sp.matches()) {
+        if (!"".equals(s) && sp.matches()) {
             s = translate(sp.group(1).replaceFirst("^\"", "").replaceFirst("\"$",""),
                 c.substring(1), m.substring(1), "");
             s = s.replace(slash, "\\\\"); // -> \\, ", ;, #

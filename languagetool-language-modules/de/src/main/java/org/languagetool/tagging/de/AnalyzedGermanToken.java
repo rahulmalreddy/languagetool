@@ -59,45 +59,45 @@ public class AnalyzedGermanToken {
     Genus tempGenus = null;
     Determination tempDetermination = null;
     for (String part : parts) {
-      if (part.equals("EIG")) {
+      if ("EIG".equals(part)) {
         tempType = POSType.PROPER_NOUN;
-      } else if (part.equals("SUB") && tempType == null) {
+      } else if ("SUB".equals(part) && tempType == null) {
         tempType = POSType.NOMEN;
-      } else if (part.equals("PA1") || part.equals("PA2")) {
+      } else if ("PA1".equals(part) || "PA2".equals(part)) {
         tempType = POSType.PARTIZIP;
-      } else if (part.equals("VER") && tempType == null) {
+      } else if ("VER".equals(part) && tempType == null) {
         tempType = POSType.VERB;
-      } else if (part.equals("ADJ") && tempType == null) {
+      } else if ("ADJ".equals(part) && tempType == null) {
         tempType = POSType.ADJEKTIV;
-      } else if (part.equals("PRO") && tempType == null) {
+      } else if ("PRO".equals(part) && tempType == null) {
         tempType = POSType.PRONOMEN;
-      } else if (part.equals("ART") && tempType == null) {
+      } else if ("ART".equals(part) && tempType == null) {
         tempType = POSType.DETERMINER;
-      } else if (part.equals("AKK")) {
+      } else if ("AKK".equals(part)) {
         tempCasus = Kasus.AKKUSATIV;
-      } else if (part.equals("GEN")) {
+      } else if ("GEN".equals(part)) {
         tempCasus = Kasus.GENITIV;
-      } else if (part.equals("NOM")) {
+      } else if ("NOM".equals(part)) {
         tempCasus = Kasus.NOMINATIV;
-      } else if (part.equals("DAT")) {
+      } else if ("DAT".equals(part)) {
         tempCasus = Kasus.DATIV;
-      } else if (part.equals("PLU")) {
+      } else if ("PLU".equals(part)) {
         tempNumerus = Numerus.PLURAL;
-      } else if (part.equals("SIN")) {
+      } else if ("SIN".equals(part)) {
         tempNumerus = Numerus.SINGULAR;
-      } else if (part.equals("MAS")) {
+      } else if ("MAS".equals(part)) {
         tempGenus = Genus.MASKULINUM;
-      } else if (part.equals("FEM")) {
+      } else if ("FEM".equals(part)) {
         tempGenus = Genus.FEMININUM;
-      } else if (part.equals("NEU")) {
+      } else if ("NEU".equals(part)) {
         tempGenus = Genus.NEUTRUM;
-      } else if (part.equals("NOG")) {
+      } else if ("NOG".equals(part)) {
         tempGenus = Genus.FEMININUM;    // NOG = no genus because only used as plural
-      } else if (part.equals("ALG")) {
+      } else if ("ALG".equals(part)) {
         tempGenus = Genus.ALLGEMEIN;
-      } else if (part.equals("IND")) {
+      } else if ("IND".equals(part)) {
         tempDetermination = Determination.INDEFINITE;
-      } else if (part.equals("DEF")) {
+      } else if ("DEF".equals(part)) {
         tempDetermination = Determination.DEFINITE;
       }
     }

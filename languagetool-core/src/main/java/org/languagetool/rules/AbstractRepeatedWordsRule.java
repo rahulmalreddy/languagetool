@@ -97,7 +97,7 @@ public abstract class AbstractRepeatedWordsRule extends TextLevelRule {
       prevSentenceLength = sentence.getText().length();
       // ignore sentences not ending in period
       String lastToken = tokens[tokens.length-1].getToken();
-      if (!lastToken.equals(".") && !lastToken.equals("!") && !lastToken.equals("?")) {
+      if (!".".equals(lastToken) && !"!".equals(lastToken) && !"?".equals(lastToken)) {
         continue;
       }
       boolean sentStart = true;

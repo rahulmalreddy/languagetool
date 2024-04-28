@@ -59,9 +59,9 @@ class SearchHelper {
           continue;
         }
         
-        if( ignoreInserts && tokens[pos].getToken().equals(")") ) {
+        if( ignoreInserts && ")".equals(tokens[pos].getToken()) ) {
           for(int i=pos-1; i>=1; i--) {
-            if( tokens[i].getToken().equals("(") ) {
+            if( "(".equals(tokens[i].getToken()) ) {
               pos = i;
               continue;
             }
@@ -110,9 +110,9 @@ class SearchHelper {
           continue;
         }
 
-        if( ignoreInserts && tokens[pos].getToken().equals("(") ) {
+        if( ignoreInserts && "(".equals(tokens[pos].getToken()) ) {
           for(int i=pos+1; i<=tokens.length-1; i++) {
-            if( tokens[i].getToken().equals(")") ) {
+            if( ")".equals(tokens[i].getToken()) ) {
               pos = i;
               continue;
             }

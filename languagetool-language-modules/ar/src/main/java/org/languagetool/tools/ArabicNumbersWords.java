@@ -183,7 +183,7 @@ public class ArabicNumbersWords {
   }
 
   private static String getDigitInflectedStatus(int digit, int groupLevel, boolean isFeminine, Boolean isAttached, String inflectionCase) {
-    if (inflectionCase.equals("jar")) {
+    if ("jar".equals(inflectionCase)) {
       if (groupLevel == -1 || groupLevel == 0) {
         if (!isFeminine) {
           return ArabicNumbersWordsConstants.arabicJarOnes.get(digit);
@@ -204,7 +204,7 @@ public class ArabicNumbersWords {
 
   private static String getDigitTensJarStatus(int digit, String inflectionCase) {
 
-    if (inflectionCase.equals("jar") || inflectionCase.equals("jar")) {
+    if ("jar".equals(inflectionCase) || "jar".equals(inflectionCase)) {
       return ArabicNumbersWordsConstants.arabicJarTens.get(digit);
     }
     return ArabicNumbersWordsConstants.arabicTens.get(digit);
@@ -212,7 +212,7 @@ public class ArabicNumbersWords {
 
   private static String getDigitHundredJarStatus(int digit, String inflectionCase) {
 
-    if (inflectionCase.equals("jar") || inflectionCase.equals("jar")) {
+    if ("jar".equals(inflectionCase) || "jar".equals(inflectionCase)) {
       return ArabicNumbersWordsConstants.arabicJarHundreds.get(digit);
     }
     return ArabicNumbersWordsConstants.arabicHundreds.get(digit);
@@ -220,12 +220,12 @@ public class ArabicNumbersWords {
 
   private static String getDigitTwosJarStatus(int digit, String inflectionCase, boolean isAppended) {
     if (!isAppended) {
-      if (inflectionCase.equals("jar") || inflectionCase.equals("jar")) {
+      if ("jar".equals(inflectionCase) || "jar".equals(inflectionCase)) {
         return ArabicNumbersWordsConstants.arabicJarTwos.get(digit);
       }
       return ArabicNumbersWordsConstants.arabicTwos.get(digit);
     } else {
-      if (inflectionCase.equals("jar")) {
+      if ("jar".equals(inflectionCase)) {
         return ArabicNumbersWordsConstants.arabicJarAppendedTwos.get(digit);
       }
       return ArabicNumbersWordsConstants.arabicAppendedTwos.get(digit);
@@ -236,9 +236,9 @@ public class ArabicNumbersWords {
 
   private static boolean hasNoGroup(StringBuilder word) {
     String aword = word.toString();
-    return aword.equals("ألف")
-      || aword.equals("ألفين")
-      || aword.equals("ألفان");
+    return "ألف".equals(aword)
+      || "ألفين".equals(aword)
+      || "ألفان".equals(aword);
 
   }
 
@@ -267,7 +267,7 @@ public class ArabicNumbersWords {
     ;
     // print words
     for (String word : words) {
-      if (!word.isEmpty() && !word.equals("واحد")
+      if (!word.isEmpty() && !"واحد".equals(word)
         && (word.startsWith("و")
         || word.startsWith("ف")
         || word.startsWith("ب")
@@ -276,7 +276,7 @@ public class ArabicNumbersWords {
       ) { // strip first char
         word = word.substring(1);
       }
-      if (!word.equals("واحد") && word.startsWith("و")) {// strip first char
+      if (!"واحد".equals(word) && word.startsWith("و")) {// strip first char
         word = word.substring(1);
       }
       if (isNumericWord(word)) {

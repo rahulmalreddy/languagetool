@@ -185,8 +185,8 @@ public class AdjustPronounsFilter extends RuleFilter {
       if (isPronoun) {
         inPronouns = true;
       }
-      if (isPronoun || (isVerb && !inPronouns && !firstVerbValid) || currentTknStr.equalsIgnoreCase("de")
-          || currentTknStr.equalsIgnoreCase("d'")) {
+      if (isPronoun || (isVerb && !inPronouns && !firstVerbValid) || "de".equalsIgnoreCase(currentTknStr)
+          || "d'".equalsIgnoreCase(currentTknStr)) {
         if (isVerb) {
           firstVerb = currentTknStr;
           firstVerbPos = toLeft;
@@ -324,13 +324,13 @@ public class AdjustPronounsFilter extends RuleFilter {
 
   private String doReplaceEmEn(String firstVerb, String pronounsStr, String verbStr) {
     String replacement = "";
-    if (pronounsStr.equalsIgnoreCase("em")) {
+    if ("em".equalsIgnoreCase(pronounsStr)) {
       replacement = StringTools.preserveCase("en", pronounsStr) + " " + verbStr;
     }
-    if (pronounsStr.equalsIgnoreCase("m'")) {
+    if ("m'".equalsIgnoreCase(pronounsStr)) {
       replacement = StringTools.preserveCase("n'", pronounsStr) + verbStr;
     }
-    if (pronounsStr.equalsIgnoreCase("m'hi")) {
+    if ("m'hi".equalsIgnoreCase(pronounsStr)) {
       replacement = StringTools.preserveCase("n'hi ", pronounsStr) + verbStr;
     }
     return replacement;

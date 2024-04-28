@@ -147,7 +147,7 @@ public class CatalanTagger extends BaseTagger {
       final String possibleVerb = StringTools.normalizeNFC(matcher.group(2).toLowerCase());
       List<AnalyzedToken> taggerTokens = asAnalyzedTokenList(possibleVerb, dictLookup.lookup(possibleVerb));
       for (AnalyzedToken taggerToken : taggerTokens) {
-        if (!taggerToken.getLemma().equals("nòmer")) {
+        if (!"nòmer".equals(taggerToken.getLemma())) {
           final String posTag = taggerToken.getPOSTag();
           if (posTag != null) {
             final Matcher m = VERB.matcher(posTag);
@@ -167,7 +167,7 @@ public class CatalanTagger extends BaseTagger {
       List<AnalyzedToken> atl1 = asAnalyzedTokenList(adj1, dictLookup.lookup(adj1));
       boolean isValid = false;
       for (AnalyzedToken at : atl1) {
-        if (at.getPOSTag() != null && at.getPOSTag().equals("AQ0MS0")) {
+        if (at.getPOSTag() != null && "AQ0MS0".equals(at.getPOSTag())) {
           isValid = true;
           break;
         }

@@ -37,13 +37,13 @@ public class DateCheckFilter extends AbstractDateCheckFilter {
   @Override
   protected int getDayOfWeek(String dayStr) {
     String day = dayStr.toLowerCase();
-    if (day.startsWith("по") || day.equals("пн")) return Calendar.MONDAY;
-    if (day.startsWith("ві") || day.equals("вт")) return Calendar.TUESDAY;
-    if (day.startsWith("се") || day.equals("ср")) return Calendar.WEDNESDAY;
-    if (day.startsWith("че") || day.equals("чт")) return Calendar.THURSDAY;
-    if (day.startsWith("п'") || day.startsWith("п’") || day.equals("пт")) return Calendar.FRIDAY;
-    if (day.startsWith("су") || day.equals("сб")) return Calendar.SATURDAY;
-    if (day.startsWith("не") || day.equals("нд")) return Calendar.SUNDAY;
+    if (day.startsWith("по") || "пн".equals(day)) return Calendar.MONDAY;
+    if (day.startsWith("ві") || "вт".equals(day)) return Calendar.TUESDAY;
+    if (day.startsWith("се") || "ср".equals(day)) return Calendar.WEDNESDAY;
+    if (day.startsWith("че") || "чт".equals(day)) return Calendar.THURSDAY;
+    if (day.startsWith("п'") || day.startsWith("п’") || "пт".equals(day)) return Calendar.FRIDAY;
+    if (day.startsWith("су") || "сб".equals(day)) return Calendar.SATURDAY;
+    if (day.startsWith("не") || "нд".equals(day)) return Calendar.SUNDAY;
     throw new RuntimeException("Could not find day of week for '" + dayStr + "'");
   }
 

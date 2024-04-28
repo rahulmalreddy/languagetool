@@ -43,7 +43,7 @@ public class SimpleLanguageIdentifier extends LanguageIdentifier {
     super(1000);
     List<Language> languages = Languages.get();
     for (Language language : languages) {
-      if (language.isVariant() || language.getShortCode().equals("zz")) {
+      if (language.isVariant() || "zz".equals(language.getShortCode())) {
         continue;
       }
       boolean hasVariant = language.hasVariant();
@@ -121,7 +121,7 @@ public class SimpleLanguageIdentifier extends LanguageIdentifier {
       }
     }
     Map.Entry<String, Double> highestScoringResult = getHighestScoringResult(scores);
-    if (highestScoringResult.getValue() < SCORE_THRESHOLD || highestScoringResult.getKey().equals("zz") || countFullScore > 1) {
+    if (highestScoringResult.getValue() < SCORE_THRESHOLD || "zz".equals(highestScoringResult.getKey()) || countFullScore > 1) {
       Map<Language, Integer> lang2Count = COMMON_WORDS_LANG_IDENTIFIER.getKnownWordsPerLanguage(cleanText);
       Set<String> baseLangAlreadyHandled = new HashSet<>();
       for (Map.Entry<Language, Integer> entry : lang2Count.entrySet()) {

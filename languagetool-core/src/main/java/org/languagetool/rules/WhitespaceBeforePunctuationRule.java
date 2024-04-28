@@ -70,7 +70,7 @@ public class WhitespaceBeforePunctuationRule extends Rule {
       String msg = null;
       String suggestionText = null;
       if (prevWhite) {
-        if (token.equals(":")) {
+        if (":".equals(token)) {
           msg = messages.getString("no_space_before_colon");
           suggestionText = ":";
           // exception case for figures such as " : 0"
@@ -79,10 +79,10 @@ public class WhitespaceBeforePunctuationRule extends Rule {
               && Character.isDigit(tokens[i + 2].getToken().charAt(0))) {
             msg = null;
           }
-        } else if (token.equals(";")) {
+        } else if (";".equals(token)) {
           msg = messages.getString("no_space_before_semicolon");
           suggestionText = ";";
-        } else if (i > 1 && token.equals("%")) {
+        } else if (i > 1 && "%".equals(token)) {
           String prevPrevToken = tokens[i - 2].getToken();
           if (prevPrevToken.length() > 0 && Character.isDigit(prevPrevToken.charAt(0))) {
             msg = messages.getString("no_space_before_percentage");

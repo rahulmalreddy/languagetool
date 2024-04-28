@@ -136,23 +136,23 @@ public class QuestionWhitespaceRule extends Rule {
         // insécable" (U+202f). In practise, an "espace insécable" (U+00a0) is also
         // often used - or even a common space. Let's accept all - use
         // QuestionWhitespaceStrictRule if this is not strict enough.
-        if (token.equals("?") && !prevToken.equals("!")) {
+        if ("?".equals(token) && !prevToken.equals("!")) {
           msg = "Le point d'interrogation est précédé d'une espace fine insécable.";
           suggestionText = prevTokenToChange + ESPACE_FINE_INSECABLE + "?";
-        } else if (token.equals("!") && !prevToken.equals("?")) {
+        } else if ("!".equals(token) && !prevToken.equals("?")) {
           msg = "Le point d'exclamation est précédé d'une espace fine insécable.";
           suggestionText = prevTokenToChange + ESPACE_FINE_INSECABLE + "!";
-        } else if (token.equals(";")) {
+        } else if (";".equals(token)) {
           msg = "Le point-virgule est précédé d'une espace fine insécable.";
           suggestionText = prevTokenToChange + ESPACE_FINE_INSECABLE + ";";
-        } else if (token.equals(":")) {
+        } else if (":".equals(token)) {
           // Avoid false positive for URL like http://www.languagetool.org.
           Matcher matcherUrl = urlPattern.matcher(prevToken);
           if (!matcherUrl.find()) {
             msg = "Les deux-points sont précédés d'une espace insécable.";
             suggestionText = prevTokenToChange + NBSP + ":";
           }
-        } else if (token.equals("»")) {
+        } else if ("»".equals(token)) {
           if (prevPrevToken.equals("«")) {
             msg = "Les guillemets sont toujours accompagnés d'une espace insécable.";
             suggestionText = "«" + NBSP + prevTokenToChange + NBSP + "»";

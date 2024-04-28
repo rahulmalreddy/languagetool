@@ -296,14 +296,14 @@ public class PortugueseAccentuationCheckRule extends Rule {
               && !tokens[i - 1].hasPosTag("_GN_FS") && matchPostagRegexp(tokens[i], VERBO_CONJUGADO) 
               && !matchPostagRegexp(tokens[i], VERBO_3S))
             || (matchPostagRegexp(relevantWords2.get(token), ADJETIVO_FS) && prevPrevToken.equalsIgnoreCase("de") 
-                && (prevToken.equals("maneira") || prevToken.equals("forma")))
+                && ("maneira".equals(prevToken) || "forma".equals(prevToken)))
             || (matchPostagRegexp(relevantWords2.get(token), ADJETIVO_MP) && matchPostagRegexp(tokens[i - 1], NOME_MP))
             || (matchPostagRegexp(relevantWords2.get(token), ADJETIVO_FP) && matchPostagRegexp(tokens[i - 1], NOME_FP))) {
           replacement = relevantWords2.get(token).getToken();
         }
         // de continua disputa
         else if ((i < tokens.length - 1)
-            && !prevToken.equals("que")
+            && !"que".equals(prevToken)
             && !matchPostagRegexp(tokens[i - 1], NOT_IN_PREV_TOKEN)
             && ((matchPostagRegexp(relevantWords2.get(token), ADJETIVO_MS) && matchPostagRegexp(tokens[i + 1], NOME_MS) 
                 && matchPostagRegexp(tokens[i - 1], BEFORE_ADJECTIVE_MS))

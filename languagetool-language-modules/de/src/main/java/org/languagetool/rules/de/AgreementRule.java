@@ -318,8 +318,8 @@ public class AgreementRule extends Rule {
       // avoid false alarm on "nichts Gutes" and "alles Gute"
       AnalyzedTokenReadings tokenReadings = tokens[i];
       // avoid false alarm on "Art. 1" and "bisherigen Art. 1" (Art. = Artikel):
-      boolean detAbbrev = i < tokens.length-2 && tokens[i+1].getToken().equals("Art") && tokens[i+2].getToken().equals(".");
-      boolean detAdjAbbrev = i < tokens.length-3 && tokens[i+2].getToken().equals("Art") && tokens[i+3].getToken().equals(".");
+      boolean detAbbrev = i < tokens.length-2 && "Art".equals(tokens[i+1].getToken()) && ".".equals(tokens[i+2].getToken());
+      boolean detAdjAbbrev = i < tokens.length-3 && "Art".equals(tokens[i+2].getToken()) && ".".equals(tokens[i+3].getToken());
       // "einen Hochwasser führenden Fluss", "die Gott zugeschriebenen Eigenschaften":
       boolean followingParticiple = i < tokens.length-3 && (tokens[i+2].hasPartialPosTag("PA1") || tokens[i+2].getToken().matches("zugeschriebenen?|genannten?"));
       if (detAbbrev || detAdjAbbrev || followingParticiple) {
@@ -439,7 +439,7 @@ public class AgreementRule extends Rule {
     // avoid false alarms:
     String token = tokens[pos].getToken();
     if (PRONOUNS_TO_BE_IGNORED.contains(token.toLowerCase()) ||
-        (pos > 0 && tokens[pos-1].getToken().equalsIgnoreCase("vor") && token.equalsIgnoreCase("allem"))) {
+        (pos > 0 && tokens[pos-1].getToken().equalsIgnoreCase("vor") && "allem".equalsIgnoreCase(token))) {
       relevantPronoun = false;
     }
     return relevantPronoun;
@@ -451,7 +451,7 @@ public class AgreementRule extends Rule {
     boolean relPronoun;
     if (pos >= 1) {
       // avoid false alarm: "Das Wahlrecht, das Frauen zugesprochen bekamen." etc:
-      comma = tokens[pos-1].getToken().equals(",");
+      comma = ",".equals(tokens[pos-1].getToken());
       relPronoun = comma && tokens[pos].hasAnyLemma(REL_PRONOUN_LEMMAS);
       if (relPronoun && pos+3 < tokens.length) {
         return true;
@@ -460,7 +460,7 @@ public class AgreementRule extends Rule {
     if (pos >= 2) {
       // avoid false alarm: "Der Mann, in dem quadratische Fische schwammen."
       // or: "Die Polizei erwischte die Diebin, weil diese Ausweis und Visitenkarte hinterließ."
-      comma = tokens[pos-2].getToken().equals(",");
+      comma = ",".equals(tokens[pos-2].getToken());
       if (comma) {
         boolean prep = tokens[pos-1].hasPosTagStartingWith("PRP:");
         relPronoun = tokens[pos].hasAnyLemma(REL_PRONOUN_LEMMAS);
@@ -618,7 +618,7 @@ public class AgreementRule extends Rule {
     if (lt == null) {
       lt = new JLanguageTool(language);
       for (Rule rule : lt.getAllActiveRules()) {
-        if (!rule.getId().equals("DE_AGREEMENT") && !rule.getId().equals("GERMAN_SPELLER_RULE")) {
+        if (!"DE_AGREEMENT".equals(rule.getId()) && !"GERMAN_SPELLER_RULE".equals(rule.getId())) {
           lt.disableRule(rule.getId());
         }
       }

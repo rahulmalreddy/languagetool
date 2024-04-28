@@ -82,40 +82,40 @@ public class ConjunctionAtBeginOfSentenceRule extends AbstractStatisticSentenceS
     if (isConjunction(sentence.get(num))) {
       token = sentence.get(num);
     }
-    if (token == null || token.getToken().equals("Wie") || token.getToken().equals("Seit") || token.getToken().equals("Allerdings")
-        || (token.getToken().equals("Aber") && sentence.get(num + 1).getToken().equals("auch"))) {
+    if (token == null || "Wie".equals(token.getToken()) || "Seit".equals(token.getToken()) || "Allerdings".equals(token.getToken())
+        || ("Aber".equals(token.getToken()) && "auch".equals(sentence.get(num + 1).getToken()))) {
       return null;
     }
-    if (token.getToken().equals("Um")) {
+    if ("Um".equals(token.getToken())) {
       for (int i = 1; i < sentence.size(); i++) {
-        if(isComma(sentence.get(i)) || sentence.get(i).getToken().equals("herum")) {
+        if(isComma(sentence.get(i)) || "herum".equals(sentence.get(i).getToken())) {
           return null;
         }
       }
       return token;
     }
-    if (!token.hasPosTagStartingWith("KON:UNT") || token.getToken().equals("Sondern")
-        || (token.getToken().equals("Auch") && sentence.get(num + 1).getToken().equals("wenn"))) {
-      if (token.getToken().equals("Entweder")) {
+    if (!token.hasPosTagStartingWith("KON:UNT") || "Sondern".equals(token.getToken())
+        || ("Auch".equals(token.getToken()) && "wenn".equals(sentence.get(num + 1).getToken()))) {
+      if ("Entweder".equals(token.getToken())) {
         for (int i = 1; i < sentence.size(); i++) {
-          if(sentence.get(i).getToken().equals("oder")) {
+          if("oder".equals(sentence.get(i).getToken())) {
             return null;
           }
         }
-      } else if (token.getToken().equals("Sowohl")) {
+      } else if ("Sowohl".equals(token.getToken())) {
         for (int i = 1; i < sentence.size() - 1; i++) {
-          if(sentence.get(i).getToken().equals("als") && sentence.get(i + 1).getToken().equals("auch")) {
+          if("als".equals(sentence.get(i).getToken()) && "auch".equals(sentence.get(i + 1).getToken())) {
             return null;
           }
         }
-      } else if (token.getToken().equals("Weder")) {
+      } else if ("Weder".equals(token.getToken())) {
         for (int i = 1; i < sentence.size(); i++) {
-          if(sentence.get(i).getToken().equals("noch")) {
+          if("noch".equals(sentence.get(i).getToken())) {
             return null;
           }
         }
       } else {
-        if(sentence.get(sentence.size() - 1).getToken().equals("?")) {
+        if("?".equals(sentence.get(sentence.size() - 1).getToken())) {
           return null;
         }
         return token;

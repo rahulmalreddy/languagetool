@@ -203,7 +203,7 @@ public final class RemoteRuleFilters {
   static String getFilename(Language lang) {
       // we don't support language variants in AI rules / remote rule filters at the moment;
       // this is another kind of variant, treat it as German
-      if (lang.getShortCode().equals("de-DE-x-simple-language")) {
+      if ("de-DE-x-simple-language".equals(lang.getShortCode())) {
         lang = Languages.getLanguageForShortCode("de-DE");
       }
       return lang.getShortCode() + "/" + RULE_FILE;

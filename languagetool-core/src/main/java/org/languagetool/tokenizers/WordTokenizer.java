@@ -192,7 +192,7 @@ public class WordTokenizer implements Tokenizer {
       String nToken = l.get(i + 1);
       String nnToken = l.get(i + 2);
       String nnnToken = l.get(i + 3);
-      if (nToken.equals(":") && nnToken.equals("/") && nnnToken.equals("/")) {
+      if (":".equals(nToken) && "/".equals(nnToken) && "/".equals(nnnToken)) {
         return true;
       }
     }
@@ -200,21 +200,21 @@ public class WordTokenizer implements Tokenizer {
       // e.g. www.mydomain.org
       String nToken = l.get(i);
       String nnToken = l.get(i + 1);
-      if (nToken.equals("www") && nnToken.equals(".")) {
+      if ("www".equals(nToken) && ".".equals(nnToken)) {
         return true;
       }
     }
     if (l.size() > i + 3 && // e.g. mydomain.org/ (require slash to avoid missing errors that can be interpreted as domains)
-        l.get(i + 1).equals(".") &&   // use this order so the regex only gets matched if needed
-        l.get(i + 3).equals("/") &&
+        ".".equals(l.get(i + 1)) &&   // use this order so the regex only gets matched if needed
+        "/".equals(l.get(i + 3)) &&
         DOMAIN_CHARS.matcher(token).matches() &&
         DOMAIN_CHARS.matcher(l.get(i + 2)).matches()) {
       return true;
     }
     return (l.size() > i + 5 &&          // e.g. sub.mydomain.org/ (require slash to avoid missing errors that can be interpreted as domains)
-        l.get(i + 1).equals(".") &&  // use this order so the regex only gets matched if needed
-        l.get(i + 3).equals(".") &&
-        l.get(i + 5).equals("/") &&
+        ".".equals(l.get(i + 1)) &&  // use this order so the regex only gets matched if needed
+        ".".equals(l.get(i + 3)) &&
+        "/".equals(l.get(i + 5)) &&
         DOMAIN_CHARS.matcher(token).matches() &&
         DOMAIN_CHARS.matcher(l.get(i + 2)).matches() &&
         DOMAIN_CHARS.matcher(l.get(i + 4)).matches()
@@ -227,7 +227,7 @@ public class WordTokenizer implements Tokenizer {
 
   private boolean urlEndsAt(int i, List<String> l, String urlQuote) {
     String token = l.get(i);
-    if (StringTools.isWhitespace(token) || token.equals(")") || token.equals("]")) {   // this is guesswork
+    if (StringTools.isWhitespace(token) || ")".equals(token) || "]".equals(token)) {   // this is guesswork
       return true;
     } else if (l.size() > i + 1) {
       String nextToken = l.get(i + 1);
@@ -237,7 +237,7 @@ public class WordTokenizer implements Tokenizer {
         return true;
       }
     } else {
-      if (!URL_CHARS.matcher(token).matches() || token.equals(".") || token.equals(urlQuote)) {
+      if (!URL_CHARS.matcher(token).matches() || ".".equals(token) || token.equals(urlQuote)) {
         return true;
       }
     }

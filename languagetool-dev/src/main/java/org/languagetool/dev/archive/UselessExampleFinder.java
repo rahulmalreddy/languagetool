@@ -127,7 +127,7 @@ final class UselessExampleFinder {
         if (!inRuleGroup) {
           subRuleCount = 1;
         }
-        if (!expectedSubId.equals("0") && !expectedSubId.equals(String.valueOf(subRuleCount))) {
+        if (!"0".equals(expectedSubId) && !expectedSubId.equals(String.valueOf(subRuleCount))) {
           lineCount++;
           continue;
         }

@@ -425,9 +425,9 @@ public class ArabicTagger extends BaseTagger {
         suffix = "نا";
       }
       // case of some prepositon like مني منا، عني عنّا
-      else if ((word.equals("عني") || word.equals("مني")) && word.endsWith("ني")) {
+      else if (("عني".equals(word) || "مني".equals(word)) && word.endsWith("ني")) {
         suffix = "ني";
-      } else if ((word.equals("عنا") || word.equals("منا")) && word.endsWith("نا")) {
+      } else if (("عنا".equals(word) || "منا".equals(word)) && word.endsWith("نا")) {
         suffix = "نا";
       } else {
         suffix = "";
@@ -485,9 +485,9 @@ public class ArabicTagger extends BaseTagger {
     // for test get the first
     for (AnalyzedToken tok : patternTokens.getReadings()) {
 
-      if ((tagmanager.isVerb(tok.getPOSTag()) && type.equals("verb"))
-        || (tagmanager.isAdj(tok.getPOSTag()) && type.equals("adj"))
-        || (tagmanager.isMasdar(tok.getPOSTag()) && type.equals("masdar"))
+      if ((tagmanager.isVerb(tok.getPOSTag()) && "verb".equals(type))
+        || (tagmanager.isAdj(tok.getPOSTag()) && "adj".equals(type))
+        || (tagmanager.isMasdar(tok.getPOSTag()) && "masdar".equals(type))
       ) {
         //ensure non duplicate
         if (!lemmaList.contains(tok.getLemma())) {

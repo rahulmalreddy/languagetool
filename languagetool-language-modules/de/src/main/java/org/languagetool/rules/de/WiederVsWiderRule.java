@@ -66,13 +66,13 @@ public class WiederVsWiderRule extends Rule {
       String token = tokens[i].getToken();
       if (tokens[i].hasLemma("spiegeln")) {
         foundSpiegelt = true;
-      } else if (token.equalsIgnoreCase("wieder") && foundSpiegelt) {
+      } else if ("wieder".equalsIgnoreCase(token) && foundSpiegelt) {
         foundWieder = true;
-      } else if (token.equalsIgnoreCase("wider") && foundSpiegelt) {
+      } else if ("wider".equalsIgnoreCase(token) && foundSpiegelt) {
         foundWider = true;
       }
       if (foundSpiegelt && foundWieder && !foundWider &&
-          !(tokens.length > i + 2 && (tokens[i + 1].getToken().equals("wider") || tokens[i + 2].getToken().equals("wider")) )
+          !(tokens.length > i + 2 && ("wider".equals(tokens[i + 1].getToken()) || "wider".equals(tokens[i + 2].getToken())) )
          ) {
         String msg = "'wider' in 'widerspiegeln' wird mit 'i' statt mit 'ie' " +
                 "geschrieben, z.B. 'Das spiegelt die Situation gut wider.'";

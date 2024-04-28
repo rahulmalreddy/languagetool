@@ -136,7 +136,7 @@ public class SymSpell implements Serializable {
 
     // what we have at this point is a new, above threshold word
     words.put(key, count);
-    if (key.equals("can't")) {
+    if ("can't".equals(key)) {
       System.out.println("Added to words..!");
     }
 

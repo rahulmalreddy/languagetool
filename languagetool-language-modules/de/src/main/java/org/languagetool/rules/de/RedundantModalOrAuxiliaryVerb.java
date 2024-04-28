@@ -60,7 +60,7 @@ public class RedundantModalOrAuxiliaryVerb extends Rule {
   }
   
   private static boolean isBreakToken (String sToken) {
-    return MARKS_REGEX.matcher(sToken).matches() || sToken.equals("und") || sToken.equals("oder") || sToken.equals("sowie");
+    return MARKS_REGEX.matcher(sToken).matches() || "und".equals(sToken) || "oder".equals(sToken) || "sowie".equals(sToken);
   }
 
   private int hasParticipleAt(int nConjunction, int nStart, AnalyzedTokenReadings[] tokens) {
@@ -101,7 +101,7 @@ public class RedundantModalOrAuxiliaryVerb extends Rule {
           if (MARKS_REGEX.matcher(sToken).matches()) {
             break;
           }
-          if (sToken.equals("und") || sToken.equals("oder") || sToken.equals("sowie")) {
+          if ("und".equals(sToken) || "oder".equals(sToken) || "sowie".equals(sToken)) {
             int nConjunction = nt;
             doBreak = true;
             for (nt++; nt < tokens.length; nt++) {
@@ -137,7 +137,7 @@ public class RedundantModalOrAuxiliaryVerb extends Rule {
                   }
                 } else if (nt + 1 < tokens.length && tokens[nt + 1].getToken().equalsIgnoreCase(tokens[nVerb + 1].getToken()) 
                     && (tokens[nt + 1].hasPosTagStartingWith("PRO:IND") 
-                        || (tokens[nt + 1].hasPosTagStartingWith("PRO:PER") && !tokens[nt + 1].getToken().equals("Sie") 
+                        || (tokens[nt + 1].hasPosTagStartingWith("PRO:PER") && !"Sie".equals(tokens[nt + 1].getToken()) 
                             && !tokens[nt + 1].hasPosTagStartingWith("ART") ))) {
                   if (tokens[nt + 1].hasPosTagStartingWith("PRO:PER:AKK") && tokens[nt].matchesPosTagRegex("VER:(AUX|MOD):.*KJ1")) {
                     String msg = "Das " + (isModVerb ? "Modalverb" : "Hilfsverb") + VERB_TEXT;
@@ -148,7 +148,7 @@ public class RedundantModalOrAuxiliaryVerb extends Rule {
                   }
                 } else {
                   if (tokens[nt - 1].hasPosTagStartingWith("PRO:PER")  
-                      || tokens[nt - 1].getToken().equals("da") || tokens[nt - 1].getToken().equals("zu")
+                      || "da".equals(tokens[nt - 1].getToken()) || "zu".equals(tokens[nt - 1].getToken())
                       || tokens[nVerb + 1].getToken().equals(tokens[nt - 1].getToken())
                       || nt + 1 < tokens.length && (tokens[nt + 1].hasPosTagStartingWith("PRO:PER")
                           || tokens[nt - 1].getToken().equals(tokens[nt + 1].getToken())

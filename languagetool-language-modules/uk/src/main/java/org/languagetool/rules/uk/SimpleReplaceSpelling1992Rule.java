@@ -46,7 +46,7 @@ public class SimpleReplaceSpelling1992Rule extends AbstractSimpleReplaceRule {
 
   static {
     dashPrefixes1992 = ExtraDictionaryLoader.loadMap("/uk/dash_prefixes.txt");
-    dashPrefixes1992.entrySet().removeIf(entry -> ! entry.getValue().equals(":ua_1992") );
+    dashPrefixes1992.entrySet().removeIf(entry -> ! ":ua_1992".equals(entry.getValue()) );
   }
   
   @Override

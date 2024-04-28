@@ -205,11 +205,11 @@ public class HunspellRule extends SpellingCheckRule {
           if (i > 0 && prevStartPos != -1) {
             String prevWord = tokens[i-1];
             boolean ignoreSplitting = false;
-            if (this.language.getShortCode().equals("pt") && (commonPortugueseWords.contains(prevWord.toLowerCase())
+            if ("pt".equals(this.language.getShortCode()) && (commonPortugueseWords.contains(prevWord.toLowerCase())
                 || commonPortugueseWords.contains(word.toLowerCase()))) {
               ignoreSplitting = true;
             }
-            if (this.language.getShortCode().equals("de") && (commonGermanWords.contains(prevWord.toLowerCase())
+            if ("de".equals(this.language.getShortCode()) && (commonGermanWords.contains(prevWord.toLowerCase())
                 || commonGermanWords.contains(word.toLowerCase()))) {
               ignoreSplitting = true;
             }
@@ -301,10 +301,10 @@ public class HunspellRule extends SpellingCheckRule {
   boolean isFirstItemHighConfidenceSuggestion(String word, List<SuggestedReplacement> sugg) {
     // finds cases like "HAus", where "Haus" is surely the proper suggestion:
     if (sugg.size() > 0 &&
-        !word.equals("IPs") &&
+        !"IPs".equals(word) &&
         word.equalsIgnoreCase(sugg.get(0).getReplacement()) &&
         word.matches("[A-Z][A-Z]\\p{javaLowerCase}+") &&
-        language.getShortCode().equals("de")) {
+        "de".equals(language.getShortCode())) {
       //System.out.println("speller high conf case: " + word + "; " + sugg.get(0).getReplacement() + "; " + language.getShortCodeWithCountryAndVariant());
       if (word.endsWith("s") && StringUtils.isAllUpperCase(sugg.get(0).getReplacement())) {
         // e.g. "DMs" could mean plural of "DM"

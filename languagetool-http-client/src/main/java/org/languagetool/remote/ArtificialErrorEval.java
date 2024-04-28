@@ -197,11 +197,11 @@ public class ArtificialErrorEval {
         columnIncorrect = Integer.parseInt(parts[2]);
       }
     }
-    else if (fileName.equals("diacritics")) {
+    else if ("diacritics".equals(fileName)) {
       isDiacritics = true;
       unidirectional = true;
     }
-    else if (fileName.equals("double_letters")) {
+    else if ("double_letters".equals(fileName)) {
       isDoubleLetters = true;
       unidirectional = true;
     }
@@ -210,12 +210,12 @@ public class ArtificialErrorEval {
       words[0] = parts[0].replaceAll("_", " ");
       words[1] = parts[1].replaceAll("_", " ");
       if (parts.length > 2) {
-        unidirectional = parts[2].equals("u");
-        if (parts[2].equals("u_notwholeword")) {
+        unidirectional = "u".equals(parts[2]);
+        if ("u_notwholeword".equals(parts[2])) {
           unidirectional = true;
           wholeword = false;
         }
-        if (parts[2].equals("notwholeword")) {
+        if ("notwholeword".equals(parts[2])) {
           wholeword = false;
         }
       }  
@@ -273,11 +273,11 @@ public class ArtificialErrorEval {
               columnIncorrect = Integer.parseInt(parts[2]);
             }
           }
-          else if (fileName.equals("diacritics")) {
+          else if ("diacritics".equals(fileName)) {
             isDiacritics = true;
             unidirectional = true;
           }
-          else if (fileName.equals("double_letters")) {
+          else if ("double_letters".equals(fileName)) {
             isDoubleLetters = true;
             unidirectional = true;
           }
@@ -286,12 +286,12 @@ public class ArtificialErrorEval {
             words[0] = parts[0].replaceAll("_", " ");
             words[1] = parts[1].replaceAll("_", " ");
             if (parts.length > 2) {
-              unidirectional = parts[2].equals("u");
-              if (parts[2].equals("u_notwholeword")) {
+              unidirectional = "u".equals(parts[2]);
+              if ("u_notwholeword".equals(parts[2])) {
                 unidirectional = true;
                 wholeword = false;
               }
-              if (parts[2].equals("notwholeword")) {
+              if ("notwholeword".equals(parts[2])) {
                 wholeword = false;
               }
             }  

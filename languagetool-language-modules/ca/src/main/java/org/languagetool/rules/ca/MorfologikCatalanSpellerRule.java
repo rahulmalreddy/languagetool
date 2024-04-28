@@ -136,7 +136,7 @@ public final class MorfologikCatalanSpellerRule extends MorfologikSpellerRule {
         return newSuggestions;
       }
       // remove always
-      if (replacement.equalsIgnoreCase("como")) {
+      if ("como".equalsIgnoreCase(replacement)) {
         continue;
       }
       boolean ignoreSuggestion = false;
@@ -247,8 +247,8 @@ public final class MorfologikCatalanSpellerRule extends MorfologikSpellerRule {
     if (matcher.matches()) {
       String newSuggestion = matcher.group(suggestionPosition);
       AnalyzedTokenReadings newatr = tagger.tag(Arrays.asList(newSuggestion)).get(0);
-      if ((!newatr.hasPosTag("VMIP1S0B") || newSuggestion.equalsIgnoreCase("fer") || newSuggestion.equalsIgnoreCase("ajust")
-          || newSuggestion.equalsIgnoreCase("gran")) && matchPostagRegexp(newatr, postagPattern)) {
+      if ((!newatr.hasPosTag("VMIP1S0B") || "fer".equalsIgnoreCase(newSuggestion) || "ajust".equalsIgnoreCase(newSuggestion)
+          || "gran".equalsIgnoreCase(newSuggestion)) && matchPostagRegexp(newatr, postagPattern)) {
         return matcher.group(1) + separator + matcher.group(2);
       }
       if (recursive) {

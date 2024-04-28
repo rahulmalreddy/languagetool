@@ -916,7 +916,7 @@ public class MultiDocumentsHandler {
       if (linguServices == null) {
         linguServices = new LinguisticServices(xContext);
         OfficeProductInfo officeProductInfo = OfficeTools.getOfficeProductInfo(xContext);
-        if (officeProductInfo != null && officeProductInfo.osArch.equals("x86")) {
+        if (officeProductInfo != null && "x86".equals(officeProductInfo.osArch)) {
           Tools.setLinguisticServices(linguServices);
         }
       }

@@ -915,11 +915,11 @@ public class CaseRule extends Rule {
     }
     // find error in: "Man müsse Überlegen, wie man das Problem löst."
     boolean isPotentialError = pos < tokens.length - 3
-        && tokens[pos+1].getToken().equals(",")
+        && ",".equals(tokens[pos+1].getToken())
         && StringUtils.equalsAny(tokens[pos+2].getToken(), INTERROGATIVE_PARTICLES)
         && tokens[pos-1].hasPosTagStartingWith("VER:MOD")
         && !tokens[pos-1].hasLemma("mögen")
-        && !tokens[pos+3].getToken().equals("zum");
+        && !"zum".equals(tokens[pos+3].getToken());
     if (!isPotentialError &&
         lowercaseReadings != null
         && tokens[pos].hasAnyPartialPosTag("SUB:NOM:SIN:NEU:INF", "SUB:DAT:PLU:")
@@ -946,8 +946,8 @@ public class CaseRule extends Rule {
   //                          ^^^^^^^
   private boolean isPrevProbablyRelativePronoun(AnalyzedTokenReadings[] tokens, int i) {
     return i >= 3 &&
-      tokens[i-1].getToken().equals("das") &&
-      tokens[i-2].getToken().equals(",") &&
+      "das".equals(tokens[i-1].getToken()) &&
+      ",".equals(tokens[i-2].getToken()) &&
       tokens[i-3].matchesPosTagRegex("SUB:...:SIN:NEU");
   }
 
@@ -960,7 +960,7 @@ public class CaseRule extends Rule {
   }
 
   private boolean isDot(String token) {
-    return token.equals(".");
+    return ".".equals(token);
   }
 
   private boolean hasNounReading(AnalyzedTokenReadings readings) {
@@ -1039,7 +1039,7 @@ public class CaseRule extends Rule {
   }
 
   private boolean followedByGenderGap(AnalyzedTokenReadings[] tokens, int i) {
-    if (i + 2 < tokens.length && tokens[i+1].getToken().equals(":") && tokens[i+2].getToken().matches("in|innen")) {
+    if (i + 2 < tokens.length && ":".equals(tokens[i+1].getToken()) && tokens[i+2].getToken().matches("in|innen")) {
       return true;
     }
     return false;
@@ -1085,13 +1085,13 @@ public class CaseRule extends Rule {
     return i >= 2
             && StringUtils.equalsAny(tokens[i-1].getToken(), ")", "]")
             && NUMERALS_EN.matcher(tokens[i-2].getToken()).matches()
-            && !(i > 3 && tokens[i-3].getToken().equals("(")
+            && !(i > 3 && "(".equals(tokens[i-3].getToken())
               && tokens[i-4].hasPosTagStartingWith("SUB:")); // no numbering "Der Vater (51) fuhr nach Rom."
   }
 
   private boolean isEllipsis(int i, AnalyzedTokenReadings[] tokens) {
     return StringUtils.equalsAny(tokens[i-1].getToken(), "]", ")") && // sentence starts with […]
-           ((i == 4 && tokens[i-2].getToken().equals("…")) || (i == 6 && tokens[i-2].getToken().equals(".")));
+           ((i == 4 && "…".equals(tokens[i-2].getToken())) || (i == 6 && ".".equals(tokens[i-2].getToken())));
   }
 
   private boolean isNominalization(int i, AnalyzedTokenReadings[] tokens, String token, AnalyzedTokenReadings lowercaseReadings) {
@@ -1113,7 +1113,7 @@ public class CaseRule extends Rule {
       if (StringUtils.equalsAny(prevTokenStr, "und", "oder", "beziehungsweise") && prevPrevToken != null &&
           (tokens[i].hasPartialPosTag("SUB") && tokens[i].hasPartialPosTag(":ADJ")) || //"das dabei Erlernte und Erlebte ist ..." -> 'Erlebte' is correct here
           (prevPrevToken.hasPartialPosTag("SUB") && !hasNounReading(nextReadings) && // "die Ausgaben für Umweltschutz und Soziales"
-              lowercaseReadings != null && lowercaseReadings.hasPartialPosTag("ADJ") && !prevTokenStr.equals(","))) {
+              lowercaseReadings != null && lowercaseReadings.hasPartialPosTag("ADJ") && !",".equals(prevTokenStr))) {
        return true;
      }
       if (lowercaseReadings != null && lowercaseReadings.hasPosTag("PA1:PRD:GRU:VER")) {
@@ -1178,7 +1178,7 @@ public class CaseRule extends Rule {
     }
 
     // ignore "Der Versuch, Neues zu lernen / Gutes zu tun / Spannendes auszuprobieren"
-    boolean isPossiblyFollowedByInfinitive = nextReadings != null && nextReadings.getToken().equals("zu");
+    boolean isPossiblyFollowedByInfinitive = nextReadings != null && "zu".equals(nextReadings.getToken());
     boolean isFollowedByInfinitive = nextReadings != null && !isPossiblyFollowedByInfinitive && nextReadings.hasPartialPosTag("EIZ");
     boolean isFollowedByPossessiveIndicator = nextReadings != null && StringUtils.equalsAny(nextReadings.getToken(),POSSESSIVE_INDICATORS);
 
@@ -1229,7 +1229,7 @@ public class CaseRule extends Rule {
                             LanguageNames.get().contains(StringUtils.removeEnd(StringUtils.removeEnd(token, "n"), "e"));   // z.B. "im Japanischen" / z.B. "ins Japanische übersetzt"
     AnalyzedTokenReadings prevToken = i > 0 ? tokens[i-1] : null;
     AnalyzedTokenReadings nextReadings = i < tokens.length-1 ? tokens[i+1] : null;
-    return maybeLanguage && (!hasNounReading(nextReadings) || (prevToken != null && prevToken.getToken().equals("auf")));
+    return maybeLanguage && (!hasNounReading(nextReadings) || (prevToken != null && "auf".equals(prevToken.getToken())));
   }
 
   private boolean isProbablyCity(int i, AnalyzedTokenReadings[] tokens, String token) {

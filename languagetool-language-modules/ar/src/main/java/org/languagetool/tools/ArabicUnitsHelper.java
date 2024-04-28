@@ -104,7 +104,7 @@ public class ArabicUnitsHelper {
 
   /* test if the unit is feminin */
   public static boolean isFeminin(String unit) {
-    return (unitsMap.containsKey(unit) && unitsMap.get(unit).getOrDefault("feminin", "no").equals("yes"));
+    return (unitsMap.containsKey(unit) && "yes".equals(unitsMap.get(unit).getOrDefault("feminin", "no")));
   }
 
   public static boolean isUnit(String unit) {

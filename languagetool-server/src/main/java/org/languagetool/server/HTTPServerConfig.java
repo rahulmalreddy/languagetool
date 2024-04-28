@@ -360,7 +360,7 @@ public class HTTPServerConfig {
           throw new IllegalArgumentException("Invalid value for textCheckerQueueSize, must be >= 1: " + textCheckerQueueSize);
         }
 
-        boolean atdMode = getOptionalProperty(props, "mode", "LanguageTool").equalsIgnoreCase("AfterTheDeadline");
+        boolean atdMode = "AfterTheDeadline".equalsIgnoreCase(getOptionalProperty(props, "mode", "LanguageTool"));
         if (atdMode) {
           throw new IllegalArgumentException("The AfterTheDeadline mode is not supported anymore in LanguageTool 3.8 or later");
         }
@@ -451,7 +451,7 @@ public class HTTPServerConfig {
         localApiMode = Boolean.parseBoolean(getOptionalProperty(props, "localApiMode", "false"));
         motherTongue = getOptionalProperty(props, "motherTongue", "en-US");
         String preferredLanguages = getOptionalProperty(props, "preferredLanguages", "").replace(" ", "");
-        if (!preferredLanguages.equals("")) {
+        if (!"".equals(preferredLanguages)) {
           this.preferredLanguages = Arrays.asList(preferredLanguages.split(","));
         }
         dictLimitUser = Integer.valueOf(getOptionalProperty(props, "dictLimitUser", "0"));

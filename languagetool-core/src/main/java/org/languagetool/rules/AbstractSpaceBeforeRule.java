@@ -69,7 +69,7 @@ public abstract class AbstractSpaceBeforeRule extends Rule {
       Matcher matcher = getConjunctions().matcher(token);
       if (matcher.matches()) {
         String previousToken = tokens[i - 1].getToken();
-        if (!(previousToken.equals(" ") || previousToken.equals("("))) {
+        if (!(" ".equals(previousToken) || "(".equals(previousToken))) {
           String replacement = " " + token;
           String msg = getSuggestion();
           int pos = tokens[i].getStartPos();

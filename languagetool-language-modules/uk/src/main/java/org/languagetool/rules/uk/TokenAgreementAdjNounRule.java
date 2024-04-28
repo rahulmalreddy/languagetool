@@ -283,8 +283,8 @@ public class TokenAgreementAdjNounRule extends Rule {
           String vidmTag = adjInflection._case;
 
 
-            if( ! adjInflection._case.equals("v_kly")
-                && (adjInflection.gender.equals("p")
+            if( ! "v_kly".equals(adjInflection._case)
+                && ("p".equals(adjInflection.gender)
                 || PosTagHelper.hasPosTagPart(nounTokenReadings, genderTag)) ) {
               for(AnalyzedToken nounToken: nounTokenReadings) {
 
@@ -361,7 +361,7 @@ public class TokenAgreementAdjNounRule extends Rule {
       }
       String caseStr = PosTagHelper.VIDMINKY_MAP.get(inflection._case);
       if( adj && inflection.animTag != null ) {
-        caseStr += " (" + (inflection.animTag.equals("anim") ? "іст." : "неіст.") + ")";
+        caseStr += " (" + ("anim".equals(inflection.animTag) ? "іст." : "неіст.") + ")";
       }
       map.get(inflection.gender).add(caseStr);
     }

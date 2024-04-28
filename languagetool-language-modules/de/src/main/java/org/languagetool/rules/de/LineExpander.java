@@ -53,7 +53,7 @@ public class LineExpander implements org.languagetool.rules.LineExpander {
     if (parts[0].contains("/") || parts[1].contains("/")) {
       throw new IllegalArgumentException("Unexpected line format, '_' cannot be combined with '/': " + line);
     }
-    if (parts[1].equals("in")) {
+    if ("in".equals(parts[1])) {
       // special case for the common gender gap characters:
       result.add(parts[0] + "_in");
       result.add(parts[0] + "_innen");

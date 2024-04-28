@@ -74,29 +74,29 @@ class ApiV2 {
   void handleRequest(String path, HttpExchange httpExchange, Map<String, String> parameters, ErrorRequestLimiter errorRequestLimiter,
                      String remoteAddress, HTTPServerConfig config) throws Exception {
     String spanName = "/v2/" + path;
-    if (path.equals("languages")) {
+    if ("languages".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleLanguagesRequest(httpExchange));
-    } else if (path.equals("maxtextlength")) {
+    } else if ("maxtextlength".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleMaxTextLengthRequest(httpExchange, config));
-    } else if (path.equals("configinfo")) {
+    } else if ("configinfo".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleGetConfigurationInfoRequest(httpExchange, parameters, config));
-    } else if (path.equals("info")) {
+    } else if ("info".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleSoftwareInfoRequest(httpExchange));
-    } else if (path.equals("check")) {
+    } else if ("check".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleCheckRequest(httpExchange, parameters, errorRequestLimiter, remoteAddress, config));
-    } else if (path.equals("words")) {
+    } else if ("words".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleWordsRequest(httpExchange, parameters, config));
-    } else if (path.equals("words/add")) {
+    } else if ("words/add".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleWordAddRequest(httpExchange, parameters, config));
-    } else if (path.equals("words/delete")) {
+    } else if ("words/delete".equals(path)) {
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleWordDeleteRequest(httpExchange, parameters, config));
     //} else if (path.equals("rule/examples")) {
     //  // private (i.e. undocumented) API for our own use only
     //  handleRuleExamplesRequest(httpExchange, parameters);
-    } else if (path.equals("admin/refreshUser")) {
+    } else if ("admin/refreshUser".equals(path)) {
       // private (i.e. undocumented) API for our own use only
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> handleRefreshUserInfoRequest(httpExchange, parameters, config));
-    } else if (path.equals("users/me")) {
+    } else if ("users/me".equals(path)) {
       // private (i.e. undocumented) API for our own use only
       TelemetryProvider.INSTANCE.createSpan(spanName, Attributes.empty(), () -> 
         handleGetUserInfoRequest(httpExchange, parameters, config));
@@ -341,9 +341,9 @@ class ApiV2 {
         throw new AuthException("Expected Basic Authentication");
       }
       String authParameter = parameters.getOrDefault("authMethod", "password");
-      if (!(authParameter.equals("password") || 
-            authParameter.equals("apiKey") || 
-            authParameter.equals("addonToken"))) {
+      if (!("password".equals(authParameter) || 
+            "apiKey".equals(authParameter) || 
+            "addonToken".equals(authParameter))) {
         throw new IllegalArgumentException("Unknown authMethod: " + authParameter);
       }
 
@@ -353,17 +353,17 @@ class ApiV2 {
       String password = basicAuthentication.getPassword();
       UserInfoEntry userInfo = null;
 
-      if (authParameter.equals("password")) {
+      if ("password".equals(authParameter)) {
         userInfo = DatabaseAccess.getInstance().getUserInfoWithPassword(user, password);
-      } else if (authParameter.equals("addonToken")) {
+      } else if ("addonToken".equals(authParameter)) {
         userInfo = DatabaseAccess.getInstance().getUserInfoWithAddonToken(user, password);
-      } else if (authParameter.equals("apiKey")) {
+      } else if ("apiKey".equals(authParameter)) {
         userInfo = DatabaseAccess.getInstance().getUserInfoWithApiKey(user, password);
       }
 
       String format = parameters.getOrDefault("format", "extended");
       if (userInfo != null) {
-        if (format.equals("minimal")) {
+        if ("minimal".equals(format)) {
           StringWriter sw = new StringWriter();
           new ObjectMapper().writeValue(sw, userInfo);
           sendJson(httpExchange, sw);

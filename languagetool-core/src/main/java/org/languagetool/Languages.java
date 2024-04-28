@@ -279,7 +279,7 @@ public final class Languages {
       }
     }
     for (Language aLanguage : languages) {
-      if (aLanguage.getShortCodeWithCountryAndVariant().equals("en-US")) {
+      if ("en-US".equals(aLanguage.getShortCodeWithCountryAndVariant())) {
         return aLanguage;
       }
     }
@@ -339,7 +339,7 @@ public final class Languages {
       }
     } else {
       for (Language element : getStaticAndDynamicLanguages()) {
-        if (langCode.equals("global")) {
+        if ("global".equals(langCode)) {
           // for disambiguation-global.xml take any language
           result = element;
           break;
