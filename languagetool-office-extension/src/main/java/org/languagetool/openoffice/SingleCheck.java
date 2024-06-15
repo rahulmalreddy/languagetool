@@ -145,7 +145,9 @@ class SingleCheck {
         singleDocument.setLastChangedParas(null);
       }
       if (changedParas.contains(lastChangedPara) )
-      changedParas.add(lastChangedPara);
+      {
+          changedParas.add(lastChangedPara);
+      }
       remarkChangedParagraphs(changedParas, changedParas, lt, true);
     }
     this.lastSinglePara = lastSinglePara;
